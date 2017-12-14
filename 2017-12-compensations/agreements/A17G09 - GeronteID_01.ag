@@ -1,0 +1,58 @@
+id: GERONTE_DesignServiceLine-ID_01
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Geronte - Andalusian government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      PenalizedCostPercent:
+        description: Percentage of penalty in a monthly bill paid for the service.
+        type: integer
+        unit: '%'
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            PenalizedCostPercent:
+              $ref: '#/context/definitions/schemas/PenalizedCostPercent'
+  metrics:
+    ID_01:
+      schema:
+        description: >-
+          Porcentaje de solicitudes de servicio con desviación desfavorable
+          respecto de los plazos de entrega.  //Below the upTo refers to the 25%
+          of PMAXCD... "Se establece una penalización máxima para cada uno de
+          los indicadores del 25% respecto de CDI, referida como PMAXCD."
+        type: integer
+        minimum: 0
+        maximum: 100
+        unit: '%'
+      computer: 'http://Geronte/ID_01/'
+  guarantees:
+    - id: ID_01_GT
+      scope: {}
+      of:
+        - objective: ID_01 <= 10
+          scope: {}
+          with:
+            ID_01: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                PenalizedCostPercent:
+                  $ref: '#/context/definitions/schemas/PenalizedCostPercent'
+              of:
+                - value: ((ID_01 - 10) / 90)
+                  condition: ID_01 > 10
+              upTo: 25

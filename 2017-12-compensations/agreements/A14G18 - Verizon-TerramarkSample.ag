@@ -1,0 +1,69 @@
+id: Verizon_Terramark_Cloud_Backing
+version: '1.0'
+type: agreement
+context:
+  provider: Verizon
+  consumer: Consumer
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      ServiceCredits:
+        description: >-
+          Number of service credits to be decreased in the next monthly fee, so
+          that each service credit corresponds to 1/30 of monthly fee. //below
+          the upTo 15 is due to the 1/30 per month and the maximum of 50%.
+          This document takes more than 1 minute to be analysed
+        type: integer
+        meta:
+          type: piecewise
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            ServiceCredits:
+              $ref: '#/context/definitions/schemas/ServiceCredits'
+  metrics:
+    Unavailable:
+      schema:
+        description: >-
+          Unavailability of the backup service, which is measured in percentaje
+          (x100)
+        type: integer
+        minimum: 0
+        maximum: 1000
+        unit: '%'
+      computer: "http://verizon/terramark/unavailability\t"
+    TotalMinutes:
+      schema:
+        description: Total Minutes in a Month
+        type: integer
+        minimum: 0
+        maximum: 45000
+        unit: '%'
+      computer: "http://verizon/terramark/unavailability\t"
+  guarantees:
+    - id: VerizonTerramark_GT
+      scope: {}
+      of:
+        - objective: Unavailable < 1
+          with:
+            Unavailable: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          scope: {}
+          penalties:
+            - over:
+                ServiceCredits:
+                  $ref: '#/context/definitions/schemas/ServiceCredits'
+              of:
+                - value: (1 + ( (Unavailable - 1) * TotalMinutes ) ) / 1000 
+                  condition: Unavailable >= 1
+              upTo: 15

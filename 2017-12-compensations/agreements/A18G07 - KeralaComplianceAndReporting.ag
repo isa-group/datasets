@@ -1,0 +1,55 @@
+id: KERALA_UNIVERSITY_EXAMINATION_SYSTEM_ComplianceAndReporting
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Kerala University
+  validity:
+    timeZone: 'UTC+05:30 (India)'
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      PenaltyPercentage:
+        description: Percentage of penalty cost for a quarterly payment.
+        type: integer
+        unit: '%'
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            PenaltyPercentage:
+              $ref: '#/context/definitions/schemas/PenaltyPercentage'
+  metrics:
+    ReportInstances:
+      schema:
+        description: Provide monthly SLA compliance reports, monitoring and maintenance related MIS reports by the 5th of the following month. This service level will be monitored on a monthly basis. If the monthly SLA compliance report related to the service level metrics is not provided in the given timeframe, it will be treated as one (1) instance. The total number of instances for the six-month period will be the cumulative number of instances across all the months in the six month period. Charges will be levied from Database Administration head under Cost Break up for EMS rollout and Penalties applicable for each of the violations is 0.1% of quarterly payment (SGR) to the SP.
+        type: integer
+        minimum: 0
+        maximum: 10
+        unit: 'instance'
+      computer: 'http://Kerala/ReportInstances/'
+  guarantees:
+    - id: ComplianceAndReporting_GT
+      scope: {}
+      of:
+        - objective: ReportInstances <= 0
+          scope: {}
+          with:
+            ReportInstances: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                PenaltyPercentage:
+                  $ref: '#/context/definitions/schemas/PenaltyPercentage'
+              of:
+                - value: '1'
+                  condition: ReportInstances > 0 && ReportInstances <= 3
+                - value: '2'
+                  condition: ReportInstances > 3

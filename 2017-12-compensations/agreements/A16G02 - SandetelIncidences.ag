@@ -1,0 +1,65 @@
+id: SANDETEL_Incidences
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Sandetel - Andalusian government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      MonthlyBillPenaltyPercentage:
+        description: percentage of the fee to pay for a month of the service.
+        type: integer
+        unit: '%'
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            MonthlyBillPenaltyPercentage:
+              $ref: '#/context/definitions/schemas/MonthlyBillPenaltyPercentage'
+  metrics:
+    SolvedIncidencesPercent:
+      schema:
+        description: >-
+          Percentage of incidences solved on time over the total. //Compensation
+          Conditions are not properly established in the PDF document!
+        type: integer
+        minimum: 0
+        maximum: 100
+        unit: '%'
+      computer: 'http://Sandetel/SolvedIncidencesPercent/'
+  guarantees:
+    - id: Incidences_GT
+      scope: {}
+      of:
+        - objective: SolvedIncidencesPercent > 95
+          scope: {}
+          with:
+            SolvedIncidencesPercent: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                MonthlyBillPenaltyPercentage:
+                  $ref: '#/context/definitions/schemas/MonthlyBillPenaltyPercentage'
+              of:
+                - value: '1'
+                  condition: (SolvedIncidencesPercent >= 99) && (SolvedIncidencesPercent < 100)
+                - value: '2'
+                  condition: (SolvedIncidencesPercent >= 98) && (SolvedIncidencesPercent < 99)
+                - value: '3'
+                  condition: (SolvedIncidencesPercent >= 97) && (SolvedIncidencesPercent < 98)
+                - value: '4'
+                  condition: (SolvedIncidencesPercent >= 96) && (SolvedIncidencesPercent < 97)
+                - value: '5'
+                  condition: (SolvedIncidencesPercent >= 95) && (SolvedIncidencesPercent < 96)
+                - value: '10'
+                  condition: SolvedIncidencesPercent < 95

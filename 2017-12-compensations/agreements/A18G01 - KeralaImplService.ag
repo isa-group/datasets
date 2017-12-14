@@ -1,0 +1,55 @@
+id: KERALA_UNIVERSITY_EXAMINATION_SYSTEM_ImplementationServices
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Kerala University
+  validity:
+    timeZone: 'UTC+05:30 (India)'
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      PenaltyPercentage:
+        description: Percentage of penalty cost for a quarterly payment.
+        type: integer
+        unit: '%'
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            PenaltyPercentage:
+              $ref: '#/context/definitions/schemas/PenaltyPercentage'
+  metrics:
+    CompletedTrainingsPercentage:
+      schema:
+        description: Percentage of completed trainings
+        type: integer
+        minimum: 0
+        maximum: 100
+        unit: '%'
+      computer: 'http://Kerala/CompletedTrainingsPercentage/'
+  guarantees:
+    - id: ImplementationServices_GT
+      scope: {}
+      of:
+        - objective: CompletedTrainingsPercentage > 80
+          scope: {}
+          with:
+            CompletedTrainingsPercentage: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                PenaltyPercentage:
+                  $ref: '#/context/definitions/schemas/PenaltyPercentage'
+              of:
+                - value: '3'
+                  condition: (CompletedTrainingsPercentage >= 70) && (CompletedTrainingsPercentage <= 80)
+                - value: '1'
+                  condition: (CompletedTrainingsPercentage >= 50) && (CompletedTrainingsPercentage < 70)

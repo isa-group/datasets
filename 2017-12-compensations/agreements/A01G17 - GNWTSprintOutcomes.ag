@@ -1,0 +1,53 @@
+id: GNWT-SprintOutcomes
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Northwest Territories Government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      InvoicePercentage:
+        description: Percent affecting the amount invoiced for the sprint
+        type: integer
+        unit: '%'
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            InvoicePercentage: {}
+      rewards:
+        - over:
+            InvoicePercentage: {}
+  metrics:
+    elapsedDaysPercent:
+      schema:
+        description: 100% denotes that the Sprint completion was as planned. Less than 100% denotes that the sprint completion was BEFORE planned. More than 100% denotes that the sprint completion was AFTER planned.
+        type: integer
+        minimum: 0
+        maximum: 200
+        unit: '%'
+  guarantees:
+    - id: GNWT_17
+      scope: {}
+      of:
+        - objective: elapsedDaysPercent <= 100
+          scope: {}
+          with:
+            elapsedDaysPercent: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                InvoicePercentage: {}
+              of:
+                - value: '15'
+                  condition: elapsedDaysPercent > 100

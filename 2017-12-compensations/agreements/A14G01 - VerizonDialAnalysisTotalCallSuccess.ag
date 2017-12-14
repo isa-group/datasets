@@ -1,0 +1,72 @@
+id: Verizon_DialAnalysisTotalCallSuccessRate
+version: '1.0'
+type: agreement
+context:
+  provider: Verizon
+  consumer: Consumer
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      OneDayServiceCredits:
+        description: >-
+          Number of service credits to be decreased in the next monthly fee. It
+          depicts a One Day's prorated Dial Charges. To claim a credit, Customer
+          must submit a complete a Verizon Enterprise Solutions claim form
+          available on the Information One Website on or before the thirtieth
+          (30) calendar day from the date the SLA results were posted.
+          Customer's sole remedy for Verizon Enterprise Solutions's failure to
+          meet any and all SLAs shall be to receive a credit outlined in Table 1
+          below, of the Verizon Enterprise Solutions dial-up access charges, net
+          of discounts and taxes, billed to Customer for the month ("Dial
+          Charges") in which Verizon Enterprise Solutions failed to meet the SLA
+          for each SLA. For any given month, the maximum credit available to
+          Customers is a credit equal maximum three (3) percent of the Dial
+          Charges.
+        type: integer
+        unit: '%'
+        meta:
+          type: piecewise
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            OneDayServiceCredits:
+              $ref: '#/context/definitions/schemas/OneDayServiceCredits'
+  metrics:
+    TotalCallSuccessRate:
+      schema:
+        description: Percentage of successful calls
+        type: integer
+        minimum: 0
+        maximum: 10000
+        unit: '%'
+      computer: 'http://verizon/TotalCallSuccessRate/'
+  guarantees:
+    - id: Verizon_DialAnalysisTotalCallSuccessRate_GT
+      scope: {}
+      of:
+        - objective: TotalCallSuccessRate >= 9000
+          with:
+            TotalCallSuccessRate: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          scope: {}
+          penalties:
+            - over:
+                OneDayServiceCredits:
+                  $ref: '#/context/definitions/schemas/OneDayServiceCredits'
+              of:
+                - value: '1'
+                  condition: TotalCallSuccessRate >= 8900 && TotalCallSuccessRate <= 8999
+                - value: '2'
+                  condition: TotalCallSuccessRate >= 8800 && TotalCallSuccessRate <= 8899
+                - value: '3'
+                  condition: TotalCallSuccessRate < 8800

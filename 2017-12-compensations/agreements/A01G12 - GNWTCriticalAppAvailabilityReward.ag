@@ -1,0 +1,53 @@
+id: GNWT-CriticalApplicationAvailability
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Northwest Territories Government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      InvoicePercentage:
+        description: Percent affecting next monthly bill
+        type: integer
+        unit: '%'
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            InvoicePercentage: {}
+      rewards:
+        - over:
+            InvoicePercentage: {}
+  metrics:
+    Availability:
+      schema:
+        description: Availabity of the service every day
+        type: integer
+        minimum: 0
+        maximum: 1000
+        unit: '%'
+  guarantees:
+    - id: GNWT_12
+      scope: {}
+      of:
+        - objective: Availability >= 995
+          scope: {}
+          with:
+            Availability: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          rewards:
+            - over:
+                InvoicePercentage: {}
+              of:
+                - value: '-10'
+                  condition: Availability > 995

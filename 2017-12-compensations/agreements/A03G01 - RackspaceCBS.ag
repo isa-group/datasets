@@ -1,0 +1,71 @@
+id: RACKSPACE_CLOUD_SERVER_Cloud_Block_Storage
+version: '1.0'
+type: agreement
+context:
+  provider: Rackspace
+  consumer: Consumer
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      Credits:
+        description: >-
+          credits calculated as a percentage of the Service Fee for the affected
+          Volume, and based on the percentage of Volume availability in a given
+          monthly billing cycle. As preecondition... (i) the Cloud Block Storage
+          Service returns a Server Error Response to a Valid API Request during
+          two or more consecutive ninety (90) second intervals, or (ii) data
+          stored on Volumes becomes inaccessible to the applicable Cloud Server.
+        type: integer
+        unit: '%'
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            Credits:
+              $ref: '#/context/definitions/schemas/Credits'
+  metrics:
+    Monthly_Availability:
+      schema:
+        description: Availability percentage in a month
+        type: integer
+        minimum: 0
+        maximum: 10000
+        unit: '%'
+      computer: 'http://Rackspace/Cloud_Server/Monthly_Availability/'
+  guarantees:
+    - id: CBS_GT
+      scope: {}
+      of:
+        - objective: Monthly_Availability >= 9990
+          scope: {}
+          with:
+            Monthly_Availability: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                Credits:
+                  $ref: '#/context/definitions/schemas/Credits'
+              of:
+                - value: '10'
+                  condition: Monthly_Availability >= 9950 && Monthly_Availability < 9990
+                - value: '25'
+                  condition: Monthly_Availability >= 9900 && Monthly_Availability < 9950
+                - value: '40'
+                  condition: Monthly_Availability >= 9800 && Monthly_Availability < 9900
+                - value: '55'
+                  condition: Monthly_Availability >= 9750 && Monthly_Availability < 9800
+                - value: '70'
+                  condition: Monthly_Availability >= 9700 && Monthly_Availability < 9750
+                - value: '85'
+                  condition: Monthly_Availability >= 9650 && Monthly_Availability < 9700
+                - value: '100'
+                  condition: Monthly_Availability < 9650

@@ -1,0 +1,54 @@
+id: KERALA_UNIVERSITY_EXAMINATION_SYSTEM_IT_InfrastructureL3
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Kerala University
+  validity:
+    timeZone: 'UTC+05:30 (India)'
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      PenaltyPercentage:
+        description: Percentage of penalty cost for a quarterly payment.
+        type: integer
+        unit: '%'
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            PenaltyPercentage:
+              $ref: '#/context/definitions/schemas/PenaltyPercentage'
+  metrics:
+    DowntimePeriodicity:
+      schema:
+        description: Periodicity of downtime in minutes for a single instace in a month. //The SLO has been inferred from the penalty conditions. //upTo gathered from the 64.8 hours of actual down time in a quarter... 3888 minutes / 4 = 972 minutes/month
+        type: integer
+        minimum: 0
+        maximum: 44640
+        unit: 'minute'
+      computer: 'http://Kerala/DowntimePeriodicity/'
+  guarantees:
+    - id: ITInfrastructureL3_GT
+      scope: {}
+      of:
+        - objective: DowntimePeriodicity < 480
+          scope: {}
+          with:
+            DowntimePeriodicity: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                PenaltyPercentage:
+                  $ref: '#/context/definitions/schemas/PenaltyPercentage'
+              of:
+                - value: '5'
+                  condition: DowntimePeriodicity >= 480
+              upTo: 972

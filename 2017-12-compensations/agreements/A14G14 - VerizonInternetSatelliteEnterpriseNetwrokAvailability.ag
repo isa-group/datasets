@@ -1,0 +1,75 @@
+id: Verizon_InternetSatelliteEnterpriseNetworkAvailability
+version: '1.0'
+type: agreement
+context:
+  provider: Verizon
+  consumer: Consumer
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      ServiceCredits:
+        description: >-
+          Number of service credits to be decreased in the next monthly fee.
+          Credit(s) may be claimed for each SLA. However, the maximum SLA credit
+          that will be applied shall not exceed 25% of the Monthly Fee for each
+          affected site, net of discounts and taxes.
+        type: integer
+        unit: '%'
+        meta:
+          type: piecewise
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            ServiceCredits:
+              $ref: '#/context/definitions/schemas/ServiceCredits'
+  metrics:
+    NetworkAvailability:
+      schema:
+        description: >-
+          (Igual que en el "SLA office"... Hay un fallo en NetworkAvailability <
+          94999. Lo pone así y debería ser NetworkAvailability <= 94999) Network
+          availability in percentage.  To receive credit for a failure to meet a
+          Service Level Standard,  Customer must request such credit within 30
+          days from the date that  the Internet Dedicated Service was
+          unavailable. For each cumulative  hour of Network Unavailability or
+          fraction thereof in any calendar  month, at Customer's request,
+          Customer's account shall be credited  for the pro-rated charges for
+          one day of the Verizon I monthly recurring  charge plus one day of the
+          telephone company line charges for the Service  with respect to which
+          a Service Availability Service Level Standard was not met.
+        type: integer
+        minimum: 1
+        maximum: 100000
+        unit: '%'
+      computer: 'http://verizon/NetworkAvailability/'
+  guarantees:
+    - id: Verizon_InternetSatelliteEnterpriseNetworkAvailability_GT
+      scope: {}
+      of:
+        - objective: NetworkAvailability >= 99900
+          with:
+            NetworkAvailability: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          scope: {}
+          penalties:
+            - over:
+                ServiceCredits:
+                  $ref: '#/context/definitions/schemas/ServiceCredits'
+              of:
+                - value: '5'
+                  condition: NetworkAvailability >= 99500 && NetworkAvailability <= 99899
+                - value: '10'
+                  condition: NetworkAvailability >= 95000 && NetworkAvailability < 99500
+                - value: '25'
+                  condition: NetworkAvailability < 94999
+              upTo: 25

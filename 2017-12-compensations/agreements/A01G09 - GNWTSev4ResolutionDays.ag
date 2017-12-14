@@ -1,0 +1,53 @@
+id: GNWT-Severity4ProblemResolutionDays
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Northwest Territories Government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      InvoicePercentage:
+        description: Percent affecting next monthly bill
+        type: integer
+        unit: '%'
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            InvoicePercentage: {}
+      rewards:
+        - over:
+            InvoicePercentage: {}
+  metrics:
+    Sev4resolutionDays95:
+      schema:
+        description: Days to resolve the 95% of severity 3 problems
+        type: integer
+        minimum: 0
+        maximum: 1200
+        unit: day
+  guarantees:
+    - id: GNWT_9
+      scope: {}
+      of:
+        - objective: Sev4resolutionDays95 <= 20
+          scope: {}
+          with:
+            Sev4resolutionDays95: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                InvoicePercentage: {}
+              of:
+                - value: '5'
+                  condition: Sev4resolutionDays95 > 20

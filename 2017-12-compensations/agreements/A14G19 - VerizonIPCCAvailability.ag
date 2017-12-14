@@ -1,0 +1,83 @@
+id: Verizon_IPCC_Availability
+version: '1.0'
+type: agreement
+context:
+  provider: Verizon
+  consumer: Consumer
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      ServiceCredits:
+        description: >-
+          Number of service credits to be decreased in the next monthly fee.
+          Credit(s) may be claimed for each SLA. However, the maximum SLA credit
+          that will be applied shall not exceed 25% of the Monthly Fee for each
+          affected site, net of discounts and taxes.
+        type: integer
+        unit: '%'
+        meta:
+          type: piecewise
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            ServiceCredits:
+              $ref: '#/context/definitions/schemas/ServiceCredits'
+  metrics:
+    Availability:
+      schema:
+        description: Monthly availability in percentage.
+        type: integer
+        minimum: 1
+        maximum: 10000
+        unit: '%'
+      computer: 'http://verizon/Availability/'
+  guarantees:
+    - id: Verizon_IPCC_Availability_GT
+      scope: {}
+      of:
+        - objective: Availability >= 9990
+          with:
+            Availability: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          scope: {}
+          penalties:
+            - over:
+                ServiceCredits:
+                  $ref: '#/context/definitions/schemas/ServiceCredits'
+              of:
+                - value: '10'
+                  condition: Availability < 9960
+                - value: '13'
+                  condition: Availability < 9940
+                - value: '17'
+                  condition: Availability < 9930
+                - value: '20'
+                  condition: Availability < 9920
+                - value: '23'
+                  condition: Availability < 9900
+                - value: '27'
+                  condition: Availability < 9890
+                - value: '30'
+                  condition: Availability < 9880
+                - value: '33'
+                  condition: Availability < 9870
+                - value: '37'
+                  condition: Availability < 9860
+                - value: '40'
+                  condition: Availability < 9850
+                - value: '43'
+                  condition: Availability < 9830
+                - value: '47'
+                  condition: Availability < 9820
+                - value: '50'
+                  condition: Availability < 9810

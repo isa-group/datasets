@@ -1,0 +1,58 @@
+id: GERONTE_OperationServices-IO_12
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Geronte - Andalusian government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      PenalizedCostPercent:
+        description: Percentage of penalty in a monthly bill paid for the service.
+        type: integer
+        unit: '%'
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            PenalizedCostPercent:
+              $ref: '#/context/definitions/schemas/PenalizedCostPercent'
+  metrics:
+    IO_12:
+      schema:
+        description: >-
+          Decremento del coste medio de resolución de incidencias asignadas al adjudicatario.
+          //Below the upTo refers to the 25% of PMAXCO... "Se establece una
+          penalización máxima para cada uno de los indicadores del 25% respecto
+          de CO, referida como PMAXCO."
+        type: integer
+        minimum: 0
+        maximum: 100
+        unit: '%'
+      computer: 'http://Geronte/IO_12/'
+  guarantees:
+    - id: IO_12_GT
+      scope: {}
+      of:
+        - objective: IO_12 <= -12
+          scope: {}
+          with:
+            IO_12: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                PenalizedCostPercent:
+                  $ref: '#/context/definitions/schemas/PenalizedCostPercent'
+              of:
+                - value: ((IO_12 + 12) / 12) * 20
+                  condition: IO_12 > -12
+              upTo: 25

@@ -1,0 +1,53 @@
+id: GNWT-MonthlyStatusReport
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Northwest Territories Government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      InvoicePercentage:
+        description: Percent affecting next monthly bill
+        type: integer
+        unit: '%'
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            InvoicePercentage: {}
+      rewards:
+        - over:
+            InvoicePercentage: {}
+  metrics:
+    elapsedDays:
+      schema:
+        description: elapsed days before the scheduled review meeting //The SLO below has been inferred from the own penalty condition definition
+        type: integer
+        minimum: 0
+        maximum: 1200
+        unit: '%'
+  guarantees:
+    - id: GNWT_6
+      scope: {}
+      of:
+        - objective: elapsedDays > 2
+          scope: {}
+          with:
+            elapsedDays: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                InvoicePercentage: {}
+              of:
+                - value: '5'
+                  condition: elapsedDays <= 2

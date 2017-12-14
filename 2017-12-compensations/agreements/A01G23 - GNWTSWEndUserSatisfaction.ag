@@ -1,0 +1,53 @@
+id: GNWT-SoftwareEnUserSatisfaction
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Northwest Territories Government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      InvoicePercentage:
+        description: Percent affecting the amount invoiced for the project
+        type: integer
+        unit: '%'
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            InvoicePercentage: {}
+      rewards:
+        - over:
+            InvoicePercentage: {}
+  metrics:
+    GoodSatisfactionPercentage:
+      schema:
+        description: Percentage of completed scores on application enhancement satisfaction surveys have a rating of satisfied or very satisfied.
+        type: integer
+        minimum: 0
+        maximum: 100
+        unit: '%'
+  guarantees:
+    - id: GNWT_11
+      scope: {}
+      of:
+        - objective: GoodSatisfactionPercentage >= 80 && GoodSatisfactionPercentage <= 95
+          scope: {}
+          with:
+            GoodSatisfactionPercentage: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          pemalty:
+            - over:
+                InvoicePercentage: {}
+              of:
+                - value: '10'
+                  condition: GoodSatisfactionPercentage < 80

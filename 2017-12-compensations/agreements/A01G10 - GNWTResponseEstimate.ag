@@ -1,0 +1,51 @@
+id: GNWT-ResponseEstimate
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Northwest Territories Government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      InvoicePercentage:
+        description: Percent affecting next monthly bill
+        type: integer
+        unit: '%'
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            InvoicePercentage: {}
+      rewards:
+        - over:
+            InvoicePercentage: {}
+  metrics:
+    ExpectedResponses95:
+      schema:
+        description: 95% of Initial Response, Estimation Response, and Subsequent Response times are met (boolean 0 = false, 1 = true)
+        type: integer
+        unit: 'boolean'
+  guarantees:
+    - id: GNWT_10
+      scope: {}
+      of:
+        - objective: ExpectedResponses95 == true
+          scope: {}
+          with:
+            ExpectedResponses95: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                InvoicePercentage: {}
+              of:
+                - value: '5'
+                  condition: ExpectedResponses95 == false

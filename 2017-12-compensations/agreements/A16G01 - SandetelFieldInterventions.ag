@@ -1,0 +1,74 @@
+id: SANDETEL_FieldInterventions
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Sandetel - Andalusian government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      MonthlyBillPenaltyPercentage:
+        description: percentage of the fee to pay for a month of the service.
+        type: integer
+        unit: '%'
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            MonthlyBillPenaltyPercentage:
+              $ref: '#/context/definitions/schemas/MonthlyBillPenaltyPercentage'
+  metrics:
+    SolvedInterventionsPercent:
+      schema:
+        description: Percentage of solved field interventions over the total. //Compensation
+          Conditions are not properly established in the PDF document!
+        type: integer
+        minimum: 0
+        maximum: 100
+        unit: '%'
+      computer: 'http://Sandetel/SolvedInterventionsPercent/'
+  guarantees:
+    - id: FieldInterventions_GT
+      scope: {}
+      of:
+        - objective: SolvedInterventionsPercent > 90
+          scope: {}
+          with:
+            SolvedInterventionsPercent: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                MonthlyBillPenaltyPercentage:
+                  $ref: '#/context/definitions/schemas/MonthlyBillPenaltyPercentage'
+              of:
+                - value: '1'
+                  condition: >-
+                    (SolvedInterventionsPercent >= 94) &&
+                    (SolvedInterventionsPercent < 95)
+                - value: '2'
+                  condition: >-
+                    (SolvedInterventionsPercent >= 93) &&
+                    (SolvedInterventionsPercent < 94)
+                - value: '3'
+                  condition: >-
+                    (SolvedInterventionsPercent >= 92) &&
+                    (SolvedInterventionsPercent < 93)
+                - value: '4'
+                  condition: >-
+                    (SolvedInterventionsPercent >= 91) &&
+                    (SolvedInterventionsPercent < 92)
+                - value: '5'
+                  condition: >-
+                    (SolvedInterventionsPercent >= 90) &&
+                    (SolvedInterventionsPercent < 91)
+                - value: '10'
+                  condition: SolvedInterventionsPercent < 90

@@ -1,0 +1,54 @@
+id: GERONTE_TransitionServices-IT_07
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Geronte - Andalusian government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      PenalizedCostPercent:
+        description: Percentage of penalty in a monthly bill paid for the service.
+        type: integer
+        unit: '%'
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            PenalizedCostPercent:
+              $ref: '#/context/definitions/schemas/PenalizedCostPercent'
+  metrics:
+    IT_07:
+      schema:
+        description: Porcentaje de subidas a preproducción con errores achacables al adjudicatario. //Below the upTo refers to the 25% of PMAXCT... "Se establece una penalización máxima para cada uno de los indicadores del 25% respecto de CTI, referida como PMAXCT."
+        type: integer
+        minimum: 0
+        maximum: 100
+        unit: '%'
+      computer: 'http://Geronte/IT_07/'
+  guarantees:
+    - id: IT_07_GT
+      scope: {}
+      of:
+        - objective: IT_07 <= 10
+          scope: {}
+          with:
+            IT_07: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                PenalizedCostPercent:
+                  $ref: '#/context/definitions/schemas/PenalizedCostPercent'
+              of:
+                - value: ((IT_07 - 10) / 20) * 20
+                  condition: IT_07 > 10
+              upTo: 25

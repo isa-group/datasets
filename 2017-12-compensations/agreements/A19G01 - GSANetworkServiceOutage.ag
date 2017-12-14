@@ -1,0 +1,54 @@
+id: GSA_Network-ServiceOutage
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: GSANetwork
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      PenalizedCost:
+        description: Penalty cost in a monthly bill paid for the service.
+        type: integer
+        unit: '€'
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            PenalizedCost:
+              $ref: '#/context/definitions/schemas/PenalizedCost'
+  metrics:
+    OutOfServiceMinutes:
+      schema:
+        description: >-
+          Duration of the outage in hours and tenths of an hour minus 0.2 hours (12 minutes), according to the contractor’s trouble report. //The penalty condition would be "OutOfServiceMinutes * 0.025" but we do not support float for all our analysis operations
+        type: integer
+        minimum: 0
+        maximum: 44640
+        unit: 'minute'
+      computer: 'http://GSA/OutOfServiceMinutes/'
+  guarantees:
+    - id: ServiceOutage_GT
+      scope: {}
+      of:
+        - objective: OutOfServiceMinutes <= 0
+          scope: {}
+          with:
+            OutOfServiceMinutes: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                PenalizedCost:
+                  $ref: '#/context/definitions/schemas/PenalizedCost'
+              of:
+                - value: OutOfServiceMinutes * 25
+                  condition: OutOfServiceMinutes > 0

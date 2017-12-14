@@ -1,0 +1,56 @@
+id: RACKSPACE_CLOUD_SERVER_Cloud_Load_Balancer
+version: '1.0'
+type: agreement
+context:
+  provider: Rackspace
+  consumer: Consumer
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      Credits:
+        description: credits... The SLO above is using rounding minutes... 43.2 (rounded to 43), that is the 0.1%
+        type: integer
+        //minimum: 0
+        //maximum: 100
+        unit: '%'
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            Credits:
+              $ref: '#/context/definitions/schemas/Credits'
+  metrics:
+    UnavailabilityMinutes:
+      schema:
+        description: Minutes of Cloud Load Balancer unavailability, Maximum of 43200 in months of 30 days and 44640 in months of 31 days
+        type: integer
+        minimum: 0
+        maximum: 45000
+        unit: 'minute'
+      computer: 'http://Rackspace/Cloud_Server/UnavailabilityMinutes/'
+  guarantees:
+    - id: Cloud_Load_Balancer_GT
+      scope: {}
+      of:
+        - objective: UnavailabilityMinutes < 43
+          scope: {}
+          with:
+            UnavailabilityMinutes: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                Credits:
+                  $ref: '#/context/definitions/schemas/Credits'
+              of:
+                - value: '5 * UnavailabilityMinutes'
+                  condition: UnavailabilityMinutes >= 43 
+              upTo: 100

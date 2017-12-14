@@ -1,0 +1,61 @@
+id: GERONTE_OperationServices-IO_06
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Geronte - Andalusian government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      PenalizedMinutes:
+        description: >-
+          Minutes of penalty in a month of the service.
+          minutes
+        type: integer
+        unit: minute
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            PenalizedMinutes:
+              $ref: '#/context/definitions/schemas/PenalizedMinutes'
+  metrics:
+    IO_06:
+      schema:
+        description: >-
+          Tiempo medio de resolución de incidencias, con prioridad normal.
+          //Below the upTo refers to the 25% of PMAXCO... "Se establece una
+          penalización máxima para cada uno de los indicadores del 25% respecto
+          de CO, referida como PMAXCO." //The upTo is a percentage and the
+          penalty variable is a time-related variable!!
+        type: integer
+        minimum: 0
+        maximum: 10000
+        unit: minute
+      computer: 'http://Geronte/IO_06/'
+  guarantees:
+    - id: IO_06_GT
+      scope: {}
+      of:
+        - objective: IO_06 <= 18
+          scope: {}
+          with:
+            IO_06: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                PenalizedMinutes:
+                  $ref: '#/context/definitions/schemas/PenalizedMinutes'
+              of:
+                - value: ((IO_06 - 1080) / 240) * 20
+                  condition: IO_06 > 18
+              upTo: 25

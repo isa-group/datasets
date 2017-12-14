@@ -1,0 +1,55 @@
+id: GERONTE_StrategiesAndContinuousImprovement-IEMC_04
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Geronte - Andalusian government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      PenalizedHours:
+        description: Hours of penalty in a month of the service.
+        type: integer
+        unit: hour
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            PenalizedHours:
+              $ref: '#/context/definitions/schemas/PenalizedHours'
+  metrics:
+    IEMC_04:
+      schema:
+        description: >-
+          Factor de rotación. //Above penalty condition
+          would be "(IEMC_04 - 2) * TPH * 40" but we consider TPH as a constant
+        type: integer
+        minimum: 0
+        maximum: 100
+        unit: hour
+      computer: 'http://Geronte/IEMC_04/'
+  guarantees:
+    - id: StrategiesAndContinuousImprovementIEMC_04_GT
+      scope: {}
+      of:
+        - objective: IEMC_04 <= 2
+          scope: {}
+          with:
+            IEMC_04: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                PenalizedHours:
+                  $ref: '#/context/definitions/schemas/PenalizedHours'
+              of:
+                - value: (IEMC_04 - 2) * 40
+                  condition: IEMC_04 > 2

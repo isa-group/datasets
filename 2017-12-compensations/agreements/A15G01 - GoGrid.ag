@@ -1,0 +1,57 @@
+id: GoGrid
+version: '1.0'
+type: agreement
+context:
+  provider: GoGrid
+  consumer: Consumer
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      ServiceCredit:
+        description: >-
+          100 times the duration of failure without considering the monthly fee
+          because it is a constant. This SLA is the same for 10 Services with a
+          different SLO each.
+        type: integer
+        unit: minute
+        meta:
+          type: piecewise
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            ServiceCredit:
+              $ref: '#/context/definitions/schemas/MonthlyServiceFee'
+  metrics:
+    UnavailableMinutes:
+      schema:
+        description: Time during which the service is not working
+        type: integer
+        unit: minute
+      computer: 'http://gogrid/durationFailure'
+  guarantees:
+    - id: GoGrid_GT
+      scope: {}
+      of:
+        - objective: UnavailableMinutes <= 0
+          with:
+            UnavailableMinutes: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          scope: {}
+          penalties:
+            - over:
+                ServiceCredit:
+                  $ref: '#/context/definitions/schemas/ServiceCredit_10000'
+              of:
+                - value: ' 100 * UnavailableMinutes '
+                  condition: UnavailableMinutes > 0
+              upTo: 43200

@@ -1,0 +1,59 @@
+id: GNWT-UserAcceptanceTests
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Northwest Territories Government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      InvoicePercentage:
+        description: Percent affecting next monthly bill //in the compensation conditions it is avoided the use of a constant that is the "average hourly billing rate"
+        type: integer
+        unit: '%'
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            InvoicePercentage: {}
+      rewards:
+        - over:
+            InvoicePercentage: {}
+  metrics:
+    AcceptanceTestPercentage:
+      schema:
+        description: Percentage of user acceptance test cases in this month pass on the first execution.
+        type: integer
+        minimum: 0
+        maximum: 100
+        unit: '%'
+  guarantees:
+    - id: GNWT_19
+      scope: {}
+      of:
+        - objective: AcceptanceTestPercentage >= 80
+          scope: {}
+          with:
+            AcceptanceTestPercentage: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                InvoicePercentage: {}
+              of:
+                - value: '20'
+                  condition: AcceptanceTestPercentage < 80
+          rewards:
+            - over:
+                InvoicePercentage: {}
+              of:
+                - value: '-10'
+                  condition: AcceptanceTestPercentage >= 95

@@ -1,0 +1,53 @@
+id: GNWT-DocumentationUpdates
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Northwest Territories Government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      InvoicePercentage:
+        description: Percent affecting the amount invoiced for the project
+        type: integer
+        unit: '%'
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            InvoicePercentage: {}
+      rewards:
+        - over:
+            InvoicePercentage: {}
+  metrics:
+    elapsedDeliveryDays:
+      schema:
+        description: days spent by the provider to provide the documentation after user acceptance testing is completed.
+        type: integer
+        minimum: 0
+        maximum: 200
+        unit: 'day'
+  guarantees:
+    - id: GNWT_18
+      scope: {}
+      of:
+        - objective: elapsedDeliveryDays <= 7
+          scope: {}
+          with:
+            elapsedDeliveryDays: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                InvoicePercentage: {}
+              of:
+                - value: '5'
+                  condition: elapsedDeliveryDays > 7

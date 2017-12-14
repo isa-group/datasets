@@ -1,0 +1,56 @@
+id: Verizon_SecurityReactiveResponseDetection
+version: '1.0'
+type: agreement
+context:
+  provider: Verizon
+  consumer: Consumer
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      ServiceCredits:
+        description: >-
+          Number of service credits to be decreased in the next monthly fee.
+        type: integer
+        unit: '%'
+        meta:
+          type: piecewise
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            ServiceCredits:
+              $ref: '#/context/definitions/schemas/ServiceCredits'
+  metrics:
+    ReactiveResponseDetectionDelay:
+      schema:
+        description: Minutes in which Verizon detect a problem.
+        type: integer
+        minimum: 1
+        maximum: 43200
+        unit: minute
+      computer: 'http://verizon/ReactiveResponseDetectionDelay/'
+  guarantees:
+    - id: Verizon_SecurityReactiveResponseDetection_GT
+      scope: {}
+      of:
+        - objective: ReactiveResponseDetectionDelay <= 15
+          with:
+            ReactiveResponseDetectionDelay: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          scope: {}
+          penalties:
+            - over:
+                ServiceCredits:
+                  $ref: '#/context/definitions/schemas/ServiceCredits'
+              of:
+                - value: '1'
+                  condition: ReactiveResponseDetectionDelay > 15

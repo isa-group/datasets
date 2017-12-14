@@ -1,0 +1,53 @@
+id: GSA_Network-Time2Restore_NoDispatch
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: GSANetwork
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      PenalizedCost:
+        description: Penalty cost in a monthly bill paid for the service.
+        type: integer
+        unit: euro
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            PenalizedCost:
+              $ref: '#/context/definitions/schemas/PenalizedCost'
+  metrics:
+    Hours2Restore:
+      schema:
+        description: Time to restore (without considering dispatching) in hours.
+        type: integer
+        minimum: 0
+        maximum: 24
+        unit: hour
+      computer: 'http://GSA/Hours2Restore/'
+  guarantees:
+    - id: Time2Restore_NoDispatch_GT
+      scope: {}
+      of:
+        - objective: Hours2Restore <= 4
+          scope: {}
+          with:
+            Hours2Restore: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                PenalizedCost:
+                  $ref: '#/context/definitions/schemas/PenalizedCost'
+              of:
+                - value: '50'
+                  condition: Hours2Restore > 4

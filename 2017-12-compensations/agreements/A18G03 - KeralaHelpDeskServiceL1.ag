@@ -1,0 +1,75 @@
+id: KERALA_UNIVERSITY_EXAMINATION_SYSTEM_HelpDeskLevel1
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Kerala University
+  validity:
+    timeZone: 'UTC+05:30 (India)'
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      PenaltyPercentage:
+        description: >-
+          Percentage of penalty cost for a monthly payment.  //Is said the
+          following in the document 80% of the Level 1 Incidents at each site
+          should be resolved within at the earliest from the time call is
+          received / logged whichever is earlier. The maximum resolution time
+          for any incident of this nature shall not exceed 1 hour. This service
+          level will be measured on basis for each examination center site. If
+          the performance in a total examination process period for an
+          examination center or site falls below the minimum service level, it
+          will be treated as one (1) instance. The total number of instances for
+          the period will be the cumulative number of instances across the
+          process time across all sites in the total examinations period of a
+          particular semester. Average number of instances per process = (Total
+          number of instances during the examinations period) / 6
+        type: integer
+        unit: '%'
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            PenaltyPercentage:
+              $ref: '#/context/definitions/schemas/PenaltyPercentage'
+  metrics:
+    AverageL1Incidences:
+      schema:
+        description: >-
+          Average number of instances with incidences per month //The SLO has
+          been inferred from the penalty conditions. 
+          //An incidence occurs if and only if less than the 80% of instances are not resolved within an hour
+        type: integer
+        minimum: 0
+        maximum: 100
+        unit: '%'
+      computer: 'http://Kerala/AverageL1Incidences/'
+  guarantees:
+    - id: HelpDeskLevel1_GT
+      scope: {}
+      of:
+        - objective: AverageL1Incidences <= 0
+          scope: {}
+          with:
+            AverageL1Incidences: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                PenaltyPercentage:
+                  $ref: '#/context/definitions/schemas/PenaltyPercentage'
+              of:
+                - value: '1'
+                  condition: AverageL1Incidences > 0 && AverageL1Incidences <= 4
+                - value: '2'
+                  condition: AverageL1Incidences > 4 && AverageL1Incidences <= 8
+                - value: '3'
+                  condition: AverageL1Incidences > 8 && AverageL1Incidences <= 12
+                - value: '4'
+                  condition: AverageL1Incidences > 12

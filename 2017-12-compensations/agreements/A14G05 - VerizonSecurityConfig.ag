@@ -1,0 +1,55 @@
+id: Verizon_SecurityConfiguration
+version: '1.0'
+type: agreement
+context:
+  provider: Verizon
+  consumer: Consumer
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      ServiceCredits:
+        description: Number of service credits to be decreased in the next monthly fee. In no event may a Customer receive more than 5 credits per month. (no sé como modelar este 5 porque es unidad distinta al 50 de debajo)
+        type: integer
+        unit: '%'
+        meta:
+          type: piecewise
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            ServiceCredits:
+              $ref: '#/context/definitions/schemas/ServiceCredits'
+  metrics:
+    configurationDelay:
+      schema:
+        description: Days in which Verizon configure the customer account. Verizon Enterprise Solutions will configure and activate Customer’s DOS Defense within 14 days after Verizon Enterprise Solutions receives from Customer and validates the Customer configuration form.
+        type: integer
+        minimum: 1
+        maximum: 100
+        unit: day
+      computer: 'http://verizon/configurationDelay/'
+  guarantees:
+    - id: Verizon_SecurityConfiguration_GT
+      scope: {}
+      of:
+        - objective: configurationDelay <= 14
+          with:
+            configurationDelay: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          scope: {}
+          penalties:
+            - over:
+                ServiceCredits:
+                  $ref: '#/context/definitions/schemas/ServiceCredits'
+              of:
+                - value: '50'
+                  condition: configurationDelay > 14

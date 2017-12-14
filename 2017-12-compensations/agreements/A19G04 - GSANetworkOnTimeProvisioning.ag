@@ -1,0 +1,51 @@
+id: GSA_Network-OnTimeProvisioning
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: GSANetwork
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      PenalizedCost:
+        description: Penalty cost in a monthly bill paid for the service.
+        type: integer
+        unit: euro
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            PenalizedCost:
+              $ref: '#/context/definitions/schemas/PenalizedCost'
+  metrics:
+    AppropriateProvisioining:
+      schema:
+        description: The provisioning has been always made on time. //The penalty condition would include an aggregated value "Incident Based. 50% of the Non-Recurring Charge(s) or 50% of the MRC(s) for the entire order, whichever is greater.".
+        type: boolean
+        unit: bool
+      computer: 'http://GSA/AppropriateProvisioining/'
+  guarantees:
+    - id: OnTimeProvisioning_GT
+      scope: {}
+      of:
+        - objective: AppropriateProvisioining == true
+          scope: {}
+          with:
+            AppropriateProvisioining: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                PenalizedCost:
+                  $ref: '#/context/definitions/schemas/PenalizedCost'
+              of:
+                - value: 50
+                  condition: AppropriateProvisioining == false

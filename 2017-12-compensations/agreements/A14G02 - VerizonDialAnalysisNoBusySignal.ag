@@ -1,0 +1,72 @@
+id: Verizon_DialAnalysisNoBusySignal
+version: '1.0'
+type: agreement
+context:
+  provider: Verizon
+  consumer: Consumer
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      OneDayServiceCredits:
+        description: >-
+          Number of service credits to be decreased in the next monthly fee. It
+          depicts a One Day's prorated Dial Charges. To claim a credit, Customer
+          must submit a complete a Verizon Enterprise Solutions claim form
+          available on the Information One Website on or before the thirtieth
+          (30) calendar day from the date the SLA results were posted.
+          Customer's sole remedy for Verizon Enterprise Solutions's failure to
+          meet any and all SLAs shall be to receive a credit outlined in Table 1
+          below, of the Verizon Enterprise Solutions dial-up access charges, net
+          of discounts and taxes, billed to Customer for the month ("Dial
+          Charges") in which Verizon Enterprise Solutions failed to meet the SLA
+          for each SLA. For any given month, the maximum credit available to
+          Customers is a credit equal maximum three (3) percent of the Dial
+          Charges.
+        type: integer
+        unit: '%'
+        meta:
+          type: piecewise
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            OneDayServiceCredits:
+              $ref: '#/context/definitions/schemas/OneDayServiceCredits'
+  metrics:
+    NoBusySignalRate:
+      schema:
+        description: Percentage of no busy signals
+        type: integer
+        minimum: 0
+        maximum: 10000
+        unit: '%'
+      computer: 'http://verizon/NoBusySignalRate/'
+  guarantees:
+    - id: Verizon_DialAnalysisNoBusySignal_GT
+      scope: {}
+      of:
+        - objective: NoBusySignalRate >= 9600
+          with:
+            NoBusySignalRate: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          scope: {}
+          penalties:
+            - over:
+                OneDayServiceCredits:
+                  $ref: '#/context/definitions/schemas/OneDayServiceCredits'
+              of:
+                - value: '1'
+                  condition: NoBusySignalRate >= 9500 && NoBusySignalRate <= 9599
+                - value: '2'
+                  condition: NoBusySignalRate >= 9400 && NoBusySignalRate <= 9499
+                - value: '3'
+                  condition: NoBusySignalRate < 9400

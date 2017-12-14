@@ -1,0 +1,63 @@
+id: SANDETEL_UrgentLogisticInterventions
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Sandetel - Andalusian government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      MonthlyBillPenaltyPercentage:
+        description: percentage of the fee to pay for a month of the service.
+        type: integer
+        unit: '%'
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            MonthlyBillPenaltyPercentage:
+              $ref: '#/context/definitions/schemas/MonthlyBillPenaltyPercentage'
+  metrics:
+    SolvedUrgentLogisticInterventionsPercent:
+      schema:
+        description: Percentage of urgent logistic interventions solved on time over the total.
+        type: integer
+        minimum: 0
+        maximum: 100
+        unit: '%'
+      computer: 'http://Sandetel/SolvedUrgentLogisticInterventionsPercent/'
+  guarantees:
+    - id: UrgentLogisticInterventions_GT
+      scope: {}
+      of:
+        - objective: SolvedUrgentLogisticInterventionsPercent > 95
+          scope: {}
+          with:
+            SolvedUrgentLogisticInterventionsPercent: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                MonthlyBillPenaltyPercentage:
+                  $ref: '#/context/definitions/schemas/MonthlyBillPenaltyPercentage'
+              of:
+                - value: '1'
+                  condition: (SolvedUrgentLogisticInterventionsPercent >= 94) && (SolvedUrgentLogisticInterventionsPercent < 95)
+                - value: '2'
+                  condition: (SolvedUrgentLogisticInterventionsPercent >= 93) && (SolvedUrgentLogisticInterventionsPercent < 94)
+                - value: '3'
+                  condition: (SolvedUrgentLogisticInterventionsPercent >= 92) && (SolvedUrgentLogisticInterventionsPercent < 93)
+                - value: '4'
+                  condition: (SolvedUrgentLogisticInterventionsPercent >= 91) && (SolvedUrgentLogisticInterventionsPercent < 92)
+                - value: '5'
+                  condition: (SolvedUrgentLogisticInterventionsPercent >= 90) && (SolvedUrgentLogisticInterventionsPercent < 91)
+                - value: '10'
+                  condition: SolvedUrgentLogisticInterventionsPercent < 90

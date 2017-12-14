@@ -1,0 +1,58 @@
+id: SANDETEL_NonCompliances
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Sandetel - Andalusian government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      MonthlyBillPenaltyPercentage:
+        description: percentage of the fee to pay for a month of the service. //UpTo below refers to this metric... "up to 20% of the invoiced monthly bill"
+        type: integer
+        unit: '%'
+      PenaltyAmount:
+        description: value in € to pay for the non-compliances.
+        type: integer
+        unit: '€'
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            PenaltyAmount:
+              $ref: '#/context/definitions/schemas/PenaltyAmount'
+  metrics:
+    NonCompliancesCount:
+      schema:
+        description: Number of non-compliances events in a month. //"Se establecen una penalización por valor de 600€ por cada no conformidad puntual. La penalización se aplicará en la certificación a mes vencido a la prestación de los servicios. En el caso que se incumpla en la misma no conformidad durante tres meses consecutivos sin mediar corrección, o el número de no conformidades mensuales supere la cantidad de cinco, se podrá proceder a la cancelación del contrato."
+        type: integer
+        minimum: 0
+        maximum: 1000
+        unit: '%'
+      computer: 'http://Sandetel/NonCompliancesCount/'
+  guarantees:
+    - id: NonCompliances_GT
+      scope: {}
+      of:
+        - objective: NonCompliancesCount <= 0
+          scope: {}
+          with:
+            NonCompliancesCount: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                PenaltyAmount:
+                  $ref: '#/context/definitions/schemas/PenaltyAmount'
+              of:
+                - value: '600 * NonCompliancesCount'
+                  condition: NonCompliancesCount > 0
+              upTo: 20

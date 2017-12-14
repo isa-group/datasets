@@ -1,0 +1,57 @@
+id: Amazon_Route53
+version: '1.0'
+type: agreement
+context:
+  provider: Amazon
+  consumer: Consumer
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      ServiceCredit:
+        description: Days of Service Credit in the next monthly bill
+        type: integer
+        unit: 'days'
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            ServiceCredit:
+              $ref: '#/context/definitions/schemas/ServiceCredit'
+  metrics:
+    Unavailability:
+      schema:
+        description: Unavailability Minutes
+        type: integer
+        minimum: 0
+        maximum: 45000 //43200 minutes would be a 100% of Unavailability in months of 30 days (44640 in month of 31 days). Although the objective is not explicitly included in the SLA, we use "Unavailability == 0" as optimal threshold
+        unit: 'minutes'
+      computer: 'http://aws/Amazon_Unavailability_minutes/'
+  guarantees:
+    - id: Amazon_GT
+      scope: {}
+      of:
+        - objective: Unavailability <= 0
+          scope: {}
+          with:
+            Unavailability: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                ServiceCredit:
+                  $ref: '#/context/definitions/schemas/ServiceCredit'
+              of:
+                - value: '1'
+                  condition: Unavailability >= 5 && Unavailability <= 30
+                - value: '7'
+                  condition: Unavailability >= 31 && Unavailability <= 240
+                - value: '30'
+                  condition: Unavailability > 240

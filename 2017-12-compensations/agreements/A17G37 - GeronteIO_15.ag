@@ -1,0 +1,58 @@
+id: GERONTE_OperationServices-IO_15
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Geronte - Andalusian government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    scopes: {}
+    schemas:
+      PenalizedCostPercentage:
+        description: Percentage of penalty in a monthly bill paid for the service.
+        type: integer
+        unit: '%'
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            PenalizedCostPercentage:
+              $ref: '#/context/definitions/schemas/PenalizedCostPercentage'
+  metrics:
+    IO_15:
+      schema:
+        description: >-
+          Coste de incidencias con incorrecta imputación al SAS. //Below the
+          upTo refers to the 25% of PMAXCO... "Se establece una penalización
+          máxima para cada uno de los indicadores del 25% respecto de CO,
+          referida como PMAXCO."
+        type: integer
+        minimum: 0
+        maximum: 10000
+        unit: €
+      computer: 'http://Geronte/IO_15/'
+  guarantees:
+    - id: IO_15_GT
+      scope: {}
+      of:
+        - objective: IO_15 <= 0
+          scope: {}
+          with:
+            IO_15: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                PenalizedCostPercentage:
+                  $ref: '#/context/definitions/schemas/PenalizedCostPercentage'
+              of:
+                - value: IO_15 * 30
+                  condition: IO_15 > 0
+              upTo: 25

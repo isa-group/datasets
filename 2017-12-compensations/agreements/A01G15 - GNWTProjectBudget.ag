@@ -1,0 +1,59 @@
+id: GNWT-ProjectBudget
+version: '1.0'
+type: agreement
+context:
+  provider: Provider
+  consumer: Northwest Territories Government
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      InvoicePercentage:
+        description: Percent affecting next monthly bill //in the compensation conditions it is avoided the use of a constant that is the "average hourly billing rate" //In case of rewards is the percentage affecting the amount invoiced for the project.
+        type: integer
+        unit: '%'
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            InvoicePercentage: {}
+      rewards:
+        - over:
+            InvoicePercentage: {}
+  metrics:
+    elapsedHoursPercent:
+      schema:
+        description: 100% denotes that the total billed hours are the planned hours. Less than 100% denotes that the total billed hours are LESS than the planned hours. More than 100% denotes that the total billed hours are MORE thn the planned hours.
+        type: integer
+        minimum: 0
+        maximum: 200
+        unit: '%'
+  guarantees:
+    - id: GNWT_15
+      scope: {}
+      of:
+        - objective: elapsedHoursPercent <= 100
+          scope: {}
+          with:
+            elapsedHoursPercent: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          penalties:
+            - over:
+                InvoicePercentage: {}
+              of:
+                - value: '10'
+                  condition: elapsedHoursPercent >= 110
+          rewards:
+            - over:
+                InvoicePercentage: {}
+              of:
+                - value: '-5'
+                  condition: elapsedHoursPercent < 80

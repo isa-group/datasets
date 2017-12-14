@@ -1,0 +1,56 @@
+id: Verizon_EnterpriseMobilityDialAccesssSLASample
+version: '1.0'
+type: agreement
+context:
+  provider: Verizon
+  consumer: Consumer
+  validity:
+    timeZone: Europe/Madrid
+    initial: '2016-07-13T00:00:00.000Z'
+  definitions:
+    schemas:
+      ServiceCredits:
+        description: >-
+          Number of service credits to be decreased in the next monthly fee.
+        type: integer
+        unit: '%'
+        meta:
+          type: piecewise
+    scopes: {}
+terms:
+  pricing:
+    billing:
+      period: monthly
+      initial: '2016-05-12T10:35:36.000Z'
+      penalties:
+        - over:
+            ServiceCredits:
+              $ref: '#/context/definitions/schemas/ServiceCredits'
+  metrics:
+    DANSuccessfulConnectionsRate:
+      schema:
+        description: (This is a sample of the more than 10 services with a similar remedy or compensation in the two related verizon document) The Global Network Accessibility SLA is that the percentage of successful dial-up connections established between Verizon Enterprise Solutions rotary dial tools ("RDTs") and Verizon Enterprise Solutions rotary groups ("RGs") for a given number of attempts shall equal or exceed 98% for the Dial Access Network (DAN) and 93% for the Extended DAN. Customer may request a credit if Verizon Enterprise Solutions's failure to meet any of the above SLAs in a given month has adversely affected Customer’s use of dial-up services obtained from Verizon Enterprise Solutions. To claim a credit, Customer must submit a complete Verizon Enterprise Solutions claim form on or before the thirtieth (30) calendar day from the date the SLA results were posted. Customer’s sole remedy for Verizon Enterprise Solutions's failure to meet any and all SLAs shall be to receive a credit equal to the pro-rated charges for one (1) day of the Verizon Enterprise Solutions dial-up access charges, net of discounts and taxes, billed to Customer for the month in which Verizon Enterprise Solutions failed to meet the SLA for each SLA Verizon Enterprise Solutions has failed to meet. For any given month, the maximum credit available to Customers is a credit equal to nine (9) days of the pro-rated charges for one month of the Verizon Enterprise Solutions dial-up access charges.
+        type: integer
+        minimum: 1
+        maximum: 100
+        unit: '%'
+      computer: 'http://verizon/DANSuccessfulConnectionsRate/'
+  guarantees:
+    - id: Verizon_EnterpriseMobilityDialAccesssSLASample_GT
+      scope: {}
+      of:
+        - objective: DANSuccessfulConnectionsRate >= 98
+          with:
+            DANSuccessfulConnectionsRate: {}
+          window:
+            type: static
+            period: monthly
+            initial: '2016-07-13T00:00:00.000Z'
+          scope: {}
+          penalties:
+            - over:
+                ServiceCredits:
+                  $ref: '#/context/definitions/schemas/ServiceCredits'
+              of:
+                - value: '1'
+                  condition: DANSuccessfulConnectionsRate < 98
