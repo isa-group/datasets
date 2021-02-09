@@ -1,0 +1,382 @@
+openapi: 3.0.0
+info:
+  description: docusign-esign API
+  title: docusign-esign API
+  version: v1
+  x-sla: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/docusign-esign/plans.oai-at?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+externalDocs:
+  url: 'https://developers.docusign.com/esign-rest-api/reference'
+paths:
+  '/v2/accounts/{accountId}/templates/{templateId}/custom_fields':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/documents/{documentId}/fields':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/documents':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/documents/{documentId}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/documents/{documentId}/tabs':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/documents/{documentId}/pages/{pageNumber}/tabs':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/recipients/{recipientId}/document_visibility':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/recipients/document_visibility':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/lock':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/recipients':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/recipients/{recipientId}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/recipients/{recipientId}/tabs':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/documents/{documentId}/pages/{pageNumber}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/{templatePart}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/documents/{documentId}/pages/{pageNumber}/page_image':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/notification':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/documents/{documentId}/pages':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/templates/{templateId}/views/edit':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/users/{userId}/custom_settings':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/users/{userId}/profile':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/users':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/users/{userId}/profile/image':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/users/{userId}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/users/{userId}/settings':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/users/{userId}/signatures':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/users/{userId}/signatures/{signatureId}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/users/{userId}/signatures/{signatureId}/{imageType}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/users/{userId}/social':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/workspaces/{workspaceId}/folders/{folderId}/files':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/workspaces/{workspaceId}/folders/{folderId}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/workspaces/{workspaceId}/folders/{folderId}/files/{fileId}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/workspaces/{workspaceId}/folders/{folderId}/files/{fileId}/pages':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/workspaces':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/v2/accounts/{accountId}/workspaces/{workspaceId}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+components:
+  requestBodies:
+    someRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/someRequestBody'
+      required: true
+  securitySchemes: {}
+  schemas:
+    someRequestBody: {}
+    someResponseBody: {}

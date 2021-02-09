@@ -1,0 +1,1810 @@
+openapi: 3.0.0
+info:
+  description: Debitoor API
+  title: Debitoor API
+  version: v1
+  x-sla: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/debitoor/plans.oai-at?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+externalDocs:
+  url: https://developers.debitoor.com/api-reference
+paths:
+  "/api/account/emailtemplates/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/accounting/payments.csv/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/accounting/payments.xlsx/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/countries/{languagecode}/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/countries/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/customers/export.csv/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/customers/export.datev/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/customers/export.xlsx/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/customers/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/environment/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/expenses/{id}/v4":
+    put:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    delete:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/expenses/book/range/validate/v4":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/expenses/categories/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/expenses/export.csv/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/expenses/export.xlsx/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/expenses/v4":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/files/{id}/thumbnails/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/files/{id}/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/income/{id}/v2":
+    delete:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    put:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/income/book/range/validate/v2":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/income/categories/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/income/export.csv/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/income/export.xlsx/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/income/headers/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/income/v2":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/paymentaccounts/{accountid}/transactions/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/paymentaccounts/transactions/{id}/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/paymentaccounts/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/products/{id}/v1":
+    patch:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    put:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/products/export.csv/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/products/export.xlsx/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/products/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/purchase/taxrates/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/recurring/invoices/schema/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/recurring/invoices/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/deliverynotes/{id}/pdf/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/deliverynotes/{id}/thumbnail/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/deliverynotes/lines/export.csv/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/deliverynotes/lines/export.xlsx/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/deliverynotes/v2":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/draftinvoices/{id}/pdf/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/draftinvoices/{id}/thumbnail/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/draftinvoices/{id}/v3":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    put:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    delete:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/draftinvoices/headers/v3":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/draftinvoices/v3":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/{id}/pdf/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/{id}/thumbnail/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/{id}/v3":
+    delete:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    put:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/export.csv/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/export.xlsx/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/headers/{id}/v3":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/headers/v3":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/lines/export.csv/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/lines/export.xlsx/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/v3":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/paymentterms/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/quotes/{id}/pdf/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/quotes/{id}/thumbnail/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/quotes/headers/v3":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/quotes/lines/export.csv/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/quotes/lines/export.xlsx/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/quotes/v3":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/taxrates/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/customer/patch/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/customer/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/expense/v4":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/income/v2":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/login/oauth2/access_token/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/login/oauth2/authorize/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/payment/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/paymentaccount/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/paymentaccountupdate/patch/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/paymentaccountupdate/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/product/patch/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/product/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/purchase/taxrates/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/sales/deliverynote/v2":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/sales/deliverynotes/email/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/sales/draftinvoice/v3":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/sales/draftinvoices/booksend/v3":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/sales/draftinvoices/email/v2":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/sales/emailtemplate/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/sales/invoice/v3":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/sales/invoices/email/v2":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/sales/invoices/share/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/sales/paymentreceipt/email/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/sales/quote/v3":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/sales/quotes/email/v2":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/sales/quotes/share/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/sales/taxrates/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/supplier/patch/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/supplier/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/schemas/unit/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+  "/api/suppliers/export.csv/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/suppliers/export.datev/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/suppliers/export.xlsx/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+  "/api/units/{languageCode}/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/v1.0/paymentaccounts/{accountid}/payments":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/login/oauth2/authorize":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+   
+  "/api/account/emailtemplates/{id}/v1":
+    put:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    delete:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+
+
+
+  "/api/payments/{id}/v1":
+    delete:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/recurring/invoices/{id}/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    put:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    delete:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/deliverynotes/{id}/v2":
+    put:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    delete:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+
+
+  "/api/sales/quotes/{id}/v3":
+    delete:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    put:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/units/{id}/v1":
+    delete:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    put:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+  "/api/customers/{id}/v1":
+    patch:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    put:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/paymentaccounts/{accountid}/v1":
+    patch:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    put:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    delete:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+  "/api/suppliers/{id}/v1":
+    put:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    patch:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+
+
+  "/api/customers/bulk/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+  "/api/customers/validate/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/expenses/book/range/v4":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+  "/api/expenses/validate/v4":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/files/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/income/book/range/v2":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+  "/api/invoices/{id}/recurring/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/paymentaccounts/{accountid}/automatch/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/paymentaccounts/{accountid}/transactions/bulk/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/paymentaccounts/payments/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+  "/api/products/bulk/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+  "/api/products/validate/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/recurring/invoices/{id}/activate/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/recurring/invoices/{id}/deactivate/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+  "/api/sales/deliverynotes/{id}/copy/v2":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/deliverynotes/{id}/email/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/deliverynotes/{id}/invoice/v3":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+  "/api/sales/draftinvoices/{id}/book/v3":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/draftinvoices/{id}/booksend/v3":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/draftinvoices/{id}/copy/v3":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/draftinvoices/{id}/email/v2":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+
+  "/api/sales/draftinvoices/validate/v3":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/{id}/copy/v3":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/{id}/deliverynote/v2":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/{id}/email/v2":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/{id}/paymentreceipt/email/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/invoices/{id}/share/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/quotes/{id}/copy/v3":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/quotes/{id}/deliverynote/v2":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/quotes/{id}/email/v2":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/quotes/{id}/invoice/v3":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/sales/quotes/{id}/share/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+
+  "/api/suppliers/bulk/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/suppliers/v1":
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/suppliers/validate/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/api/units/v1":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  "/login/oauth2/access_token":
+    post:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+                

@@ -1,0 +1,342 @@
+openapi: 3.0.0
+info:
+  description: quickblox API
+  title: quickblox API
+  version: v1
+  x-sla: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/quickblox/plans.oai-at?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+externalDocs:
+  url: 'https://quickblox.com/developers/Category:API'
+paths:
+  /address_book.json:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /address_book/registered_users.json:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /blobs:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/blobs/{blob_id}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/blobs/{blob_id}/complete':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/blobs/{id)/download':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/blobs/{uid)':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /chat/Dialog:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/chat/Dialog/{id1}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/chat/Dialog/{id}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/chat/Dialog/{id}/notifications.json':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /chat/Message:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /chat/Message/unread:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/chat/Message/{message_id}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/data/{class_name}.json':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/data/{class_name}/by_criteria.json':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/data/{class_name}/multi.json':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/data/{class_name}/{record_id}.json':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /events:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/events/{event_id}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /subscriptions:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/subscriptions/{subscription_id}':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /users.json:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /users/by_email.json:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /users/by_facebook_id.json:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /users/by_full_name.json:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /users/by_login.json:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /users/by_tags.json:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /users/by_twitter_id.json:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/users/external/{external_user_id}.json':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /users/password/reset.json:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/users/{user_id}.json':
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+components:
+  requestBodies:
+    someRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/someRequestBody'
+      required: true
+  securitySchemes: {}
+  schemas:
+    someRequestBody: {}
+    someResponseBody: {}

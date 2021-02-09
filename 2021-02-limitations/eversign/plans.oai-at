@@ -1,0 +1,101 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/eversign/eversign.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+  globalRequests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regardless the resource'
+    resolution: consumption
+  templates:
+    type: integer
+    format: int64
+    description: 'Number of templates'
+    resolution: consumption
+  documents:
+    type: integer
+    format: int64
+    description: 'Number of documents'
+    resolution: consumption
+pricing:
+  cost: 0
+  currency: EUR
+  billing: monthly
+availability: 'R/00:00:00Z/15:00:00Z'
+configuration: {}
+plans:
+  API-Light:
+    pricing:
+      cost: 49.99
+    rates: null
+    quotas:
+      /api/document:
+        get:
+          templates:
+            - max: 10
+              period: forever
+          documents:
+            - max: 50
+              period: forever
+      /api/file:
+        get:
+          templates:
+            - max: 10
+              period: forever
+          documents:
+            - max: 50
+              period: forever
+  API-Business:
+    pricing:
+      cost: 179.99
+    rates: null
+    quotas:
+      /api/document:
+        get:
+          templates:
+            - max: 25
+              period: forever
+          documents:
+            - max: 200
+              period: forever
+      /api/file:
+        get:
+          templates:
+            - max: 25
+              period: forever
+          documents:
+            - max: 200
+              period: forever
+  API-BusinessPro:
+    pricing:
+      cost: 399.99
+    rates: null
+    quotas:
+      /api/document:
+        get:
+          templates:
+            - max: 25
+              period: forever
+          documents:
+            - max: 500
+              period: forever
+      /api/file:
+        get:
+          templates:
+            - max: 25
+              period: forever
+          documents:
+            - max: 500
+              period: forever

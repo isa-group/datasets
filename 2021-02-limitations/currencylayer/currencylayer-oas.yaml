@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  description: Cognitive Services Pricing - Bing Search API
+  title: Cognitive Services Pricing - Bing Search API
+  version: v1
+  x-sla: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/currencylayer/plans.oai-at?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+externalDocs:
+  url: 'https://currencylayer.com/documentation'
+paths:
+  /api/live:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /api/historical:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /api/convert:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /api/timeframe:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /api/change:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+components:
+  requestBodies:
+    someRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/someRequestBody'
+      required: true
+  securitySchemes: {}
+  schemas:
+    someRequestBody: {}
+    someResponseBody: {}

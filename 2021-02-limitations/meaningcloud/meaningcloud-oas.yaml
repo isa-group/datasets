@@ -1,0 +1,122 @@
+openapi: 3.0.0
+info:
+  description: mailchmeaningcloudimp API
+  title: meaningcloud API
+  version: v1
+  x-sla: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/meaningcloud/plans.oai-at?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+externalDocs:
+  url: 'https://www.meaningcloud.com/developer/apis'
+paths:
+  /documentstructure-1.0:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /parser-2.0:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /reputation-1.0:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /clustering-1.1:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /summarization-1.0:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /lang-2.0:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /sentiment-2.1:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /class-1.1:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /topics-2.0:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /deepcategorization-1.0:
+    get:
+      description: Something
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+components:
+  requestBodies:
+    someRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/someRequestBody'
+      required: true
+  securitySchemes: {}
+  schemas:
+    someRequestBody: {}
+    someResponseBody: {}

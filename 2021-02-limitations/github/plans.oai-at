@@ -1,0 +1,2597 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/github/github.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+  authenticatedRequests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+  globalRequests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regardless the resource'
+    resolution: consumption
+pricing:
+  cost: 0
+  currency: EUR
+  billing: monthly
+availability: 'R/00:00:00Z/15:00:00Z'
+configuration: {}
+plans:
+  Free:
+    pricing:
+      cost: 0
+    rates:
+      /emojis:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /events:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /feeds:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /gists:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /gists/public:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /gists/starred:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/gists/{id}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/gists/{id}/comments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/gists/{id}/comments/{commentId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/gists/{id}/forks':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/gists/{id}/star':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /gitignore/templates:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/gitignore/templates/{language}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /issues:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/legacy/issues/search/{owner}/{repository}/{state}/{keyword}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+            - max: 10
+              period: minute
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+            - max: 30
+              period: minute
+      '/legacy/repos/search/{keyword}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+            - max: 10
+              period: minute
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+            - max: 30
+              period: minute
+      '/legacy/user/email/{email}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/legacy/user/search/{keyword}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+            - max: 10
+              period: minute
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+            - max: 30
+              period: minute
+      /markdown:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /markdown/raw:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /meta:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/networks/{owner}/{repo}/events':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /notifications:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/notifications/threads/{id}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/notifications/threads/{id}/subscription':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/events':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/issues':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/members':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/members/{username}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/public_members':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/public_members/{username}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/repos':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/teams':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /rate_limit: null
+      '/repos/{owner}/{repo}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/assignees':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/assignees/{assignee}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/branches':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/branches/{branch}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/collaborators':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/collaborators/{user}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/comments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/comments/{commentId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/commits':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/commits/{ref}/status':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/commits/{shaCode}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/commits/{shaCode}/comments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/compare/{baseId}...{headId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/contents/{path}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/contributors':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/deployments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/deployments/{id}/statuses':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/downloads':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/downloads/{downloadId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/events':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/forks':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/blobs':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/blobs/{shaCode}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/commits':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/commits/{shaCode}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/refs':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/refs/{ref}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/tags':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/tags/{shaCode}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/trees':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/trees/{shaCode}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/hooks':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/hooks/{hookId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/hooks/{hookId}/tests':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/comments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/comments/{commentId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/events':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/events/{eventId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/{number}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/{number}/comments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/{number}/events':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/{number}/labels':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/{number}/labels/{name}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/keys':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/keys/{keyId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/labels':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/labels/{name}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/languages':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/merges':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/milestones':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/milestones/{number}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/milestones/{number}/labels':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/notifications':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls/comments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls/comments/{commentId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls/{number}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls/{number}/comments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls/{number}/commits':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls/{number}/files':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls/{number}/merge':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/readme':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/releases':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/releases/assets/{id}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/releases/{id}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/releases/{id}/assets':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/stargazers':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/stats/code_frequency':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/stats/commit_activity':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/stats/contributors':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/stats/participation':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/stats/punch_card':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/statuses/{ref}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/subscribers':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/subscription':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/tags':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/teams':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/watchers':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/{archive_format}/{path}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /repositories:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /search/code:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+            - max: 10
+              period: minute
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+            - max: 30
+              period: minute
+      /search/issues:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+            - max: 10
+              period: minute
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+            - max: 30
+              period: minute
+      /search/repositories:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+            - max: 10
+              period: minute
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+            - max: 30
+              period: minute
+      /search/users:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+            - max: 10
+              period: minute
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+            - max: 30
+              period: minute
+      '/teams/{teamId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/teams/{teamId}/members':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/teams/{teamId}/members/{username}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/teams/{teamId}/memberships/{username}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/teams/{teamId}/repos':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/teams/{teamId}/repos/{org}/{repo}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/teams/{teamId}/repos/{owner}/{repo}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/emails:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/followers:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/following:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/user/following/{username}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/issues:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/keys:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/user/keys/{keyId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/orgs:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/repos:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/starred:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/user/starred/{owner}/{repo}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/subscriptions:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/user/subscriptions/{owner}/{repo}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/teams:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /users:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/events':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/events/orgs/{org}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/followers':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/following/{targetUser}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/gists':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/keys':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/orgs':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/received_events':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/received_events/public':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/repos':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/starred':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/subscriptions':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+    quotas: null
+  Pro:
+    pricing:
+      cost: 0
+    rates:
+      /emojis:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /events:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /feeds:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /gists:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /gists/public:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /gists/starred:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/gists/{id}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/gists/{id}/comments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/gists/{id}/comments/{commentId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/gists/{id}/forks':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/gists/{id}/star':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /gitignore/templates:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/gitignore/templates/{language}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /issues:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/legacy/issues/search/{owner}/{repository}/{state}/{keyword}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+            - max: 10
+              period: minute
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+            - max: 30
+              period: minute
+      '/legacy/repos/search/{keyword}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+            - max: 10
+              period: minute
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+            - max: 30
+              period: minute
+      '/legacy/user/email/{email}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/legacy/user/search/{keyword}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+            - max: 10
+              period: minute
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+            - max: 30
+              period: minute
+      /markdown:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /markdown/raw:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /meta:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/networks/{owner}/{repo}/events':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /notifications:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/notifications/threads/{id}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/notifications/threads/{id}/subscription':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/events':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/issues':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/members':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/members/{username}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/public_members':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/public_members/{username}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/repos':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/orgs/{org}/teams':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /rate_limit: null
+      '/repos/{owner}/{repo}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/assignees':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/assignees/{assignee}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/branches':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/branches/{branch}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/collaborators':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/collaborators/{user}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/comments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/comments/{commentId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/commits':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/commits/{ref}/status':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/commits/{shaCode}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/commits/{shaCode}/comments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/compare/{baseId}...{headId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/contents/{path}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/contributors':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/deployments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/deployments/{id}/statuses':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/downloads':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/downloads/{downloadId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/events':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/forks':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/blobs':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/blobs/{shaCode}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/commits':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/commits/{shaCode}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/refs':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/refs/{ref}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/tags':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/tags/{shaCode}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/trees':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/git/trees/{shaCode}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/hooks':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/hooks/{hookId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/hooks/{hookId}/tests':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/comments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/comments/{commentId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/events':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/events/{eventId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/{number}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/{number}/comments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/{number}/events':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/{number}/labels':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/issues/{number}/labels/{name}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/keys':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/keys/{keyId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/labels':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/labels/{name}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/languages':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/merges':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/milestones':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/milestones/{number}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/milestones/{number}/labels':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/notifications':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls/comments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls/comments/{commentId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls/{number}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls/{number}/comments':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls/{number}/commits':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls/{number}/files':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/pulls/{number}/merge':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/readme':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/releases':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/releases/assets/{id}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/releases/{id}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/releases/{id}/assets':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/stargazers':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/stats/code_frequency':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/stats/commit_activity':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/stats/contributors':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/stats/participation':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/stats/punch_card':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/statuses/{ref}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/subscribers':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/subscription':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/tags':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/teams':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/watchers':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/repos/{owner}/{repo}/{archive_format}/{path}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /repositories:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /search/code:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+            - max: 10
+              period: minute
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+            - max: 30
+              period: minute
+      /search/issues:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+            - max: 10
+              period: minute
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+            - max: 30
+              period: minute
+      /search/repositories:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+            - max: 10
+              period: minute
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+            - max: 30
+              period: minute
+      /search/users:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+            - max: 10
+              period: minute
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+            - max: 30
+              period: minute
+      '/teams/{teamId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/teams/{teamId}/members':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/teams/{teamId}/members/{username}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/teams/{teamId}/memberships/{username}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/teams/{teamId}/repos':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/teams/{teamId}/repos/{org}/{repo}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/teams/{teamId}/repos/{owner}/{repo}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/emails:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/followers:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/following:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/user/following/{username}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/issues:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/keys:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/user/keys/{keyId}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/orgs:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/repos:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/starred:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/user/starred/{owner}/{repo}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/subscriptions:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/user/subscriptions/{owner}/{repo}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /user/teams:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      /users:
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/events':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/events/orgs/{org}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/followers':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/following/{targetUser}':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/gists':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/keys':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/orgs':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/received_events':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/received_events/public':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/repos':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/starred':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+      '/users/{username}/subscriptions':
+        get:
+          requests:
+            - max: 60
+              period: hourly
+          authenticatedRequests:
+            - max: 5000
+              period: hourly
+    quotas: null

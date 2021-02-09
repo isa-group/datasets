@@ -1,0 +1,593 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/debitoor/debitoor.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+  globalRquests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regardless the resource'
+    resolution: consumption
+  invoiceOrExpenseResource:
+    type: integer
+    format: int64
+    description: invoice or expense resources
+    resolution: consumption
+  users:
+    type: integer
+    format: int64
+    description: user or expense resources
+    resolution: consumption
+pricing:
+  cost: 0
+  currency: USD
+  billing: yearly
+availability: 'R/00:00:00Z/23:59:59Z'
+configuration: {}
+plans:
+  XS:
+    pricing:
+      cost: 4
+    rates: {}
+    quotas:
+      '/api/invoices/{id}/recurring/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/recurring/invoices/{id}/activate/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/recurring/invoices/{id}/deactivate/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/recurring/invoices/v1:
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/draftinvoices/{id}/book/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/draftinvoices/{id}/booksend/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/draftinvoices/{id}/copy/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/draftinvoices/{id}/email/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/sales/draftinvoices/v3:
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/sales/draftinvoices/validate/v3:
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/invoices/{id}/copy/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/invoices/{id}/email/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/invoices/{id}/paymentreceipt/email/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/invoices/{id}/share/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/expenses/book/range/v4:
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/expenses/v4:
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/expenses/validate/v4:
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/customers/export.datev/v1:
+        get:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/customers/v1:
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/customers/validate/v1:
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/income/v2:
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/deliverynotes/{id}/copy/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/sales/deliverynotes/v2:
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/invoices/{id}/deliverynote/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/quotes/{id}/deliverynote/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/quotes/{id}/invoice/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/sales/draftinvoices/headers/v3:
+        get:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/draftinvoices/{id}/v3':
+        delete:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+        put:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/recurring/invoices/{id}/v1':
+        delete:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/invoices/{id}/v3':
+        put:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+        delete:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/sales/invoices/headers/v3:
+        get:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      '/api/sales/quotes/{id}/copy/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/sales/quotes/v3:
+        post:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+      /api/suppliers/export.datev/v1:
+        get:
+          invoiceOrExpenseResource:
+            - max: 100
+              period: yearly
+  S:
+    pricing:
+      cost: 7
+    rates: {}
+    quotas:
+      '/api/invoices/{id}/recurring/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/recurring/invoices/{id}/activate/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/recurring/invoices/{id}/deactivate/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/recurring/invoices/v1:
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/draftinvoices/{id}/book/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/draftinvoices/{id}/booksend/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/draftinvoices/{id}/copy/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/draftinvoices/{id}/email/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/sales/draftinvoices/v3:
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/sales/draftinvoices/validate/v3:
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/invoices/{id}/copy/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/invoices/{id}/email/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/invoices/{id}/paymentreceipt/email/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/invoices/{id}/share/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/expenses/book/range/v4:
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/expenses/v4:
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/expenses/validate/v4:
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/customers/export.datev/v1:
+        get:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/customers/v1:
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/customers/validate/v1:
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/income/v2:
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/deliverynotes/{id}/copy/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/sales/deliverynotes/v2:
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/invoices/{id}/deliverynote/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/quotes/{id}/deliverynote/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/quotes/{id}/invoice/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/sales/draftinvoices/headers/v3:
+        get:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/draftinvoices/{id}/v3':
+        delete:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+        put:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/recurring/invoices/{id}/v1':
+        delete:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/invoices/{id}/v3':
+        put:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+        delete:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/sales/invoices/headers/v3:
+        get:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      '/api/sales/quotes/{id}/copy/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/sales/quotes/v3:
+        post:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+      /api/suppliers/export.datev/v1:
+        get:
+          invoiceOrExpenseResource:
+            - max: 400
+              period: yearly
+  M:
+    pricing:
+      cost: 10
+    rates: {}
+    quotas:
+      '/api/invoices/{id}/recurring/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/recurring/invoices/{id}/activate/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/recurring/invoices/{id}/deactivate/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/recurring/invoices/v1:
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/draftinvoices/{id}/book/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/draftinvoices/{id}/booksend/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/draftinvoices/{id}/copy/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/draftinvoices/{id}/email/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/sales/draftinvoices/v3:
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/sales/draftinvoices/validate/v3:
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/invoices/{id}/copy/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/invoices/{id}/email/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/invoices/{id}/paymentreceipt/email/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/invoices/{id}/share/v1':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/expenses/book/range/v4:
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/expenses/v4:
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/expenses/validate/v4:
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/customers/export.datev/v1:
+        get:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/customers/v1:
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/customers/validate/v1:
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/income/v2:
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/deliverynotes/{id}/copy/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/sales/deliverynotes/v2:
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/invoices/{id}/deliverynote/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/quotes/{id}/deliverynote/v2':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/quotes/{id}/invoice/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/sales/draftinvoices/headers/v3:
+        get:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/draftinvoices/{id}/v3':
+        delete:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+        put:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/recurring/invoices/{id}/v1':
+        delete:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/invoices/{id}/v3':
+        put:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+        delete:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/sales/invoices/headers/v3:
+        get:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      '/api/sales/quotes/{id}/copy/v3':
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/sales/quotes/v3:
+        post:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+      /api/suppliers/export.datev/v1:
+        get:
+          invoiceOrExpenseResource:
+            - max: 800
+              period: yearly
+  L:
+    pricing:
+      cost: 20
+    quotas: ''
+    rates: ''
+    guarantees: ''

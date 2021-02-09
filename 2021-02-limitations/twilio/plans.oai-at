@@ -1,0 +1,353 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/twilio/twilio.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+  globalRequests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regardless the resource'
+    resolution: consumption
+  concurrentRequests:
+    type: integer
+    format: int64
+    description: 'Number of concurrent requests, regardless the resource'
+    resolution: consumption
+pricing:
+  cost: 0
+  currency: EUR
+  billing: monthly
+availability: 'R/00:00:00Z/15:00:00Z'
+configuration: {}
+plans:
+  PayAsYouGo:
+    pricing:
+      cost: 0
+    rates:
+      '/accounts/{accountsid}/applications/{applicationsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/applications{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/authorizedconnectapps/{connectappsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/authorizedconnectapps{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/availablephonenumbers/{isocountrycode}/local{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/availablephonenumbers/{isocountrycode}/mobile{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/availablephonenumbers/{isocountrycode}/tollfree{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/availablephonenumbers{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/calls/{callsid}/notifications{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/calls/{callsid}/recordings{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/calls/{callsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/calls{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/conferences/{conferencesid}/participants/{callsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/conferences/{conferencesid}/participants{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/conferences/{conferencesid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/conferences{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/connectapps/{connectappsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/connectapps{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/incomingphonenumbers/local{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/incomingphonenumbers/mobile{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/incomingphonenumbers/tollfree{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/incomingphonenumbers/{incomingphonenumbersid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/incomingphonenumbers{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/messages/{messagesid}/media/{mediasid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/messages/{messagesid}/media{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/messages/{messagesid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/messages{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/notifications/{notificationsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/notifications{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/outgoingcallerids/{outgoingcalleridsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/outgoingcallerids{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/queues/{queuesid}/members/front{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/queues/{queuesid}/members/{callsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/queues/{queuesid}/members{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/queues/{queuesid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/queues{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/recordings/{recordingsid}/transcriptions{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/recordings/{recordingsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/recordings{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sip/credentiallists/{clsid}/credentials/{credentialsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sip/credentiallists/{clsid}/credentials{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sip/credentiallists/{clsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sip/credentiallists{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sip/domains/{sipdomainsid}/credentiallistmappings/{clsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sip/domains/{sipdomainsid}/credentiallistmappings{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sip/domains/{sipdomainsid}/ipaccesscontrollistmappings/{alsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sip/domains/{sipdomainsid}/ipaccesscontrollistmappings{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sip/domains/{sipdomainsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sip/domains{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sip/ipaccesscontrollists/{ipaccesscontrollistsid}/ipaddresses/{ipaddresssid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sip/ipaccesscontrollists/{ipaccesscontrollistsid}/ipaddresses{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sip/ipaccesscontrollists/{ipaccesscontrollistsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sip/ipaccesscontrollists{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sms/shortcodes/{shortcodesid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/sms/shortcodes{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/transcriptions/{transcriptionsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/transcriptions{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/usage/records/{subresource}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/usage/records{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/usage/triggers/{usagetriggersid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}/usage/triggers{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts/{accountsid}{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+      '/accounts{mediatypeextension}':
+        get:
+          concurrentRequests:
+            - max: 100
+              period: forever
+    quotas: null

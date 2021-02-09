@@ -1,0 +1,222 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/yummly/yummly.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+  globalRequests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regardless the resource'
+    resolution: consumption
+pricing:
+  cost: 0
+  currency: USD
+  billing: monthly
+availability: 'R/00:00:00Z/23:59:59Z'
+configuration: {}
+plans:
+  BluePlateSpecial:
+    pricing:
+      cost: >-
+        500 + 0.002 * ((globalRequests - 2500000) <= 0 ? 0 : (globalRequests -
+        2500000))
+    rates:
+      /v1/api/metadata/ingredient:
+        get:
+          globalRequests:
+            - max: 5000
+              period: daily
+      /v1/api/metadata/allergy:
+        get:
+          globalRequests:
+            - max: 5000
+              period: daily
+      /v1/api/metadata/diet:
+        get:
+          globalRequests:
+            - max: 5000
+              period: daily
+      /v1/api/metadata/cuisine:
+        get:
+          globalRequests:
+            - max: 5000
+              period: daily
+    quotas: {}
+    guarantees: {}
+  PrixFixe:
+    availability: 'R/00:00:00Z/23:59:59Z'
+    pricing:
+      cost: >-
+        5000 + 0.001 * ((globalRequests - 4000000) <= 0 ? 0 : (globalRequests -
+        4000000))
+    configuration: {}
+    rates:
+      /v1/api/metadata/ingredient:
+        get:
+          globalRequests:
+            - max: 50000
+              period: daily
+      /v1/api/metadata/allergy:
+        get:
+          globalRequests:
+            - max: 50000
+              period: daily
+      /v1/api/metadata/diet:
+        get:
+          globalRequests:
+            - max: 50000
+              period: daily
+      /v1/api/metadata/cuisine:
+        get:
+          globalRequests:
+            - max: 50000
+              period: daily
+    quotas: {}
+    guarantees: {}
+  Academic:
+    availability: 'R/00:00:00Z/23:59:59Z'
+    pricing:
+      cost: 0
+    configuration: {}
+    rates:
+      /v1/api/metadata/ingredient:
+        get:
+          globalRequests:
+            - max: 500
+              period: daily
+      /v1/api/metadata/allergy:
+        get:
+          globalRequests:
+            - max: 500
+              period: daily
+      /v1/api/metadata/diet:
+        get:
+          globalRequests:
+            - max: 500
+              period: daily
+      /v1/api/metadata/cuisine:
+        get:
+          globalRequests:
+            - max: 500
+              period: daily
+    quotas:
+      /v1/api/metadata/ingredient:
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+      /v1/api/metadata/allergy:
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+      /v1/api/metadata/diet:
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+      /v1/api/metadata/cuisine:
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+      '/v1/api/recipe/{recipe-id}':
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+      /v1/api/metadata/holiday:
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+      /v1/api/metadata/course:
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+      /v1/api/recipes:
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+    guarantees: {}
+  Hackathon:
+    availability: 'R/00:00:00Z/23:59:59Z'
+    pricing:
+      cost: 0
+    configuration: {}
+    rates:
+      /v1/api/metadata/ingredient:
+        get:
+          globalRequests:
+            - max: 500
+              period: daily
+      /v1/api/metadata/allergy:
+        get:
+          globalRequests:
+            - max: 500
+              period: daily
+      /v1/api/metadata/diet:
+        get:
+          globalRequests:
+            - max: 500
+              period: daily
+      /v1/api/metadata/cuisine:
+        get:
+          globalRequests:
+            - max: 500
+              period: daily
+    quotas:
+      /v1/api/metadata/ingredient:
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+      /v1/api/metadata/allergy:
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+      /v1/api/metadata/diet:
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+      /v1/api/metadata/cuisine:
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+      '/v1/api/recipe/{recipe-id}':
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+      /v1/api/metadata/holiday:
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+      /v1/api/metadata/course:
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+      /v1/api/recipes:
+        get:
+          globalRequests:
+            - max: 30000
+              period: forever
+    guarantees: {}

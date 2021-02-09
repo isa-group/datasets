@@ -1,0 +1,144 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/moz/moz.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  rows:
+    type: integer
+    format: int64
+    description: Data rows
+    resolution: consumption
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+  globalRequests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regardless the resource'
+    resolution: consumption
+availability: 'R/00:00:00Z/23:59:59Z'
+plans:
+  EntryLevel:
+    pricing:
+      cost: >-
+        250 + 20 * (Math.ceil(globalRequests/10000 - 12) <= 0 ? 0 :
+        Math.ceil(globalRequests/10000 - 12))
+      currency: USD
+      billing: monthly
+    quotas: null
+    rates:
+      /URLMetrics:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+      /TopPages:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+      /Links:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+      /AnchorText:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+  LowVolume:
+    pricing:
+      cost: >-
+        500 + 10 * (Math.ceil(globalRequests/10000 - 50) <= 0 ? 0 :
+        Math.ceil(globalRequests/10000 - 50))
+      currency: USD
+      billing: monthly
+    quotas: null
+    rates:
+      /URLMetrics:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+      /TopPages:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+      /Links:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+      /AnchorText:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+  MidVolume:
+    pricing:
+      cost: >-
+        2000 + 5 * (Math.ceil(globalRequests/10000 - 4000) <= 0 ? 0 :
+        Math.ceil(globalRequests/10000 - 4000))
+      currency: USD
+      billing: monthly
+    quotas: null
+    rates:
+      /URLMetrics:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+      /TopPages:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+      /Links:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+      /AnchorText:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+  MaxVolume:
+    pricing:
+      cost: >-
+        10000 + 3.5 * (Math.ceil(globalRequests/10000 - 40000) <= 0 ? 0 :
+        Math.ceil(globalRequests/10000 - 40000))
+      currency: USD
+      billing: monthly
+    quotas: null
+    rates:
+      /URLMetrics:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+      /TopPages:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+      /Links:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly
+      /AnchorText:
+        get:
+          globalRequests:
+            - max: 200
+              period: secondly

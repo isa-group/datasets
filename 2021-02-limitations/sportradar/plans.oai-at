@@ -1,0 +1,2166 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/sportradar/plans.oai-at?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+availability: 'R/00:00:00Z/23:59:59Z'
+plans:
+  Basic:
+    pricing:
+      cost: custom
+      currency: USD
+      billing: monthly
+    quotas:
+      /NFL:
+        get:
+          requests:
+            - max: 750
+              period: monthly
+      /MLB:
+        get:
+          requests:
+            - max: 3000
+              period: monthly
+      /NBA:
+        get:
+          requests:
+            - max: 3500
+              period: monthly
+      /NHL:
+        get:
+          requests:
+            - max: 4500
+              period: monthly
+      /NCAA-FB:
+        get:
+          requests:
+            - max: 1850
+              period: monthly
+      /NCAA-MB:
+        get:
+          requests:
+            - max: 7500
+              period: monthly
+      /Golf:
+        get:
+          requests:
+            - max: 600
+              period: monthly
+      /NASCAR:
+        get:
+          requests:
+            - max: 125
+              period: monthly
+      /Soccer-Europe:
+        get:
+          requests:
+            - max: 3500
+              period: monthly
+      /Soccer-Americas:
+        get:
+          requests:
+            - max: 4000
+              period: monthly
+      /Soccer-International:
+        get:
+          requests:
+            - max: 3500
+              period: monthly
+      /Soccer-Asia:
+        get:
+          requests:
+            - max: 2500
+              period: monthly
+      /Soccer-Other:
+        get:
+          requests:
+            - max: 3500
+              period: monthly
+      /NCAA-WB:
+        get:
+          requests:
+            - max: 4500
+              period: monthly
+      /NCAA-MH:
+        get:
+          requests:
+            - max: 3000
+              period: monthly
+      /WNBA:
+        get:
+          requests:
+            - max: 1750
+              period: monthly
+      /NBA-G-League:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Cricket:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Rugby:
+        get:
+          requests:
+            - max: 2500
+              period: monthly
+      /Tennis:
+        get:
+          requests:
+            - max: 10000
+              period: monthly
+      '/Counter-Strike:-Global-Offensive':
+        get:
+          requests:
+            - max: 1500
+              period: monthly
+      /League-of-Legends:
+        get:
+          requests:
+            - max: 1200
+              period: monthly
+      /DOTA2:
+        get:
+          requests:
+            - max: 1000
+              period: monthly
+      /Olympics:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Arena-Football-League:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Australian-Football:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Badminton:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Bandy:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Beach-Soccer:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Beach-Volleyball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Curling:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Cycling:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Darts:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Field-Hockey:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Floorball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Formula-1:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Formula-E:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Futsal:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-American-Football:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-Baseball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-Basketball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-Ice-Hockey:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Handball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Indoor-Volleyball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /IndyCar:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /MotoGP:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Motorsports:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Odds:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Pesapallo:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Snooker:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Squash:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /UFC:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Waterpolo:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+    rates:
+      /NFL:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /MLB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NBA:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NHL:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-FB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-MB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Golf:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NASCAR:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Europe:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Americas:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-International:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Asia:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Other:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-WB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-MH:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /WNBA:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NBA-G-League:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Cricket:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Rugby:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Tennis:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      '/Counter-Strike:-Global-Offensive':
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /League-of-Legends:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /DOTA2:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Olympics:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Arena-Football-League:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Australian-Football:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Badminton:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Bandy:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Beach-Soccer:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Beach-Volleyball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Curling:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Cycling:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Darts:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Field-Hockey:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Floorball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Formula-1:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Formula-E:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Futsal:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-American-Football:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-Baseball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-Basketball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-Ice-Hockey:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Handball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Indoor-Volleyball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /IndyCar:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /MotoGP:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Motorsports:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Odds:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Pesapallo:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Snooker:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Squash:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /UFC:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Waterpolo:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+  Standard:
+    pricing:
+      cost: custom
+      currency: USD
+      billing: monthly
+    quotas:
+      /NFL:
+        get:
+          requests:
+            - max: 7000
+              period: monthly
+      /MLB:
+        get:
+          requests:
+            - max: 45000
+              period: monthly
+      /NBA:
+        get:
+          requests:
+            - max: 25000
+              period: monthly
+      /NHL:
+        get:
+          requests:
+            - max: 45000
+              period: monthly
+      /NCAA-FB:
+        get:
+          requests:
+            - max: 22000
+              period: monthly
+      /NCAA-MB:
+        get:
+          requests:
+            - max: 75000
+              period: monthly
+      /Golf:
+        get:
+          requests:
+            - max: 16000
+              period: monthly
+      /NASCAR:
+        get:
+          requests:
+            - max: 1000
+              period: monthly
+      /Soccer-Europe:
+        get:
+          requests:
+            - max: 28000
+              period: monthly
+      /Soccer-Americas:
+        get:
+          requests:
+            - max: 27000
+              period: monthly
+      /Soccer-International:
+        get:
+          requests:
+            - max: 28000
+              period: monthly
+      /Soccer-Asia:
+        get:
+          requests:
+            - max: 15000
+              period: monthly
+      /Soccer-Other:
+        get:
+          requests:
+            - max: 28000
+              period: monthly
+      /NCAA-WB:
+        get:
+          requests:
+            - max: 62000
+              period: monthly
+      /NCAA-MH:
+        get:
+          requests:
+            - max: 30000
+              period: monthly
+      /WNBA:
+        get:
+          requests:
+            - max: 10000
+              period: monthly
+      /NBA-G-League:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Cricket:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Rugby:
+        get:
+          requests:
+            - max: 25000
+              period: monthly
+      /Tennis:
+        get:
+          requests:
+            - max: 50000
+              period: monthly
+      '/Counter-Strike:-Global-Offensive':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /League-of-Legends:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /DOTA2:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Olympics:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Arena-Football-League:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Australian-Football:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Badminton:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Bandy:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Beach-Soccer:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Beach-Volleyball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Curling:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Cycling:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Darts:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Field-Hockey:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Floorball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Formula-1:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Formula-E:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Futsal:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-American-Football:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-Baseball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-Basketball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-Ice-Hockey:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Handball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Indoor-Volleyball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /IndyCar:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /MotoGP:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Motorsports:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Odds:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Pesapallo:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Snooker:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Squash:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /UFC:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Waterpolo:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+    rates:
+      /NFL:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /MLB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NBA:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NHL:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-FB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-MB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Golf:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NASCAR:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Europe:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Americas:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-International:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Asia:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Other:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-WB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-MH:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /WNBA:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NBA-G-League:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Cricket:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Rugby:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Tennis:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      '/Counter-Strike:-Global-Offensive':
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /League-of-Legends:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /DOTA2:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Olympics:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Arena-Football-League:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Australian-Football:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Badminton:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Bandy:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Beach-Soccer:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Beach-Volleyball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Curling:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Cycling:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Darts:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Field-Hockey:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Floorball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Formula-1:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Formula-E:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Futsal:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-American-Football:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-Baseball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-Basketball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-Ice-Hockey:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Handball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Indoor-Volleyball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /IndyCar:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /MotoGP:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Motorsports:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Odds:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Pesapallo:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Snooker:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Squash:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /UFC:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Waterpolo:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+  Premium:
+    pricing:
+      cost: custom
+      currency: USD
+      billing: monthly
+    quotas:
+      /NFL:
+        get:
+          requests:
+            - max: 35000
+              period: monthly
+      /MLB:
+        get:
+          requests:
+            - max: 225000
+              period: monthly
+      /NBA:
+        get:
+          requests:
+            - max: 110000
+              period: monthly
+      /NHL:
+        get:
+          requests:
+            - max: 235000
+              period: monthly
+      /NCAA-FB:
+        get:
+          requests:
+            - max: 100000
+              period: monthly
+      /NCAA-MB:
+        get:
+          requests:
+            - max: 350000
+              period: monthly
+      /Golf:
+        get:
+          requests:
+            - max: 64000
+              period: monthly
+      /NASCAR:
+        get:
+          requests:
+            - max: 2500
+              period: monthly
+      /Soccer-Europe:
+        get:
+          requests:
+            - max: 140000
+              period: monthly
+      /Soccer-Americas:
+        get:
+          requests:
+            - max: 160000
+              period: monthly
+      /Soccer-International:
+        get:
+          requests:
+            - max: 140000
+              period: monthly
+      /Soccer-Asia:
+        get:
+          requests:
+            - max: 100000
+              period: monthly
+      /Soccer-Other:
+        get:
+          requests:
+            - max: 140000
+              period: monthly
+      /NCAA-WB:
+        get:
+          requests:
+            - max: 205000
+              period: monthly
+      /NCAA-MH:
+        get:
+          requests:
+            - max: 53000
+              period: monthly
+      /WNBA:
+        get:
+          requests:
+            - max: 55000
+              period: monthly
+      /NBA-G-League:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Cricket:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Rugby:
+        get:
+          requests:
+            - max: 125000
+              period: monthly
+      /Tennis:
+        get:
+          requests:
+            - max: 300000
+              period: monthly
+      '/Counter-Strike:-Global-Offensive':
+        get:
+          requests:
+            - max: 40000
+              period: monthly
+      /League-of-Legends:
+        get:
+          requests:
+            - max: 22000
+              period: monthly
+      /DOTA2:
+        get:
+          requests:
+            - max: 19000
+              period: monthly
+      /Olympics:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Arena-Football-League:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Australian-Football:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Badminton:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Bandy:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Beach-Soccer:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Beach-Volleyball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Curling:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Cycling:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Darts:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Field-Hockey:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Floorball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Formula-1:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Formula-E:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Futsal:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-American-Football:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-Baseball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-Basketball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-Ice-Hockey:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Handball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Indoor-Volleyball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /IndyCar:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /MotoGP:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Motorsports:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Odds:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Pesapallo:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Snooker:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Squash:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /UFC:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Waterpolo:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+    rates:
+      /NFL:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /MLB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NBA:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NHL:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-FB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-MB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Golf:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NASCAR:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Europe:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Americas:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-International:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Asia:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Other:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-WB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-MH:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /WNBA:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NBA-G-League:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Cricket:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Rugby:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Tennis:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      '/Counter-Strike:-Global-Offensive':
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /League-of-Legends:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /DOTA2:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Olympics:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Arena-Football-League:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Australian-Football:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Badminton:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Bandy:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Beach-Soccer:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Beach-Volleyball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Curling:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Cycling:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Darts:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Field-Hockey:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Floorball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Formula-1:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Formula-E:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Futsal:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-American-Football:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-Baseball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-Basketball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-Ice-Hockey:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Handball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Indoor-Volleyball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /IndyCar:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /MotoGP:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Motorsports:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Odds:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Pesapallo:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Snooker:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Squash:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /UFC:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Waterpolo:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+  RealTime:
+    pricing:
+      cost: custom
+      currency: USD
+      billing: monthly
+    quotas:
+      /NFL:
+        get:
+          requests:
+            - max: 2000000
+              period: monthly
+      /MLB:
+        get:
+          requests:
+            - max: 2000000
+              period: monthly
+      /NBA:
+        get:
+          requests:
+            - max: 2000000
+              period: monthly
+      /NHL:
+        get:
+          requests:
+            - max: 2000000
+              period: monthly
+      /NCAA-FB:
+        get:
+          requests:
+            - max: 900000
+              period: monthly
+      /NCAA-MB:
+        get:
+          requests:
+            - max: 4000000
+              period: monthly
+      /Golf:
+        get:
+          requests:
+            - max: 560000
+              period: monthly
+      /NASCAR:
+        get:
+          requests:
+            - max: 100000
+              period: monthly
+      /Soccer-Europe:
+        get:
+          requests:
+            - max: 1050000
+              period: monthly
+      /Soccer-Americas:
+        get:
+          requests:
+            - max: 1200000
+              period: monthly
+      /Soccer-International:
+        get:
+          requests:
+            - max: 1050000
+              period: monthly
+      /Soccer-Asia:
+        get:
+          requests:
+            - max: 750000
+              period: monthly
+      /Soccer-Other:
+        get:
+          requests:
+            - max: 1050000
+              period: monthly
+      /NCAA-WB:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /NCAA-MH:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /WNBA:
+        get:
+          requests:
+            - max: 455000
+              period: monthly
+      /NBA-G-League:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Cricket:
+        get:
+          requests:
+            - max: 450000
+              period: monthly
+      /Rugby:
+        get:
+          requests:
+            - max: 1000000
+              period: monthly
+      /Tennis:
+        get:
+          requests:
+            - max: 3000000
+              period: monthly
+      '/Counter-Strike:-Global-Offensive':
+        get:
+          requests:
+            - max: 575000
+              period: monthly
+      /League-of-Legends:
+        get:
+          requests:
+            - max: 550000
+              period: monthly
+      /DOTA2:
+        get:
+          requests:
+            - max: 500000
+              period: monthly
+      /Olympics:
+        get:
+          requests:
+            - max: 2000000
+              period: monthly
+      /Arena-Football-League:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Australian-Football:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Badminton:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Bandy:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Beach-Soccer:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Beach-Volleyball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Curling:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Cycling:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Darts:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Field-Hockey:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Floorball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Formula-1:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Formula-E:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Futsal:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-American-Football:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-Baseball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-Basketball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Global-Ice-Hockey:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Handball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Indoor-Volleyball:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /IndyCar:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /MotoGP:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Motorsports:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Odds:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Pesapallo:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Snooker:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Squash:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /UFC:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /Waterpolo:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+    rates:
+      /NFL:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /MLB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NBA:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NHL:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-FB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-MB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Golf:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NASCAR:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Europe:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Americas:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-International:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Asia:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Soccer-Other:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-WB:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NCAA-MH:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /WNBA:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /NBA-G-League:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Cricket:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Rugby:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Tennis:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      '/Counter-Strike:-Global-Offensive':
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /League-of-Legends:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /DOTA2:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Olympics:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Arena-Football-League:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Australian-Football:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Badminton:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Bandy:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Beach-Soccer:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Beach-Volleyball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Curling:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Cycling:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Darts:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Field-Hockey:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Floorball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Formula-1:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Formula-E:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Futsal:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-American-Football:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-Baseball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-Basketball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Global-Ice-Hockey:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Handball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Indoor-Volleyball:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /IndyCar:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /MotoGP:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Motorsports:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Odds:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Pesapallo:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Snooker:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Squash:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /UFC:
+        get:
+          requests:
+            - max: unknown
+              period: secondly
+      /Waterpolo:
+        get:
+          requests:
+            - max: unknown
+              period: secondly

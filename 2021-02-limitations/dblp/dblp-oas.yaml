@@ -1,0 +1,483 @@
+openapi: 3.0.0
+info:
+  description: >-
+    There are three major search services provided by dblp: one for
+    publications, one for persons (authors/editors), and one for venues
+    (journals/conferences/etc).
+  version: 1.0.0
+  title: DBLP API
+  termsOfService: 'https://dblp.org/db/about/copyright.html'
+  contact:
+    email: ley@uni-trier.de
+    url: 'https://dblp.org/db/about/imprint.html'
+    name: dblp computer science bibliography
+  license:
+    name: ODC-BY 1.0 license
+    url: 'https://opendefinition.org/'
+  x-sla: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/dblp/plans.oai-at?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+tags:
+  - name: General endpoints
+    description: DBLP API
+paths:
+  /search/publ/api:
+    get:
+      tags:
+        - General endpoints
+      summary: publication queries
+      description: ''
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 'The query string to search for, as described on a separate page.'
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: xml
+            enum:
+              - xml
+              - json
+              - jsonp
+          description: >-
+            The result format of the search. Recognized values are "xml",
+            "json", and "jsonp".
+        - name: h
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Maximum number of search results (hits) to return. For bandwidth
+            reasons, this number is capped at 1000.
+        - name: f
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            The first hit in the numbered sequence of search results (starting
+            with 0) to return. In combination with the h parameter, this
+            parameter can be used for pagination of search results.
+        - name: c
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Maximum number of completion terms (see below) to return. For
+            bandwidth reasons, this number is capped at 1000
+      operationId: getPubl
+      responses:
+        '200':
+          description: Publication query response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicationQueryResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/PublicationQueryResponse'
+            application/jsonp:
+              schema:
+                $ref: '#/components/schemas/PublicationQueryResponse'
+  /search/author/api:
+    get:
+      tags:
+        - General endpoints
+      summary: author queries
+      description: ''
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 'The query string to search for, as described on a separate page.'
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: xml
+            enum:
+              - xml
+              - json
+              - jsonp
+          description: >-
+            The result format of the search. Recognized values are "xml",
+            "json", and "jsonp".
+        - name: h
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Maximum number of search results (hits) to return. For bandwidth
+            reasons, this number is capped at 1000.
+        - name: f
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            The first hit in the numbered sequence of search results (starting
+            with 0) to return. In combination with the h parameter, this
+            parameter can be used for pagination of search results.
+        - name: c
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Maximum number of completion terms (see below) to return. For
+            bandwidth reasons, this number is capped at 1000
+      operationId: getAuthor
+      responses:
+        '200':
+          description: Author query response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorQueryResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/AuthorQueryResponse'
+            application/jsonp:
+              schema:
+                $ref: '#/components/schemas/AuthorQueryResponse'
+  /search/venue/api:
+    get:
+      tags:
+        - General endpoints
+      summary: venue queries
+      description: ''
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 'The query string to search for, as described on a separate page.'
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+            default: xml
+            enum:
+              - xml
+              - json
+              - jsonp
+          description: >-
+            The result format of the search. Recognized values are "xml",
+            "json", and "jsonp".
+        - name: h
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Maximum number of search results (hits) to return. For bandwidth
+            reasons, this number is capped at 1000.
+        - name: f
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            The first hit in the numbered sequence of search results (starting
+            with 0) to return. In combination with the h parameter, this
+            parameter can be used for pagination of search results.
+        - name: c
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Maximum number of completion terms (see below) to return. For
+            bandwidth reasons, this number is capped at 1000
+      operationId: getVenue
+      responses:
+        '200':
+          description: Venue query response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VenueQueryResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VenueQueryResponse'
+            application/jsonp:
+              schema:
+                $ref: '#/components/schemas/VenueQueryResponse'
+externalDocs:
+  description: ''
+  url: 'https://dblp.org/faq/How+to+use+the+dblp+search+API.html'
+components:
+  schemas:
+    PublicationQueryResponse:
+      properties:
+        result:
+          type: object
+          properties:
+            query:
+              type: string
+            status:
+              type: object
+              properties:
+                '@code':
+                  type: string
+                text:
+                  type: string
+            time:
+              type: object
+              properties:
+                '@unit':
+                  type: string
+                text:
+                  type: string
+            completions:
+              type: object
+              properties:
+                '@total':
+                  type: string
+                '@computed':
+                  type: string
+                '@sent':
+                  type: string
+                c:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '@sc':
+                        type: string
+                      '@dc':
+                        type: string
+                      '@oc':
+                        type: string
+                      '@id':
+                        type: string
+                      text:
+                        type: string
+            hits:
+              properties:
+                '@total':
+                  type: string
+                '@computed':
+                  type: string
+                '@sent':
+                  type: string
+                '@first':
+                  type: string
+                hit:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '@score':
+                        type: string
+                      '@id':
+                        type: string
+                      info:
+                        type: object
+                        properties:
+                          authors:
+                            type: object
+                            properties:
+                              author:
+                                type: array
+                                items:
+                                  type: string
+                          title:
+                            type: string
+                          venue:
+                            type: string
+                          volume:
+                            type: string
+                          number:
+                            type: string
+                          year:
+                            type: string
+                          type:
+                            type: string
+                          key:
+                            type: string
+                          doi:
+                            type: string
+                          ee:
+                            type: string
+                          url:
+                            type: string
+                      url:
+                        type: string
+    AuthorQueryResponse:
+      properties:
+        result:
+          type: object
+          properties:
+            query:
+              type: string
+            status:
+              type: object
+              properties:
+                '@code':
+                  type: string
+                text:
+                  type: string
+            time:
+              type: object
+              properties:
+                '@unit':
+                  type: string
+                text:
+                  type: string
+            completions:
+              type: object
+              properties:
+                '@total':
+                  type: string
+                '@computed':
+                  type: string
+                '@sent':
+                  type: string
+                c:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '@sc':
+                        type: string
+                      '@dc':
+                        type: string
+                      '@oc':
+                        type: string
+                      '@id':
+                        type: string
+                      text:
+                        type: string
+            hits:
+              properties:
+                '@total':
+                  type: string
+                '@computed':
+                  type: string
+                '@sent':
+                  type: string
+                '@first':
+                  type: string
+                hit:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '@score':
+                        type: string
+                      '@id':
+                        type: string
+                      info:
+                        type: object
+                        properties:
+                          author:
+                            type: string
+                          url:
+                            type: string
+                      url:
+                        type: string
+    VenueQueryResponse:
+      properties:
+        result:
+          type: object
+          properties:
+            query:
+              type: string
+            status:
+              type: object
+              properties:
+                '@code':
+                  type: string
+                text:
+                  type: string
+            time:
+              type: object
+              properties:
+                '@unit':
+                  type: string
+                text:
+                  type: string
+            completions:
+              type: object
+              properties:
+                '@total':
+                  type: string
+                '@computed':
+                  type: string
+                '@sent':
+                  type: string
+                c:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '@sc':
+                        type: string
+                      '@dc':
+                        type: string
+                      '@oc':
+                        type: string
+                      '@id':
+                        type: string
+                      text:
+                        type: string
+            hits:
+              properties:
+                '@total':
+                  type: string
+                '@computed':
+                  type: string
+                '@sent':
+                  type: string
+                '@first':
+                  type: string
+                hit:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '@score':
+                        type: string
+                      '@id':
+                        type: string
+                      info:
+                        type: object
+                        properties:
+                          venue:
+                            type: string
+                          acronym:
+                            type: string
+                          type:
+                            type: string
+                          url:
+                            type: string
+                      url:
+                        type: string
+  requestBodies:
+    Pet:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PublicationQueryResponse'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/PublicationQueryResponse'
+      description: Pet object that needs to be added to the store
+      required: true
+  securitySchemes: {}
+  links: {}
+  callbacks: {}
+security: []

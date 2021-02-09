@@ -1,0 +1,1983 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/azure-search/azure-search.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  globalRequests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regardeless the resource'
+    resolution: consumption
+  statsRequests:
+    type: integer
+    format: int64
+    description: 'Number of stats requests, regardeless the resource'
+    resolution: consumption
+availability: 'R/00:00:00Z/23:59:59Z'
+plans:
+  Free:
+    pricing:
+      cost: 0
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 3000
+              period: monthly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 3000
+              period: monthly
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 3000
+              period: monthly
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 3000
+              period: monthly
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 3000
+              period: monthly
+      /BingEntitySearch:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 3
+              period: secondly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 3
+              period: secondly
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 3
+              period: secondly
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 3
+              period: secondly
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 3
+              period: secondly
+  S1:
+    pricing:
+      cost: 7 * Math.ceil(globalRequests/1000) + 7 * Math.ceil(globalRequests/25000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 250
+              period: secondly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 250
+              period: secondly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 250
+              period: secondly
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 250
+              period: secondly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 250
+              period: secondly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 250
+              period: secondly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 250
+              period: secondly
+  S1-PlusStatsAddIn:
+    pricing:
+      cost: >-
+        7 * Math.ceil(globalRequests/1000) + 7 * Math.ceil(globalRequests/25000)
+        + 3 * Math.ceil(statsRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 250
+              period: secondly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 250
+              period: secondly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 250
+              period: secondly
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 250
+              period: secondly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 250
+              period: secondly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 250
+              period: secondly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 250
+              period: secondly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 250
+              period: secondly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 250
+              period: secondly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 250
+              period: secondly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 250
+              period: secondly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 250
+              period: secondly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 250
+              period: secondly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 250
+              period: secondly
+  S2:
+    pricing:
+      cost: 3 * Math.ceil(globalRequests/1000) + 3 * Math.ceil(globalRequests/10000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+  S2-PlusStatsAddIn:
+    pricing:
+      cost: >-
+        3 * Math.ceil(globalRequests/1000) + 3 * Math.ceil(globalRequests/10000)
+        + 1 * Math.ceil(statsRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 100
+              period: secondly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 100
+              period: secondly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 100
+              period: secondly
+  S3:
+    pricing:
+      cost: 4 * Math.ceil(globalRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+  S3-PlusStatsAddIn:
+    pricing:
+      cost: 4 * Math.ceil(globalRequests/1000) + 1 * Math.ceil(statsRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 100
+              period: secondly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 100
+              period: secondly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+  S4:
+    pricing:
+      cost: 4 * Math.ceil(globalRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+  S4-PlusStatsAddIn:
+    pricing:
+      cost: 4 * Math.ceil(globalRequests/1000) + 1 * Math.ceil(statsRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 100
+              period: secondly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 100
+              period: secondly
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+  S5:
+    pricing:
+      cost: 4 * Math.ceil(globalRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+  S5-PlusStatsAddIn:
+    pricing:
+      cost: 4 * Math.ceil(globalRequests/1000) + 1 * Math.ceil(statsRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 100
+              period: secondly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 100
+              period: secondly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+  S6:
+    pricing:
+      cost: 4 * Math.ceil(globalRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+  S6-PlusStatsAddIn:
+    pricing:
+      cost: 4 * Math.ceil(globalRequests/1000) + 1 * Math.ceil(statsRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 100
+              period: secondly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 100
+              period: secondly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+  S7:
+    pricing:
+      cost: 5 * Math.ceil(globalRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 150
+              period: secondly
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 150
+              period: secondly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 150
+              period: secondly
+  S7-PlusStatsAddIn:
+    pricing:
+      cost: 5 * Math.ceil(globalRequests/1000) + 1 * Math.ceil(statsRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 150
+              period: secondly
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 150
+              period: secondly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 150
+              period: secondly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 150
+              period: secondly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 150
+              period: secondly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 150
+              period: secondly
+  S8:
+    pricing:
+      cost: 6 * Math.ceil(globalRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 150
+              period: secondly
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 150
+              period: secondly
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 150
+              period: secondly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 150
+              period: secondly
+  S8-PlusStatsAddIn:
+    pricing:
+      cost: 6 * Math.ceil(globalRequests/1000) + 1 * Math.ceil(statsRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 150
+              period: secondly
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 150
+              period: secondly
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 150
+              period: secondly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 150
+              period: secondly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 150
+              period: secondly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 150
+              period: secondly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 150
+              period: secondly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 150
+              period: secondly
+  S9:
+    pricing:
+      cost: 3 * Math.ceil(globalRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 30
+              period: secondly
+  S9-PlusStatsAddIn:
+    pricing:
+      cost: 3 * Math.ceil(globalRequests/1000) + 1 * Math.ceil(statsRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: secondly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 30
+              period: secondly
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 30
+              period: secondly
+  S10:
+    pricing:
+      cost: 5 * Math.ceil(globalRequests/1000)
+      currency: USD
+      billing: monthly
+    quotas:
+      /BingVideoSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVideoSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingImageSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingNewsSearch/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingAutosuggest/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingSpellCheck/stats:
+        get:
+          statsRequests:
+            - max: 0
+              period: monthly
+      /BingWebSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingEntitySearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+      /BingVisualSearch:
+        get:
+          globalRequests:
+            - max: 0
+              period: monthly
+    rates:
+      /BingLocalBusinessSearch:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+      /BingLocalBusinessSearch/stats:
+        get:
+          globalRequests:
+            - max: 100
+              period: secondly
+  S10-PlusStatsAddIn: null

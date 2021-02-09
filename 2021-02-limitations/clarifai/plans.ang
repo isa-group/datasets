@@ -1,0 +1,492 @@
+<div id="petstoreBindingContainer">
+
+    <form class="form-inline pull-right">
+        <a class="btn btn-info" title="Rename plan" ng-show="model.plans && Object.keys(model.plans).length > 0" ng-click="renameModel()">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        </a>
+        <div class="form-group">
+            <input class="form-control" type="text" id="planName" placeholder="Plan name" />
+        </div>
+        <a class="btn btn-primary" ng-click="createNewModel()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+    </form>
+    <h4 ng-show="!model.plans" style="text-align: right;padding-right: 14em;line-height: 0.5;">
+        Please, create a plan:
+    </h4>
+
+    <ul class="nav nav-tabs" ng-show="!!model.plans">
+        <li style="position:relative;" ng-init="editPlan=false;" ng-repeat="(k, key) in model.plans track by k" ng-class="{active: $index == 0}">
+
+            <a class="bindingPlanName" href="#tab" data-toggle="tab" ng-class="{firstPlan: $index == 0}" ng-click="updateCurrentPlan(k)">
+                {{k | uppercase}}
+            </a>
+            <span class="bindingItemRemover bindingClickItem glyphicon glyphicon-remove" aria-hidden="true" ng-show="k === currentPlan" ng-click="removeModel(currentPlan)"></span>
+
+        </li>
+    </ul>
+    <div class="petstoreBindingPlansContainer" ng-repeat="(k, key) in model.plans track by k" ng-if="currentPlan === k && !!model.plans">
+
+        <table style="width:100%;">
+            <tbody>
+                <tr>
+                    <td style="text-align:center;padding: 2em 0 !important;font-size: 1.5em;font-weight: bold;">
+                        <span contenteditable ng-model="key.pricing.cost"></span> € / mo
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="container-fluid" style="padding: 0 2em;">
+            <div class="row">
+                <div class="col-lg-6 col-xs-12" style="margin-bottom:3.5em;">
+                    <!-- Quota -->
+                    <table style="border: 1px solid #ddd;">
+                        <thead>
+                            <tr style="background-color:rgb(66, 139, 202);color: white;">
+                                <th style="position:relative;border:1px solid #9e9e9e;">
+                                    <div style="margin:0.5em">
+                                        <span class="glyphicon glyphicon-minus" aria-hidden="true" style="position:absolute;left:0.5em;top:0.5em;" ng-show="showQuotaPathEditor" ng-click="showQuotaPathEditor=!showQuotaPathEditor"></span>
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true" style="position:absolute;left:0.5em;top:0.5em;" ng-show="!showQuotaPathEditor" ng-click="showQuotaPathEditor=!showQuotaPathEditor"></span>
+                                        <h4 class="bindingBox bindingClickItem" style="color: white;font-weight: bold;" ng-click="showQuotaPathEditor=!showQuotaPathEditor;">Quotas</h4>
+
+                                        <div class="row" ng-show="showQuotaPathEditor" ng-init="_pathQuota='select...'">
+                                            <div class="col-xs-8">
+                                                <select class="form-control" name="quotaPath" ng-model="_pathQuota">
+                                                    <option>select...</option>
+                                                    <option ng-repeat="(_pathQuota, pathDesc) in oasDocument.paths" ng-show="!model.plans[currentPlan].quotas[_pathQuota]" value="{{_pathQuota}}">{{_pathQuota}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button class="bindingClickItem btn btn-primary form-control" style="border-color:white;" ng-click="addNewQuotaPath(_pathQuota); showQuotaPathEditor = false;_pathQuota='select...';">Add</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(path, p) in model.plans[currentPlan].quotas" style="border-top: 1px solid #ddd;background: #FAFAFA;">
+                                <td style="padding:0 !important;padding-bottom:2em !important;">
+                                    <div style="padding-top: 0;">
+                                        <div class="bindingClickItem" style="position:relative;text-align:center;background: #f3f3f3;line-height:2;padding-top: 0;" ng-style="!showQuotaEditor ? {'border-bottom':'1px solid #ddd'} : {'':''}" ng-click="showQuotaEditor=!showQuotaEditor;num=1;ope='select...';met='select...';period='select...';">
+
+                                            <b>Over resource:</b> {{path}}
+
+                                            <span class="glyphicon glyphicon-plus" style="position:absolute;left:0.5em;top:0.5em;" aria-hidden="true" ng-show="!showQuotaEditor"></span>
+                                            <span class="glyphicon glyphicon-minus" style="position:absolute;left:0.5em;top:0.5em;" aria-hidden="true" ng-show="showQuotaEditor"></span>
+                                            <span class="glyphicon glyphicon-remove bindingClickItem" style="position:absolute;right: 0.5em;top: 0.35em;border:1px solid;border-radius:50%;width:1.25em;height:1.25em;line-height:1.1;color:rgb(187, 187, 187);" aria-hidden="true" ng-show="!showQuotaEditor" ng-click="removeQuotaPath(path)"></span>
+                                            <br>
+
+                                        </div>
+                                        <!-- Quota resource adder -->
+                                        <div class="row" style="margin: 0;font-size: 2px;background: #f3f3f3;border-bottom: 1px solid #ddd;color: #676767;" ng-show="showQuotaEditor" ng-init="num=1;ope='select...';met='select...';period='select...';">
+                                            <div class="bindingEditorContainer form-group">
+                                                <input class="form-control" type="number" min="1" ng-model="num" style="width:4em;" />
+                                                <select class="form-control" name="quotaOperation" ng-model="ope">
+                                                    <option>select...</option>
+                                                    <option ng-repeat="(operation, operationDesc) in oasDocument.paths[path]" value="{{operation}}">{{operation | uppercase}}</option>
+                                                </select>
+                                                <select class="form-control" name="quotaMetrics" ng-model="met">
+                                                    <option>select...</option>
+                                                    <option ng-repeat="(metric, metricDesc) in model.metrics" value="{{metric}}">{{metric}}</option>
+                                                </select>
+                                                <select class="form-control" name="quotaPeriod" ng-model="period">
+                                                    <option>select...</option>
+                                                    <option ng-repeat="p in periodicity" value="{{p}}">{{p}}</option>
+                                                    <option></option>
+                                                </select>
+                                                <button class="btn btn-primary" ng-click="addNewQuota(path, num, ope, met, period); showQuotaEditor = false;
+                                                        num = 1; ope = 'select...'; met = 'select...'; period = 'select...';">Add</button>
+                                            </div>
+                                        </div><!-- /Quota resource adder -->
+                                    </div>
+                                    <!-- Quota boxes -->
+                                    <div style="padding:2em;">
+                                        <div class="" ng-repeat="(operation,op) in p">
+                                            <div class="" ng-repeat="(metric,m) in op">
+                                                <div class="col-xs-12" style="display:table;text-align:center;border: 1px solid #ddd;text-align: center;padding: 0.5em 0;margin: 0.5em 0;background:#f3f3f3;" ng-repeat="l in m track by path+l.max">
+                                                    <div style="padding:0.5em;">
+                                                        <span contenteditable ng-model="l.max"></span> {{operation | uppercase}}<span ng-show="l.max > 1">s</span> / {{metric}}
+                                                        <span ng-show="l.period"> / {{l.period}}</span>
+                                                        <span class="bindingItemRemover bindingClickItem glyphicon glyphicon-remove" aria-hidden="true" ng-click="removeQuotaItem(path, operation, metric, l.max, l.period)"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /Quota boxes -->
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><!-- /Quota -->
+                </div>
+                <div class="col-lg-6 col-xs-12" style="margin-bottom:3.5em;">
+                    <!-- Rate -->
+                    <table style="border: 1px solid #ddd;">
+                        <thead>
+                            <tr style="background-color:rgb(66, 139, 202);color: white;">
+                                <th style="position:relative;border:1px solid #9e9e9e;">
+                                    <div style="margin:0.5em">
+                                        <span class="glyphicon glyphicon-minus" aria-hidden="true" style="position:absolute;left:0.5em;top:0.5em;" ng-show="showRatePathEditor" ng-click="showRatePathEditor=!showRatePathEditor"></span>
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true" style="position:absolute;left:0.5em;top:0.5em;" ng-show="!showRatePathEditor" ng-click="showRatePathEditor=!showRatePathEditor"></span>
+                                        <h4 class="bindingBox bindingClickItem" style="color: white;font-weight: bold;" ng-click="showRatePathEditor=!showRatePathEditor;">Rates</h4>
+
+                                        <div class="row" ng-show="showRatePathEditor" ng-init="_pathRate='select...'">
+                                            <div class="col-xs-8">
+                                                <select class="form-control" name="ratePath" ng-model="_pathRate">
+                                                    <option>select...</option>
+                                                    <option ng-repeat="(_pathRate, pathDesc) in oasDocument.paths" ng-if="!model.plans[currentPlan].rates[path]" value="{{_pathRate}}">{{_pathRate}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button class="bindingClickItem btn btn-primary form-control" style="border-color:white;" ng-click="addNewRatePath(_pathRate);showRatePathEditor=false;_pathRate='select...';">Add</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(path, p) in model.plans[currentPlan].rates" style="border-top: 1px solid #ddd;background: #FAFAFA;">
+                                <td style="padding:0 !important;padding-bottom:2em !important;">
+                                    <div style="padding-top: 0;">
+                                        <div class="bindingClickItem" style="position:relative;text-align:center;background: #f3f3f3;line-height:2;padding-top: 0;" ng-style="!showRateEditor ? {'border-bottom':'1px solid #ddd'} : {'':''}" ng-click="showRateEditor=!showRateEditor;num=1;ope='select...';met='select...';period='select...';">
+
+                                            <b>Over resource:</b> {{path}}
+
+                                            <span class="glyphicon glyphicon-plus bindingClickItem" style="position:absolute;left:0.5em;top:0.5em;" aria-hidden="true" ng-show="!showRateEditor"></span>
+                                            <span class="glyphicon glyphicon-minus " style="position:absolute;left:0.5em;top:0.5em;" aria-hidden="true" ng-show="showRateEditor"></span>
+                                            <span class="glyphicon glyphicon-remove bindingClickItem" style="position:absolute;right: 0.5em;top: 0.35em;border:1px solid;border-radius:50%;width:1.25em;height:1.25em;line-height:1.1;color:rgb(187, 187, 187);" aria-hidden="true" ng-click="removeRatePath(path)"></span>
+                                            <br>
+
+                                        </div>
+                                        <!-- Rate resource adder -->
+                                        <div class="row" style="margin: 0;font-size: 2px;background: #f3f3f3;border-bottom: 1px solid #ddd;color: #676767;" ng-show="showRateEditor" ng-init="num=1;ope='select...';met='select...';period='select...'">
+                                            <div class="bindingEditorContainer form-group">
+                                                <input class="form-control" type="number" min="1" ng-model="num" style="width:4em;" />
+                                                <select class="form-control" name="rateOperation" ng-model="ope">
+                                                    <option>select...</option>
+                                                    <option ng-repeat="(operation, operationDesc) in oasDocument.paths[path]" value="{{operation}}">{{operation | uppercase}}</option>
+                                                </select>
+                                                <select class="form-control" name="rateMetrics" ng-model="met">
+                                                    <option>select...</option>
+                                                    <option ng-repeat="(metric, metricDesc) in model.metrics" value="{{metric}}">{{metric}}</option>
+                                                </select>
+                                                <select class="form-control" name="ratePeriod" ng-model="period">
+                                                    <option>select...</option>
+                                                    <option ng-repeat="p in periodicity" value="{{p}}">{{p}}</option>
+                                                    <option></option>
+                                                </select>
+                                                <button class="btn btn-primary" ng-click="addNewRate(path, num, ope, met, period);showRateEditor=false;">Add</button>
+                                            </div>
+                                        </div><!-- /Rate resource adder -->
+                                    </div>
+                                    <!-- Rate boxes -->
+                                    <div style="padding:2em;">
+                                        <div class="" ng-repeat="(operation,op) in p">
+                                            <div class="" ng-repeat="(metric,m) in op">
+                                                <div class="col-xs-12" style="display:table;text-align:center;border: 1px solid #ddd;text-align: center;padding: 0.5em;margin: 0.5em;background:#f3f3f3;" ng-repeat="l in m track by path+l.max">
+                                                    <div style="padding:0.5em;">
+                                                        <span contenteditable ng-model="l.max"></span> {{operation | uppercase}}<span ng-show="l.max > 1">s</span> / {{metric}}
+                                                        <span ng-show="l.period"> / {{l.period}}</span>
+                                                        <span class="bindingItemRemover bindingClickItem glyphicon glyphicon-remove" aria-hidden="true" ng-click="removeRateItem(path, operation, metric, l.max, l.period)"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /Rate boxes -->
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><!-- /Rate -->
+                </div>
+                <div ng-show="false" class="col-lg-4 col-xs-12" style="margin-bottom:3.5em;">
+                    <!-- Guarantee -->
+                    <table style="border: 1px solid #ddd;">
+                        <thead>
+                            <tr style="background-color:rgb(66, 139, 202);color: white;">
+                                <th style="position:relative;border:1px solid #9e9e9e;">
+                                    <div style="margin:0.5em">
+                                        <span class="glyphicon glyphicon-minus" aria-hidden="true" style="position:absolute;left: 0.5em;top: 0.5em;" ng-show="showGuaranteePathEditor" ng-click="showGuaranteePathEditor=!showGuaranteePathEditor"></span>
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true" style="position:absolute;left: 0.5em;top: 0.5em;" ng-show="!showGuaranteePathEditor" ng-click="showGuaranteePathEditor=!showGuaranteePathEditor"></span>
+                                        <h4 class="bindingBox bindingClickItem" style="color: white;font-weight: bold;" ng-click="showGuaranteePathEditor=!showGuaranteePathEditor;">Guarantees</h4>
+
+                                        <div class="row" ng-show="showGuaranteePathEditor" ng-init="_pathGuarantee='select...'">
+                                            <div class="col-xs-8">
+                                                <select class="form-control" name="guaranteePath" ng-model="_pathGuarantee">
+                                                    <option>select...</option>
+                                                    <option ng-if="!model.plans[currentPlan].guarantees['global']">global</option>
+                                                    <option ng-repeat="(_pathGuarantee, pathDesc) in oasDocument.paths" ng-if="!model.plans[currentPlan].guarantees[_pathGuarantee]" value="{{_pathGuarantee}}">{{_pathGuarantee}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button class="bindingClickItem btn btn-primary form-control" style="border-color:white;" ng-click="addNewGuaranteePath(_pathGuarantee);showGuaranteePathEditor=false;_pathGuarantee='select...';">Add</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(path, p) in model.plans[currentPlan].guarantees" style="border-top: 1px solid #ddd;background: #FAFAFA;">
+                                <td style="padding:0 !important;padding-bottom:2em !important;">
+                                    <div style="padding-top: 0;">
+                                        <div class="bindingClickItem" style="position:relative;text-align:center;background: #f3f3f3;line-height:2;padding-top: 0;" ng-style="!showGuaranteeEditor ? {'border-bottom':'1px solid #ddd'} : {'':''}" ng-click="showGuaranteeEditor=!showGuaranteeEditor;num=1;ope='select...';met='select...';period='select...';">
+
+                                            <b>Over resource:</b> {{path}}
+
+                                            <span class="glyphicon glyphicon-plus bindingClickItem" style="position:absolute;left:0.5em;top:0.5em;" aria-hidden="true" ng-show="!showGuaranteeEditor"></span>
+                                            <span class="glyphicon glyphicon-minus bindingClickItem" style="position:absolute;left:0.5em;top:0.5em;" aria-hidden="true" ng-show="showGuaranteeEditor"></span>
+                                            <span class="glyphicon glyphicon-remove bindingClickItem" style="position:absolute;right: 0.5em;top: 0.35em;border:1px solid;border-radius:50%;width:1.25em;height:1.25em;line-height:1.1;color:rgb(187, 187, 187);" aria-hidden="true" ng-show="!showGuaranteeEditor" ng-click="removeGuaranteePath(path)"></span>
+                                            <br>
+
+                                        </div>
+                                        <!-- Guarantee resource adder -->
+                                        <div class="row" style="margin: 0; font-size: 2px; background: #f3f3f3; border-bottom: 1px solid #ddd; color: #676767;" ng-show="showGuaranteeEditor" ng-init="numb = 1; ope = 'select...'; met = 'select...'; period = 'select...'; shared = {objective:''};">
+                                            <div class="bindingEditorContainer form-group">
+                                                <div>
+                                                    <p contenteditable class="form-control" type="text" style="margin: 0.5em 0.5em 0 0.5em;padding: 0.25em 0.5em;background: white;
+                                                            width: auto;min-width:4em;height:auto;text-align: center;display: inline-block;border: 1px solid #ddd;border-radius: 5px;" ng-model="shared.objective"></p>
+
+                                                    <div class="col-xs-12" style="margin-top:0.5em;">
+                                                        <span style="font-size: 12px; font-style: italic; cursor: pointer;" ng-repeat="(k,v) in model.metrics">
+                                                            <a href="" ng-click="shared.objective = (shared.objective === '') ? k : shared.objective + ' ' + k">{{k}}</a><span ng-show="!$last">, </span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <select class="form-control" name="guaranteeOperation" ng-model="ope">
+                                                    <option>select...</option>
+                                                    <option>global</option>
+                                                    <option ng-repeat="(operation, operationDesc) in oasDocument.paths[path]" value="{{operation}}">{{operation | uppercase}}</option>
+                                                </select>
+                                                <select class="form-control" name="guaranteePeriod" ng-model="period">
+                                                    <option>select...</option>
+                                                    <option ng-repeat="p in periodicity" value="{{p}}">{{p}}</option>
+                                                    <option></option>
+                                                </select>
+                                                <button class="btn btn-primary" ng-click="addNewGuarantee(path, shared.objective, ope, period); showGuaranteeEditor = false;
+                                                        numb = 1; ope = 'select...'; met = 'select...'; period = 'select...';">Add</button>
+                                            </div>
+                                        </div><!-- /Guarantee resource adder -->
+                                    </div>
+                                    <!-- Guarantee boxes -->
+                                    <div style="padding:2em;">
+                                        <div class="" ng-repeat="(metrics, m) in p">
+                                            <div class="col-xs-12" style="display:table;text-align:center;border: 1px solid #ddd;text-align: center;padding: 0.5em;margin: 0.5em 0;background:#f3f3f3;" ng-repeat="l in m track by path+l.objective">
+                                                <div style="padding:0.5em;">
+                                                    <b>{{metrics}}:</b>
+                                                    <ul style="text-align:left;">
+                                                        <li><span contenteditable ng-model="l.objective"></span></li>
+                                                        <li ng-show="l.period">{{l.period}}</li>
+                                                        <li>{{l.window}}</li>
+                                                    </ul>
+                                                    <span class="bindingItemRemover bindingClickItem glyphicon glyphicon-remove" aria-hidden="true" ng-click="removeGuaranteeItem(path, metrics, l.objective, l.period, l.window)"></span>
+                                                </div>
+                                            </div>
+                                        </div><!-- /Guarantee boxes -->
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><!-- /Guarantee -->
+                </div>
+
+                <div class="col-xs-12">
+                    <span ng-repeat="(k, key) in model.plans track by k">
+                        <button ng-show="!$first && k == currentPlan" class="btn btn-secondary" ng-click="copyFromPreviousPlan()">Copy from previous plan</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <br>
+
+            <button ng-click="metricsMode=!metricsMode" ng-show="metricsMode" class="btn btn-primary" style="margin:1em 0;">
+                <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Hide metrics editor
+            </button>
+            <button ng-click="metricsMode=!metricsMode" ng-show="!metricsMode" class="btn btn-primary" style="margin:1em 0;">
+                <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Display metrics editor
+            </button>
+        </div>
+        <div class="col-xs-12">
+            <div class="row" ng-show="metricsMode">
+                <div class="col-xs-12">
+                    <table class="table-hover" style="border: 1px solid #ddd;">
+                        <thead>
+                            <tr style="line-height: 3;border: 1px solid #9e9e9e;">
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Format</th>
+                                <th>Description</th>
+                                <th>Resolution</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="line-height: 4;" ng-repeat="(name, obj) in model.metrics">
+                                <td style="text-align:center;vertical-align:middle;"><b>{{name}}</b></td>
+                                <td style="text-align:center;vertical-align:middle;">{{obj.type}}</td>
+                                <td style="text-align:center;vertical-align:middle;">{{obj.format}}</td>
+                                <td style="text-align:center;vertical-align:middle;">
+                                    <span contenteditable ng-model="obj.description"></span>
+                                </td>
+                                <td style="text-align:center;vertical-align:middle;">{{obj.resolution}}</td>
+                                <td style="text-align:center;vertical-align:middle;">
+                                    <button ng-click="removeMetric(name)" class="btn btn-danger">Remove</button>
+                                </td>
+                            </tr>
+                            <tr></tr>
+                            <tr style="border-top:1px solid #ddd;background-color:#f5f5f5;" ng-init="_name='';_type='select...';_format='';_description='';_resolution='select...';_userFormats={
+                                    'integer': ['integer', 'int32'],
+                                    'long': ['integer', 'int64'],
+                                    'float': ['number', 'float'],
+                                    'double': ['number', 'double'],
+                                    'string': ['string', ''],
+                                    'byte': ['string', 'byte'],
+                                    'binary': ['string', 'binary'],
+                                    'boolean': ['boolean', ''],
+                                    'date': ['string', 'date'],
+                                    'dateTime': ['string', 'date-time'],
+                                    'password': ['string', 'password']
+                                }">
+                                <td style="text-align:center;vertical-align:middle;">
+                                    <input class="form-control" type="text" ng-model="_name" />
+                                </td>
+                                <td style="text-align:center;vertical-align:middle;">
+                                    <select class="form-control" name="_metricType" ng-init="" ng-model="_type">
+                                        <option value="select...">select...</option>
+                                        <option ng-repeat="value in ['integer','long','float','double','string','byte','binary','boolean','date','dateTime','password']" value="{{value}}">{{value}}</option>
+                                    </select>
+                                </td>
+                                <td style="text-align:center;vertical-align:middle;">{{_userFormats[_type][1]}}</td>
+                                <td style="text-align:center;vertical-align:middle;"><input class="form-control" type="text" ng-model="_description" /></td>
+                                <td style="text-align:center;vertical-align:middle;">
+                                    <select class="form-control" name="_metricType" ng-init="" ng-model="_resolution">
+                                        <option value="select...">select...</option>
+                                        <option ng-repeat="value in ['consumption','check']" value="{{value}}">{{value}}</option>
+                                    </select>
+                                </td>
+                                <td style="text-align:center;vertical-align:middle;">
+                                    <button ng-click="createNewMetric(_name, _userFormats[_type][0], _userFormats[_type][1], _description, _resolution)" class="btn btn-primary" style="margin:1em 0;">Create</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--<div ng-repeat="(k, key) in model.plans" class="">
+        <ul>
+            <li>
+                <a class="close" aria-label="Close" ng-click="removeModel(k, $event)"><span aria-hidden="true">&times;</span></a>
+                <h4 ng-model="k">{{k | uppercase}}</h4>
+            </li>
+            <li>
+                <h4 ng-show="!!key.pricing.cost || key.pricing.cost === 0">
+                    <span contenteditable ng-model="key.pricing.cost"></span>
+                </h4>
+                <h4 ng-show="!key.pricing.cost && key.pricing.cost !== 0">{{model.pricing.cost}}</h4> € / mo
+            </li>
+        </ul>
+    </div>-->
+</div>
+
+<style>
+    #petstoreBindingContainer {
+        font-family: Arial;
+        display: table;
+        width: 100%;
+    }
+
+    #petstoreBindingContainer span[contenteditable] {
+        border-bottom: 1px dotted black;
+    }
+
+    #petstoreBindingContainer table {
+        width: 100% !important;
+        margin: 0 !important;
+        border: 0;
+    }
+
+    #petstoreBindingContainer table th {
+        background: #428bca;
+        color: white;
+        text-align: center;
+    }
+
+    #petstoreBindingContainer .petstoreBindingPlansContainer {
+        margin: 0 !important;
+        border: 1px solid #ddd;
+        border-top: 0;
+        padding-bottom: 30px;
+    }
+
+    #petstoreBindingContainer .petstoreBindingPlansContainer th {
+        position: relative;
+        line-height: 2em;
+        text-align: center;
+    }
+
+    #petstoreBindingContainer .petstoreBindingPlansContainer th span {
+        position: absolute;
+        right: 0.5em;
+        line-height: 1.6em;
+    }
+
+    #petstoreBindingContainer li.bindingItem {
+        list-style: none;
+        position: relative;
+        margin: 1.5em 0;
+        line-height: 1em;
+    }
+
+    #petstoreBindingContainer span.bindingItemRemover {
+        position: absolute !important;
+        right: -0.5em !important;
+        top: -0.5em !important;
+        color: #fff !important;
+        font-size: 10px !important;
+        border: 1px solid;
+        border-radius: 50%;
+        width: 1.25em;
+        background: #ff8a65;
+    }
+
+    #petstoreBindingContainer .bindingEditorContainer {
+        text-align: center;
+    }
+
+    #petstoreBindingContainer .bindingEditorContainer.form-group {
+        zoom: 0.7 !important;
+    }
+
+    #petstoreBindingContainer .bindingEditorContainer .form-control {
+        display: inline;
+        width: auto;
+        margin: 0.25em;
+    }
+
+    #petstoreBindingContainer .nav-tabs>li.active>a.bindingPlanName {
+        color: white;
+        background-color: #428bca;
+        font-family: Arial;
+        font-weight: bold;
+        font-size: 1.2em;
+        padding-bottom: 7px;
+        border-bottom: 0;
+    }
+
+    #petstoreBindingContainer .glyphicon-remove {
+        color: #ddd;
+    }
+
+    #petstoreBindingContainer .bindingBox:hover,
+    #petstoreBindingContainer .bindingClickItem:hover {
+        cursor: pointer;
+    }
+</style>

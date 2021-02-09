@@ -1,0 +1,1763 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/georanker/georanker.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+  globalRequests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regardless the resource'
+    resolution: consumption
+  keywords:
+    type: integer
+    format: int64
+    description: Number of keywords
+    resolution: consumption
+  campaigns:
+    type: integer
+    format: int64
+    description: Number of campaigns
+    resolution: consumption
+  credits:
+    type: integer
+    format: int64
+    description: Number of credits
+    resolution: consumption
+  results:
+    type: integer
+    format: int64
+    description: Number of results
+    resolution: consumption
+  locations:
+    type: integer
+    format: int64
+    description: Number of locations
+    resolution: consumption
+pricing:
+  cost: 0
+  currency: EUR
+  billing: monthly
+availability: 'R/00:00:00Z/15:00:00Z'
+configuration: {}
+plans:
+  Free:
+    pricing:
+      cost: 0
+    rates: null
+    quotas:
+      /v1/account/info.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/account/settings.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/api/blognews.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/api/changelog.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/api/login.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/country/code.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/country/list.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/language/code.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/language/list.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/monitor/list.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/monitor/new.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      '/v1/monitor/{id}':
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      '/v1/report/advertisers/{id}':
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      '/v1/report/chart/{id}':
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      '/v1/report/citations/{id}':
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      '/v1/report/firstpage/{id}':
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      '/v1/report/heatmap/{id}':
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      '/v1/report/keywordprospecting/{id}':
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/report/list.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/report/new.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      '/v1/report/ranktracker/{id}':
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      '/v1/report/{id}':
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/user/list.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/user/new.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      /v1/user/upgrade.json:
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+      '/v1/user/{id}':
+        get:
+          keywords:
+            - max: 10
+              period: monthly
+          campaigns:
+            - max: 5
+              period: monthly
+          credits:
+            - max: 500
+              period: monthly
+          results:
+            - max: 30
+              period: monthly
+          locations:
+            - max: 5
+              period: monthly
+  Agencies:
+    pricing:
+      cost: 249
+    rates: null
+    quotas:
+      /v1/account/info.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/account/settings.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/api/blognews.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/api/changelog.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/api/login.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/country/code.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/country/list.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/language/code.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/language/list.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/monitor/list.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/monitor/new.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/monitor/{id}':
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/advertisers/{id}':
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/chart/{id}':
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/citations/{id}':
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/firstpage/{id}':
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/heatmap/{id}':
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/keywordprospecting/{id}':
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/report/list.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/report/new.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/ranktracker/{id}':
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/{id}':
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/user/list.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/user/new.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/user/upgrade.json:
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/user/{id}':
+        get:
+          keywords:
+            - max: 500
+              period: monthly
+          campaigns:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 50000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+  Professionals:
+    pricing:
+      cost: 99
+    rates: null
+    quotas:
+      /v1/account/info.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/account/settings.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/api/blognews.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/api/changelog.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/api/login.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/country/code.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/country/list.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/language/code.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/language/list.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/monitor/list.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/monitor/new.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/monitor/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/advertisers/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/chart/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/citations/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/firstpage/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/heatmap/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/keywordprospecting/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/report/list.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/report/new.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/ranktracker/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/report/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/user/list.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/user/new.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      /v1/user/upgrade.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+      '/v1/user/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          campaigns:
+            - max: 50
+              period: monthly
+          credits:
+            - max: 5000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 50
+              period: monthly
+  Enterprises:
+    pricing:
+      cost: 99
+    rates: null
+    quotas:
+      /v1/account/info.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/account/settings.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/api/blognews.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/api/changelog.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/api/login.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/country/code.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/country/list.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/language/code.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/language/list.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/monitor/list.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/monitor/new.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      '/v1/monitor/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      '/v1/report/advertisers/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      '/v1/report/chart/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      '/v1/report/citations/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      '/v1/report/firstpage/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      '/v1/report/heatmap/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      '/v1/report/keywordprospecting/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/report/list.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/report/new.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      '/v1/report/ranktracker/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      '/v1/report/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/user/list.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/user/new.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      /v1/user/upgrade.json:
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly
+      '/v1/user/{id}':
+        get:
+          keywords:
+            - max: 100
+              period: monthly
+          credits:
+            - max: 120000
+              period: monthly
+          results:
+            - max: 100
+              period: monthly
+          locations:
+            - max: 100
+              period: monthly

@@ -1,0 +1,124 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/currencylayer/currencylayer.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+  globalRequests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regardless the resource'
+    resolution: consumption
+pricing:
+  cost: 0
+  currency: USD
+  billing: monthly
+availability: 'R/00:00:00Z/23:59:59Z'
+configuration: {}
+plans:
+  Free:
+    pricing:
+      cost: 0
+    rates: {}
+    quotas:
+      /api/historical:
+        get:
+          globalRequests:
+            - max: 1000
+              period: monthly
+      /api/live:
+        get:
+          globalRequests:
+            - max: 1000
+              period: monthly
+      /api/convert:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /api/timeframe:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /api/change:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+  Basic:
+    pricing:
+      cost: 9.99
+    rates: {}
+    quotas:
+      /api/historical:
+        get:
+          globalRequests:
+            - max: 12000
+              period: monthly
+      /api/live:
+        get:
+          globalRequests:
+            - max: 12000
+              period: monthly
+      /api/convert:
+        get:
+          globalRequests:
+            - max: 12000
+              period: monthly
+      /api/timeframe:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /api/change:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+  Proffesional:
+    pricing:
+      cost: 39.99
+    rates: {}
+    quotas:
+      /api/historical:
+        get:
+          globalRequests:
+            - max: 120000
+              period: monthly
+      /api/live:
+        get:
+          globalRequests:
+            - max: 120000
+              period: monthly
+      /api/convert:
+        get:
+          globalRequests:
+            - max: 120000
+              period: monthly
+      /api/timeframe:
+        get:
+          globalRequests:
+            - max: 120000
+              period: monthly
+      /api/change:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+  Enterprise:
+    pricing:
+      cost: 79.99
+    rates: {}
+    quotas: {}
+    guarantees: {}

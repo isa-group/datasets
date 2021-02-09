@@ -1,0 +1,814 @@
+openapi: 3.0.0
+info:
+  description: Accuweather API
+  title: Accuweather
+  version: v1
+  x-sla: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/accuweather/plans.oai-at?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+externalDocs:
+  url: 'https://developer.accuweather.com/packages'
+paths:
+  '/alarms/v1/1day/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/alarms/v1/5day/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/alarms/v1/10day/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/alarms/v1/15day/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/alerts/v1/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/currentconditions/v1/topcities/{group}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/currentconditions/v1/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/currentconditions/v1/{locationKey}/historical':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/currentconditions/v1/{locationKey}/historical/24':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/forecasts/v1/daily/1day/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/forecasts/v1/daily/5day/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/forecasts/v1/daily/10day/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/forecasts/v1/daily/15day/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/forecasts/v1/hourly/1hour/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/forecasts/v1/hourly/12hour/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/forecasts/v1/hourly/24hour/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/forecasts/v1/hourly/72hour/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/forecasts/v1/hourly/120hour/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/imagery/v1/maps/radsat/{resolution}/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /indices/v1/daily:
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/indices/v1/daily/1day/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/indices/v1/daily/1day/{locationKey}/groups/{ID}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/indices/v1/daily/1day/{locationKey}/{ID}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/indices/v1/daily/5day/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/indices/v1/daily/5day/{locationKey}/groups/{ID}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/indices/v1/daily/5day/{locationKey}/{ID}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/indices/v1/daily/10day/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/indices/v1/daily/10day/{locationKey}/groups/{ID}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/indices/v1/daily/10day/{locationKey}/{ID}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/indices/v1/daily/15day/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/indices/v1/daily/15day/{locationKey}/groups/{ID}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/indices/v1/daily/15day/{locationKey}/{ID}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /indices/v1/daily/groups:
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/indices/v1/daily/groups/{ID}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/indices/v1/daily/{ID}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/locations/v1/adminareas/{countryCode}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /locations/v1/cities/autocomplete:
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /locations/v1/cities/geoposition/search:
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /locations/v1/cities/ipaddress:
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/locations/v1/cities/neighbors/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /locations/v1/cities/search:
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/locations/v1/cities/{countryCode}/search':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/locations/v1/cities/{countryCode}/{adminCode}/search':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/locations/v1/countries/{regionCode}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /locations/v1/poi/search:
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/locations/v1/poi/{countryCode}/search':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/locations/v1/poi/{countryCode}/{adminCode}/search':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /locations/v1/postalcodes/search:
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/locations/v1/postalcodes/{countryCode}/search':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /locations/v1/regions:
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /locations/v1/search:
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/locations/v1/topcities/{group}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/locations/v1/{countryCode}/search':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/locations/v1/{countryCode}/{adminCode}/search':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/locations/v1/{locationKey}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /translations/v1/groups:
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/translations/v1/groups/{groupID}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /translations/v1/languages:
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  /tropical/v1/storms/active:
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/tropical/v1/storms/active/{basinId}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/tropical/v1/storms/active/{basinId}/{depressionId}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/tropical/v1/storms/{yyyy}/{basinId}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/forecasts':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+  '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions/current':
+    get:
+      description: >-
+        Get a list of available languages. Get translations for specific groups
+        of phrases.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/someResponseBody'
+components:
+  requestBodies:
+    someRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/someRequestBody'
+      required: true
+  securitySchemes: {}
+  schemas:
+    someRequestBody: {}
+    someResponseBody: {}

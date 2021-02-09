@@ -1,0 +1,271 @@
+openapi: 3.0.0
+info:
+  title: CloudSight API
+  description: The CloudSight API is a simple REST API for understanding your images.
+  contact: {}
+  version: '1.0'
+  x-sla: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/cloudsight/plans.oai-at?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+paths:
+  /images:
+    post:
+      summary: Send an Image for Identification
+      description: Send an image by using an HTTP POST request
+      operationId: SendAnImageForIdentification
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendanImageforIdentificationrequest'
+            example: |-
+              {
+                      "remote_image_url": "https://example_images/logo.png"
+                  }
+        required: true
+      responses:
+        '201':
+          description: ''
+          headers:
+            X-CloudSight-CreditBalance:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 1
+            X-CloudSight-Overage:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 0
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendanImageforIdentificationresponse'
+              example:
+                url: >-
+                  https://images.cloudsightapi.com/uploads/image_request/image/19/19404/19404152/Image.jpg
+                token: AJKAWHKGLjqMd9KDNIXQfg
+        '422':
+          description: Unexpected error in API call. See HTTP response body for details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendanImageforIdentification422response'
+              example:
+                error:
+                  image:
+                    - can't be blank
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/images/{token}':
+    get:
+      summary: View an Image Response
+      description: This endpoint retrieves the result of the image you identified.
+      operationId: ViewAnImageResponse
+      parameters:
+        - name: token
+          in: path
+          description: Token returned by your POST to the images endpoint
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: '[token]'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewanImageResponseresponse'
+              example:
+                token: WySLTJWESPTtt6v0oBmzKf
+                url: 'http://.../your_headphones_image.jpg'
+                ttl: 60
+                status: completed
+                name: red beats by dre headphones
+                flags:
+                  - adult
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/images/{token}/repost':
+    post:
+      summary: Repost an Image
+      description: If an image request has timed out
+      operationId: RepostAnImage
+      parameters:
+        - name: token
+          in: path
+          description: Token returned by your POST to the images endpoint
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '201':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepostanImageresponse'
+              example:
+                status: not completed
+                url: 'http://.../your_headphones_image.jpg'
+                token: WySLTJWESPTtt6v0oBmzKf
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  schemas:
+    SendanImageforIdentificationrequest:
+      title: SendanImageforIdentificationrequest
+      type: object
+      properties:
+        image:
+          type: string
+          description: >-
+            Filepath - if you wish to upload a file the request must be
+            multipart form encoded
+        remote_image_url:
+          type: string
+          description: Url of image. If you are sending the URL the request can be JSON.
+        locale:
+          type: string
+          description: The locale of the request
+          example: en_US
+        language:
+          type: string
+          description: The language that the response should be returned in
+          example: en_US
+        device_id:
+          type: string
+          description: >-
+            A unique ID generated for the device sending the request. We
+            recommend generating a UUID.
+        latitude:
+          type: string
+          description: Geolocation information for additional context
+        longitude:
+          type: string
+          description: Geolocation information for additional context
+        altitude:
+          type: string
+          description: Geolocation information for additional context
+        ttl:
+          type: number
+          description: Deadline in seconds before expiration
+        focus_x:
+          type: number
+          description: Focal point on image (x-coordinate) for specificity
+        focus_y:
+          type: number
+          description: Focal point on image (y-coordinate) for specificity
+      example:
+        remote_image_url: 'https://example_images/logo.png'
+    SendanImageforIdentificationresponse:
+      title: SendanImageforIdentificationresponse
+      required:
+        - url
+        - token
+      type: object
+      properties:
+        url:
+          type: string
+        token:
+          type: string
+      example:
+        url: >-
+          https://images.cloudsightapi.com/uploads/image_request/image/19/19404/19404152/Image.jpg
+        token: AJKAWHKGLjqMd9KDNIXQfg
+    SendanImageforIdentification422response:
+      title: SendanImageforIdentification422response
+      required:
+        - error
+      type: object
+      properties:
+        error:
+          type: object
+      example:
+        error:
+          image:
+            - can't be blank
+    ViewanImageResponseresponse:
+      title: ViewanImageResponseresponse
+      required:
+        - token
+        - url
+        - ttl
+        - status
+        - name
+        - flags
+      type: object
+      properties:
+        token:
+          type: string
+        url:
+          type: string
+        ttl:
+          type: integer
+          format: int32
+        status:
+          type: string
+        name:
+          type: string
+        flags:
+          type: array
+          items:
+            type: string
+          description: ''
+      example:
+        token: WySLTJWESPTtt6v0oBmzKf
+        url: 'http://.../your_headphones_image.jpg'
+        ttl: 60
+        status: completed
+        name: red beats by dre headphones
+        flags:
+          - adult
+    RepostanImageresponse:
+      title: RepostanImageresponse
+      required:
+        - status
+        - url
+        - token
+      type: object
+      properties:
+        status:
+          type: string
+        url:
+          type: string
+        token:
+          type: string
+      example:
+        status: not completed
+        url: 'http://.../your_headphones_image.jpg'
+        token: WySLTJWESPTtt6v0oBmzKf
+security:
+  - {}
+tags: []

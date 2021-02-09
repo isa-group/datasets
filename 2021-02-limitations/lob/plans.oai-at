@@ -1,0 +1,1573 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/lob/lob.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+  globalRquests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regardless the resource'
+    resolution: consumption
+  addresses:
+    type: integer
+    format: int64
+    description: Number of addresses
+    resolution: consumption
+  mails:
+    type: integer
+    format: int64
+    description: Number of mails
+    resolution: consumption
+  templates:
+    type: integer
+    format: int64
+    description: Number of templates
+    resolution: consumption
+pricing:
+  cost: 0
+  currency: EUR
+  billing: monthly
+availability: 'R/00:00:00Z/15:00:00Z'
+configuration: {}
+plans:
+  printMail-developer:
+    pricing:
+      cost: 0
+    rates:
+      /v1/addresses:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/addresses/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/postcards:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/postcards/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/letters:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/letters/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/templates:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}/versions':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_verifications:
+        get:
+          requests:
+            - max: 300
+              period: 5-second
+      /v1/us_autocompletions:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_zip_lookups:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/intl_verifications:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/checks:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/checks/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}/verify':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/bank_accounts:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+    quotas:
+      /v1/us_verifications:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/us_autocompletions:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/us_zip_lookups:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/intl_verifications:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/checks:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/checks/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/bank_accounts/{id}/verify':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/bank_accounts:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/bank_accounts/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/addresses:
+        get:
+          addresses:
+            - max: 10000
+              period: monthly
+      '/v1/addresses/{id}':
+        get:
+          addresses:
+            - max: 10000
+              period: monthly
+      /v1/postcards:
+        get:
+          mails:
+            - max: 5000
+              period: monthly
+      '/v1/postcards/{id}':
+        get:
+          mails:
+            - max: 5000
+              period: monthly
+      /v1/letters:
+        get:
+          mails:
+            - max: 5000
+              period: monthly
+      '/v1/letters/{id}':
+        get:
+          mails:
+            - max: 5000
+              period: monthly
+      /v1/templates:
+        get:
+          templates:
+            - max: 10
+              period: forever
+      '/v1/templates/{id}':
+        get:
+          templates:
+            - max: 10
+              period: forever
+      '/v1/templates/{id}/versions':
+        get:
+          templates:
+            - max: 10
+              period: forever
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          templates:
+            - max: 10
+              period: forever
+  printMail-startup:
+    pricing:
+      cost: 150
+    rates:
+      /v1/addresses:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/addresses/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/postcards:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/postcards/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/letters:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/letters/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/templates:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}/versions':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_verifications:
+        get:
+          requests:
+            - max: 300
+              period: 5-second
+      /v1/us_autocompletions:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_zip_lookups:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/intl_verifications:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/checks:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/checks/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}/verify':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/bank_accounts:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+    quotas:
+      /v1/us_verifications:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/us_autocompletions:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/us_zip_lookups:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/intl_verifications:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/checks:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/checks/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/bank_accounts/{id}/verify':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/bank_accounts:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/bank_accounts/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/addresses:
+        get:
+          addresses:
+            - max: 25000
+              period: monthly
+      '/v1/addresses/{id}':
+        get:
+          addresses:
+            - max: 25000
+              period: monthly
+      /v1/postcards:
+        get:
+          mails:
+            - max: 5000
+              period: monthly
+      '/v1/postcards/{id}':
+        get:
+          mails:
+            - max: 5000
+              period: monthly
+      /v1/letters:
+        get:
+          mails:
+            - max: 5000
+              period: monthly
+      '/v1/letters/{id}':
+        get:
+          mails:
+            - max: 5000
+              period: monthly
+      /v1/templates:
+        get:
+          templates:
+            - max: 10
+              period: forever
+      '/v1/templates/{id}':
+        get:
+          templates:
+            - max: 10
+              period: forever
+      '/v1/templates/{id}/versions':
+        get:
+          templates:
+            - max: 10
+              period: forever
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          templates:
+            - max: 10
+              period: forever
+  printMail-growth:
+    pricing:
+      cost: 150
+    rates:
+      /v1/addresses:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/addresses/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/postcards:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/postcards/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/letters:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/letters/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/templates:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}/versions':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_verifications:
+        get:
+          requests:
+            - max: 300
+              period: 5-second
+      /v1/us_autocompletions:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_zip_lookups:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/intl_verifications:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/checks:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/checks/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}/verify':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/bank_accounts:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+    quotas:
+      /v1/us_verifications:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/us_autocompletions:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/us_zip_lookups:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/intl_verifications:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/checks:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/checks/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/bank_accounts/{id}/verify':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/bank_accounts:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/bank_accounts/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/addresses:
+        get:
+          addresses:
+            - max: 250000
+              period: monthly
+      '/v1/addresses/{id}':
+        get:
+          addresses:
+            - max: 250000
+              period: monthly
+      /v1/postcards:
+        get:
+          mails:
+            - max: 5000
+              period: monthly
+      '/v1/postcards/{id}':
+        get:
+          mails:
+            - max: 5000
+              period: monthly
+      /v1/letters:
+        get:
+          mails:
+            - max: 5000
+              period: monthly
+      '/v1/letters/{id}':
+        get:
+          mails:
+            - max: 5000
+              period: monthly
+      /v1/templates:
+        get:
+          templates:
+            - max: 25
+              period: forever
+      '/v1/templates/{id}':
+        get:
+          templates:
+            - max: 25
+              period: forever
+      '/v1/templates/{id}/versions':
+        get:
+          templates:
+            - max: 25
+              period: forever
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          templates:
+            - max: 25
+              period: forever
+  printMail-enterprise:
+    pricing:
+      cost: talkToSales
+    rates:
+      /v1/addresses:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/addresses/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/postcards:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/postcards/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/letters:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/letters/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/templates:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}/versions':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_verifications:
+        get:
+          requests:
+            - max: 300
+              period: 5-second
+      /v1/us_autocompletions:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_zip_lookups:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/intl_verifications:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/checks:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/checks/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}/verify':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/bank_accounts:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+    quotas:
+      /v1/us_verifications:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/us_autocompletions:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/us_zip_lookups:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/intl_verifications:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/checks:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/checks/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/bank_accounts/{id}/verify':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/bank_accounts:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/bank_accounts/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/addresses:
+        get:
+          addresses:
+            - max: 2000000
+              period: monthly
+      '/v1/addresses/{id}':
+        get:
+          addresses:
+            - max: 2000000
+              period: monthly
+      /v1/postcards:
+        get:
+          mails:
+            - max: 300000
+              period: yearly
+      '/v1/postcards/{id}':
+        get:
+          mails:
+            - max: 300000
+              period: yearly
+      /v1/letters:
+        get:
+          mails:
+            - max: 300000
+              period: yearly
+      '/v1/letters/{id}':
+        get:
+          mails:
+            - max: 300000
+              period: yearly
+      /v1/templates:
+        get:
+          templates:
+            - max: 50
+              period: forever
+      '/v1/templates/{id}':
+        get:
+          templates:
+            - max: 50
+              period: forever
+      '/v1/templates/{id}/versions':
+        get:
+          templates:
+            - max: 50
+              period: forever
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          templates:
+            - max: 50
+              period: forever
+  addressVerification-developer:
+    pricing:
+      cost: 0
+    rates:
+      /v1/addresses:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/addresses/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/postcards:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/postcards/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/letters:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/letters/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/templates:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}/versions':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_verifications:
+        get:
+          requests:
+            - max: 300
+              period: 5-second
+      /v1/us_autocompletions:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_zip_lookups:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/intl_verifications:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/checks:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/checks/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}/verify':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/bank_accounts:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+    quotas:
+      /v1/addresses:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/addresses/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/postcards:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/postcards/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/letters:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/letters/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/templates:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{id}/versions':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+  addressVerification-startup:
+    pricing:
+      cost: 25
+    rates:
+      /v1/addresses:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/addresses/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/postcards:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/postcards/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/letters:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/letters/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/templates:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}/versions':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_verifications:
+        get:
+          requests:
+            - max: 300
+              period: 5-second
+      /v1/us_autocompletions:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_zip_lookups:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/intl_verifications:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/checks:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/checks/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}/verify':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/bank_accounts:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+    quotas:
+      /v1/addresses:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/addresses/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/postcards:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/postcards/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/letters:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/letters/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/templates:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{id}/versions':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+  addressVerification-business:
+    pricing:
+      cost: 70
+    rates:
+      /v1/addresses:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/addresses/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/postcards:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/postcards/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/letters:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/letters/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/templates:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}/versions':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_verifications:
+        get:
+          requests:
+            - max: 300
+              period: 5-second
+      /v1/us_autocompletions:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_zip_lookups:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/intl_verifications:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/checks:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/checks/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}/verify':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/bank_accounts:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+    quotas:
+      /v1/addresses:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/addresses/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/postcards:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/postcards/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/letters:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/letters/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/templates:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{id}/versions':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+  addressVerification-growth:
+    pricing:
+      cost: 250
+    rates:
+      /v1/addresses:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/addresses/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/postcards:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/postcards/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/letters:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/letters/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/templates:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}/versions':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_verifications:
+        get:
+          requests:
+            - max: 300
+              period: 5-second
+      /v1/us_autocompletions:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_zip_lookups:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/intl_verifications:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/checks:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/checks/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}/verify':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/bank_accounts:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+    quotas:
+      /v1/addresses:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/addresses/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/postcards:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/postcards/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/letters:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/letters/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/templates:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{id}/versions':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+  addressVerification-enterprise:
+    pricing:
+      cost: 900
+    rates:
+      /v1/addresses:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/addresses/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/postcards:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/postcards/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/letters:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/letters/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/templates:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{id}/versions':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_verifications:
+        get:
+          requests:
+            - max: 300
+              period: 5-second
+      /v1/us_autocompletions:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/us_zip_lookups:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/intl_verifications:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/checks:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/checks/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}/verify':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      /v1/bank_accounts:
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+      '/v1/bank_accounts/{id}':
+        get:
+          requests:
+            - max: 150
+              period: 5-second
+    quotas:
+      /v1/addresses:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/addresses/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/postcards:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/postcards/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/letters:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/letters/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /v1/templates:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{id}/versions':
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      '/v1/templates/{template_id}/versions/{version_id}':
+        get:
+          requests:
+            - max: 0
+              period: monthly

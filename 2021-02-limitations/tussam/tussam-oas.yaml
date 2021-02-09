@@ -1,0 +1,1191 @@
+openapi: 3.0.0
+info:
+  title: Tussam-REST
+  description: API REST para la consulta de información de Tussam
+  contact: {}
+  version: '1.0'
+  x-sla: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/tussam/plans.oai-at?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+paths:
+  '/estadoTarjeta/{id_tarjeta}':
+    get:
+      tags:
+        - Tarjeta
+      summary: Estado de una tarjeta
+      description: Consulta del estado de una tarjeta de transporte
+      operationId: getEstadoTarjeta
+      parameters:
+        - name: id_tarjeta
+          in: path
+          description: >-
+            Identificador de la tarjeta de transporte (el número del reverso,
+            sin los dos dígitos del centro)
+          required: true
+          schema:
+            type: integer
+            format: int32
+            example: 3239666542
+      responses:
+        '200':
+          description: Estado de una tarjeta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/estadoTarjetaResponse'
+              example:
+                numeroSerie: 3239666542
+                codigoTitulo: 31
+                nombreTitulo: Bonobús saldo ST
+                ultimaOperacion: '30/11/2018  18:35h'
+                saldoMonedero: 1530
+                saldoViajes: 0
+                resultado: 0
+                caducidad: Tarjeta sin caducidad
+        '400':
+          description: Objeto de error de bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: BAD_REQUEST
+                mensaje: Bad request
+        '401':
+          description: Objeto de error de unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: UNAUTHORIZED
+                mensaje: unauthorized
+        '403':
+          description: Objeto de error de forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: FORBIDDEN
+                mensaje: forbidden
+        '404':
+          description: Objeto de error de not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: NOT_FOUND
+                mensaje: Not found
+      security:
+        - httpBasic: []
+  '/nodos/{version}':
+    get:
+      tags:
+        - Paradas
+      summary: Lista de paradas
+      description: Devuelve la lista de paradas de una versión
+      operationId: getNodos
+      parameters:
+        - name: version
+          in: path
+          description: Identificador de la versión de la lista de paradas
+          required: true
+          schema:
+            type: integer
+            format: int32
+            example: 305
+      responses:
+        '200':
+          description: Listado de paradas de una versión
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/nodosArrayResponse'
+              example:
+                codigo: 1018
+                descripcion:
+                  texto: estrella Canopus (Estrella Albireo)
+                  formato:
+                    - small
+                lineasCoincidentes:
+                  - linea: 101
+                    labelLinea: A1
+                    color: '#000000'
+        '400':
+          description: Objeto de error de bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: BAD_REQUEST
+                mensaje: Bad request
+        '401':
+          description: Objeto de error de unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: UNAUTHORIZED
+                mensaje: unauthorized
+        '403':
+          description: Objeto de error de forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: FORBIDDEN
+                mensaje: forbidden
+        '404':
+          description: Objeto de error de not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: NOT_FOUND
+                mensaje: Not found
+      security:
+        - httpBasic: []
+  '/nodosLinea/{linea}':
+    get:
+      tags:
+        - Paradas
+      summary: Lista de paradas de una línea
+      description: 'Devuelve la lista de paradas de una línea, en un sentido y fecha dados'
+      operationId: getNodosLinea
+      parameters:
+        - name: linea
+          in: path
+          description: Identificador de la línea
+          required: true
+          schema:
+            type: string
+            example: 6
+        - name: sentido
+          in: query
+          description: Sentido desde la cabecera de línea (1) o hacia ella (2)
+          required: true
+          schema:
+            type: integer
+            enum:
+              - 1
+              - 2
+            example: 1
+        - name: fecha
+          in: query
+          description: 'Fecha en formato dd-MM-yyyyTHH:mm:ss'
+          required: false
+          schema:
+            type: string
+            example: '20-12-2018T12:39:11'
+      responses:
+        '200':
+          description: Listado de paradas de una línea
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/nodosParadaArrayResponse'
+              example:
+                codigo: 782
+                descripcion:
+                  texto: Glorieta San Lázaro (Romanticismo)
+                  formato:
+                    - small
+                posicion:
+                  latitudE6: 37413085
+                  longitudE6: -5986089
+                distancia: 0
+                horaInicio: '06:05'
+                horaFin: '00:14'
+        '400':
+          description: Objeto de error de bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: BAD_REQUEST
+                mensaje: Bad request
+        '401':
+          description: Objeto de error de unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: UNAUTHORIZED
+                mensaje: unauthorized
+        '403':
+          description: Objeto de error de forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: FORBIDDEN
+                mensaje: forbidden
+        '404':
+          description: Objeto de error de not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: NOT_FOUND
+                mensaje: Not found
+      security:
+        - httpBasic: []
+  /cercanos:
+    get:
+      tags:
+        - Paradas
+      summary: Lista de paradas cercanas
+      description: Devuelve la lista de paradas cercadas a una latitud y longitud dadas
+      operationId: getCercanos
+      parameters:
+        - name: latE6
+          in: query
+          description: Latitud
+          required: true
+          schema:
+            type: integer
+            format: double
+            example: 37355961
+        - name: lngE6
+          in: query
+          description: Longitud
+          required: true
+          schema:
+            type: number
+            format: double
+            example: -5985923
+      responses:
+        '200':
+          description: Listado de paradas cercadas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/nodosCercanosArrayResponse'
+              example:
+                codigo: 977
+                descripcion:
+                  texto: Reina Mercedes (Glta. Alc. Parias Merry)
+                  formato:
+                    - small
+                proximidadE6: 37549999
+                posicion:
+                  latitudE6: 37356140
+                  longitudE6: -5986282
+                lineasCoincidentes:
+                  - linea: 6
+                    labelLinea: '06'
+                    color: '#f54129'
+        '400':
+          description: Objeto de error de bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: BAD_REQUEST
+                mensaje: Bad request
+        '401':
+          description: Objeto de error de unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: UNAUTHORIZED
+                mensaje: unauthorized
+        '403':
+          description: Objeto de error de forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: FORBIDDEN
+                mensaje: forbidden
+        '404':
+          description: Objeto de error de not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: NOT_FOUND
+                mensaje: Not found
+      security:
+        - httpBasic: []
+  /fechas:
+    get:
+      tags:
+        - Paradas
+      summary: Lista de versiones del listado de paradas
+      description: Lista de versiones y fechas del listado de paradas
+      operationId: getFechas
+      parameters: []
+      responses:
+        '200':
+          description: Listado de versiones y fechas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/fechasResponse'
+              example:
+                - fecha: 20-12-2018
+                  version: 305
+                - fecha: 21-12-2018
+                  version: 305
+        '400':
+          description: Objeto de error de bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: BAD_REQUEST
+                mensaje: Bad request
+        '401':
+          description: Objeto de error de unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: UNAUTHORIZED
+                mensaje: unauthorized
+        '403':
+          description: Objeto de error de forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: FORBIDDEN
+                mensaje: forbidden
+        '404':
+          description: Objeto de error de not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: NOT_FOUND
+                mensaje: Not found
+      security:
+        - httpBasic: []
+  /lineas/todas:
+    get:
+      tags:
+        - Líneas
+      summary: Lista de líneas
+      description: Listado de todas las líneas
+      operationId: getLineasTodas
+      parameters: []
+      responses:
+        '200':
+          description: Listado de todas las líneas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/lineasArrayResponse'
+              example:
+                - linea: 1
+                  labelLinea: '01'
+                  descripcion:
+                    texto: Plg. Norte H. Virgen del Rocio
+                    formato:
+                      - small
+        '400':
+          description: Objeto de error de bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: BAD_REQUEST
+                mensaje: Bad request
+        '401':
+          description: Objeto de error de unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: UNAUTHORIZED
+                mensaje: unauthorized
+        '403':
+          description: Objeto de error de forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: FORBIDDEN
+                mensaje: forbidden
+        '404':
+          description: Objeto de error de not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: NOT_FOUND
+                mensaje: Not found
+      security:
+        - httpBasic: []
+  /lineas:
+    get:
+      tags:
+        - Líneas
+      summary: Lista de líneas por fecha
+      description: Listado de lineas en una fecha
+      operationId: getLineas
+      parameters:
+        - name: fecha
+          in: query
+          description: 'Fecha en formato dd-MM-yyyyTHH:mm:ss'
+          required: true
+          schema:
+            type: string
+            example: '20-12-2018T12:39:11'
+      responses:
+        '200':
+          description: Listado de líneas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/lineasFechaArrayResponse'
+              example:
+                generadoPara: '20-12-2018T12:39:11'
+                lineasDisponibles:
+                  - linea: 1
+                    labelLinea: '01'
+                    descripcion:
+                      texto: Plg. Norte H. Virgen del Rocio
+                      formato:
+                        - small
+                    color: '#f54129'
+                    destinos:
+                      - sentido: 1
+                        destino:
+                          texto: HOSPITAL V.ROCIO
+                          formato:
+                            - small
+                        horaInicio: '06:07'
+                        horaFin: '00:06'
+                      - sentido: 2
+                        destino:
+                          texto: POLIGONO NORTE
+                          formato:
+                            - small
+                        horaInicio: '06:00'
+                        horaFin: '00:03'
+                    sublinea: 110
+        '400':
+          description: Objeto de error de bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: BAD_REQUEST
+                mensaje: Bad request
+        '401':
+          description: Objeto de error de unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: UNAUTHORIZED
+                mensaje: unauthorized
+        '403':
+          description: Objeto de error de forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: FORBIDDEN
+                mensaje: forbidden
+        '404':
+          description: Objeto de error de not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: NOT_FOUND
+                mensaje: Not found
+      security:
+        - httpBasic: []
+  /horarios:
+    get:
+      tags:
+        - Horarios
+      summary: Lista de horarios
+      description: Devuelve la lista de horarios de una parada y línea dados
+      operationId: getHorarios
+      parameters:
+        - name: parada
+          in: query
+          description: Número de parada
+          required: true
+          schema:
+            type: integer
+            format: int32
+            example: 180
+        - name: linea
+          in: query
+          description: Identificador de la línea
+          required: true
+          schema:
+            type: string
+            example: 6
+        - name: fecha
+          in: query
+          description: 'Fecha en formato dd-MM-yyyyTHH:mm:ss'
+          required: false
+          schema:
+            type: string
+            example: '20-12-2018T12:39:11'
+      responses:
+        '200':
+          description: Listado de horarios
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/horarioLineaParadaResponse'
+              example:
+                codigoNodo: 180
+                codigoLinea: 6
+                generadoPara: '20-12-2018T00:00:00'
+                horarios:
+                  - '06:28:55'
+                  - '23:52:55'
+        '400':
+          description: Objeto de error de bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: BAD_REQUEST
+                mensaje: Bad request
+        '401':
+          description: Objeto de error de unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: UNAUTHORIZED
+                mensaje: unauthorized
+        '403':
+          description: Objeto de error de forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: FORBIDDEN
+                mensaje: forbidden
+        '404':
+          description: Objeto de error de not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: NOT_FOUND
+                mensaje: Not found
+      security:
+        - httpBasic: []
+  '/tiempos/{parada}':
+    get:
+      tags:
+        - Tiempos
+      summary: Estimación del tiempo en parada
+      description: Devuelve la lista de estimaciones del tiempo en parada
+      operationId: getTiempos
+      parameters:
+        - name: parada
+          in: path
+          required: true
+          description: Número de parada
+          schema:
+            type: integer
+            format: int32
+            example: 180
+      responses:
+        '200':
+          description: Listado de estimaciones del tiempo en parada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tiempoParadaResponse'
+              example:
+                codigo: 1025
+                descripcion:
+                  texto: Camino de Los Toros (Corral del Moro)
+                  formato:
+                    - small
+                posicion:
+                  latitudE6: 37421466
+                  longitudE6: -5970252
+                lineasCoincidentes:
+                  - linea: 3
+                    labelLinea: '03'
+                    color: '#f54129'
+                    estimaciones:
+                      - vehiculo: 1009
+                        destino:
+                          texto: BELLAVISTA
+                          formato:
+                            - small
+                        atributos: []
+                        distancia: 421
+                        segundos: 111
+                      - vehiculo: 1026
+                        destino:
+                          texto: BELLAVISTA
+                          formato:
+                            - small
+                        atributos: []
+                        distancia: 5469
+                        segundos: 1389
+        '400':
+          description: Objeto de error de bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: BAD_REQUEST
+                mensaje: Bad request
+        '401':
+          description: Objeto de error de unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: UNAUTHORIZED
+                mensaje: unauthorized
+        '403':
+          description: Objeto de error de forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: FORBIDDEN
+                mensaje: forbidden
+        '404':
+          description: Objeto de error de not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: NOT_FOUND
+                mensaje: Not found
+      security:
+        - httpBasic: []
+  /duracion:
+    get:
+      tags:
+        - Tiempos
+      summary: Duración de un trayecto hacia parada
+      description: Devuelve la duración de un trayecto hacia una parada en un autobús dado
+      operationId: getDuracion
+      parameters:
+        - name: bus
+          in: query
+          description: Número del autobús
+          required: true
+          schema:
+            type: integer
+            format: int32
+            example: 1088
+        - name: nodo
+          in: query
+          description: Número de parada
+          required: true
+          schema:
+            type: integer
+            format: int32
+            example: 180
+      responses:
+        '200':
+          description: Duración del trayecto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/duracionResponse'
+              example:
+                duracion: 3510
+        '400':
+          description: Objeto de error de bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: BAD_REQUEST
+                mensaje: Bad request
+        '401':
+          description: Objeto de error de unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: UNAUTHORIZED
+                mensaje: unauthorized
+        '403':
+          description: Objeto de error de forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: FORBIDDEN
+                mensaje: forbidden
+        '404':
+          description: Objeto de error de not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: NOT_FOUND
+                mensaje: Not found
+      security:
+        - httpBasic: []
+  /buses/sugerido:
+    get:
+      tags:
+        - Autobuses
+      summary: Lista de autobuses en las proximidades de una línea
+      description: Devuelve la lista de autobuses en las proximidades de una línea dada
+      operationId: getBusesSugerido
+      parameters:
+        - name: linea
+          in: query
+          description: Identificador de la línea
+          required: true
+          schema:
+            type: string
+            example: 6
+        - name: latE6
+          in: query
+          description: Latitud
+          required: true
+          schema:
+            type: integer
+            format: double
+            example: 37355961
+        - name: lngE6
+          in: query
+          description: Longitud
+          required: true
+          schema:
+            type: number
+            format: double
+            example: -5985923
+      responses:
+        '200':
+          description: Listado de autobuses cercanos de una línea dada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/busesSugeridosResponse'
+              example:
+                - vehiculo: 1088
+                  latitudE6: 37377347
+                  longitudE6: -6006663
+                  sentido: 2
+                - vehiculo: 161
+                  latitudE6: 37375310
+                  longitudE6: -5991780
+                  sentido: 1
+        '400':
+          description: Objeto de error de bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: BAD_REQUEST
+                mensaje: Bad request
+        '401':
+          description: Objeto de error de unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: UNAUTHORIZED
+                mensaje: unauthorized
+        '403':
+          description: Objeto de error de forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: FORBIDDEN
+                mensaje: forbidden
+        '404':
+          description: Objeto de error de not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                estado: NOT_FOUND
+                mensaje: Not found
+      security:
+        - httpBasic: []
+  /buses:
+    get:
+      tags:
+        - Autobuses
+      summary: Lista de autobuses de una línea
+      description: Devuelve la lista de autobuses de una línea dada
+      operationId: getBuses
+      parameters:
+        - name: linea
+          in: query
+          description: Identificador de la línea
+          required: true
+          schema:
+            type: string
+            example: 6
+      responses:
+        '200':
+          description: Listado de autobuses en la línea
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/busesResponse'
+              example:
+                - vehiculo: 1088
+                  latitudE6: 37377347
+                  longitudE6: -6006663
+                  sentido: 2
+                - vehiculo: 161
+                  latitudE6: 37375310
+                  longitudE6: -5991780
+                  sentido: 1
+      security:
+        - httpBasic: []
+components:
+  securitySchemes:
+    httpBasic:
+      type: http
+      scheme: basic
+  schemas:
+    errorResponse:
+      type: object
+      properties:
+        estado:
+          type: string
+          description: Código de error.
+        mensaje:
+          type: string
+          description: Mensaje de error.
+    horarioLineaParadaResponse:
+      type: object
+      properties:
+        codigoNodo:
+          type: string
+        codigoLinea:
+          type: string
+        generadoPara:
+          type: string
+        horarios:
+          type: array
+          items:
+            type: string
+    lineasFechaArrayResponse:
+      type: array
+      items:
+        properties:
+          generadoPara:
+            type: string
+          lineasDisponibles:
+            type: array
+            items:
+              type: object
+              properties:
+                linea:
+                  type: integer
+                labelLinea:
+                  type: string
+                descripcion:
+                  type: object
+                  properties:
+                    texto:
+                      type: string
+                    formato:
+                      type: array
+                      items:
+                        type: string
+                color:
+                  type: string
+                destinos:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      sentido:
+                        type: integer
+                      destino:
+                        type: object
+                        properties:
+                          texto:
+                            type: string
+                          formato:
+                            type: array
+                            items:
+                              type: string
+                      horaInicio:
+                        type: string
+                      horaFin:
+                        type: string
+                      sublinea:
+                        type: string
+    lineasArrayResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          linea:
+            type: integer
+          labelLinea:
+            type: string
+          descripcion:
+            type: object
+            properties:
+              texto:
+                type: string
+              formato:
+                type: array
+                items:
+                  type: string
+    nodosArrayResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          codigo:
+            type: string
+          descripcion:
+            type: object
+            properties:
+              texto:
+                type: string
+              formato:
+                type: array
+                items:
+                  type: string
+    nodosCercanosArrayResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          codigo:
+            type: string
+          proximidadE6:
+            type: integer
+          posicion:
+            type: object
+            properties:
+              latitudE6:
+                type: number
+                format: double
+              longitudE6:
+                type: number
+                format: double
+          lineasCoincidentes:
+            type: array
+            items:
+              type: object
+              properties:
+                linea:
+                  type: integer
+                labelLinea:
+                  type: string
+                color:
+                  type: string
+    nodosParadaArrayResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          codigo:
+            type: integer
+          descripcion:
+            type: object
+            properties:
+              texto:
+                type: string
+              formato:
+                type: array
+                items:
+                  type: string
+          posicion:
+            type: object
+            properties:
+              latitudE6:
+                type: integer
+                format: double
+              longitudE6:
+                type: integer
+                format: double
+          distancia:
+            type: integer
+          horaInicio:
+            type: string
+          horaFin:
+            type: string
+    estadoTarjetaResponse:
+      type: object
+      properties:
+        numeroSerie:
+          type: string
+          description: Número de serie de la tarjeta.
+        codigoTitulo:
+          type: string
+          description: Código del tipo de tarjeta.
+        nombreTitulo:
+          type: string
+          description: Nombre de la tarjeta.
+        ultimaOperacion:
+          type: string
+          description: Última operación con la tarjeta.
+        saldoMonedero:
+          type: string
+          description: Saldo de la tarjeta.
+        saldoViajes:
+          type: string
+          description: Saldo en viajes de la tarjeta.
+        resultado:
+          type: string
+          description: Resultado de la tarjeta.
+        caducidad:
+          type: string
+          description: Caducidad de la tarjeta.
+    tiempoParadaResponse:
+      type: object
+      properties:
+        codigo:
+          type: integer
+        descripcion:
+          type: object
+          properties:
+            texto:
+              type: string
+            formato:
+              type: array
+              items:
+                type: string
+        posicion:
+          type: object
+          properties:
+            latitudE6:
+              type: number
+              format: double
+            longitudE6:
+              type: number
+              format: double
+        lineasCoincidentes:
+          type: array
+          items:
+            type: object
+            properties:
+              linea:
+                type: integer
+              labelLinea:
+                type: string
+              color:
+                type: string
+              estimaciones:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    vehiculo:
+                      type: integer
+                    destino:
+                      type: object
+                      properties:
+                        texto:
+                          type: string
+                        formato:
+                          type: array
+                          items:
+                            type: string
+                    atributos:
+                      type: array
+                      items:
+                        type: object
+                    distancia:
+                      type: integer
+                    segundos:
+                      type: integer
+    fechasResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          fecha:
+            type: string
+          version:
+            type: integer
+    duracionResponse:
+      type: object
+      properties:
+        duracion:
+          type: integer
+    busesSugeridosResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          vehiculo:
+            type: integer
+          latitudE6:
+            type: number
+            format: double
+          longitudE6:
+            type: number
+            format: double
+          sentido:
+            type: integer
+    busesResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          vehiculo:
+            type: integer
+          latitudE6:
+            type: number
+            format: double
+          longitudE6:
+            type: number
+            format: double
+          sentido:
+            type: integer
+security:
+  - httpBasic: []

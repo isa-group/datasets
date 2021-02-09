@@ -1,0 +1,5769 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/mapillary/mapillary.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+  imageryKilometers:
+    type: integer
+    format: int64
+    description: 'Number of imageryKilometers'
+    resolution: consumption
+    unit: km
+  objectDetectionsKilometers:
+    type: integer
+    format: int64
+    description: 'Number of objectDetectionsKilometers'
+    resolution: consumption
+    unit: km
+  mapFeaturesKilometers:
+    type: integer
+    format: int64
+    description: 'Number of mapFeaturesKilometers'
+    resolution: consumption
+    unit: km
+pricing:
+  cost: 0
+  currency: USD
+  period:
+    amount: 1
+    unit: month
+availability: '2009-10-09T21:30:00.00Z'
+configuration: {}
+plans:
+  Imaginery25:
+    pricing:
+      cost: 0
+    quotas:
+      '/v2/oauth/token':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          imageryKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  Imaginery1000:
+    pricing:
+      cost: 2000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          imageryKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  Imaginery2500:
+    pricing:
+      cost: 4000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          imageryKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  Imaginery5000:
+    pricing:
+      cost: 6400
+    quotas:
+      '/v2/oauth/token':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          imageryKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  Imaginery10000:
+    pricing:
+      cost: 10000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          imageryKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  ObjectDetections25:
+    pricing:
+      cost: 0
+    quotas:
+      '/v2/oauth/token':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  ObjectDetectionsFull25:
+    pricing:
+      cost: 0
+    quotas:
+      '/v2/oauth/token':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  ObjectDetections1000:
+    pricing:
+      cost: 3000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  ObjectDetectionsFull1000:
+    pricing:
+      cost: 8000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  ObjectDetections2500:
+    pricing:
+      cost: 6000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  ObjectDetectionsFull2500:
+    pricing:
+      cost: 16000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  ObjectDetections5000:
+    pricing:
+      cost: 9600
+    quotas:
+      '/v2/oauth/token':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  ObjectDetectionsFull5000:
+    pricing:
+      cost: 25600
+    quotas:
+      '/v2/oauth/token':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  ObjectDetections10000:
+    pricing:
+      cost: 15000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  ObjectDetectionsFull10000:
+    pricing:
+      cost: 40000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          objectDetectionsKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  MapFeatures25:
+    pricing:
+      cost: 0
+    quotas:
+      '/v2/oauth/token':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  MapFeaturesFull25:
+    pricing:
+      cost: 0
+    quotas:
+      '/v2/oauth/token':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 25
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  MapFeatures1000:
+    pricing:
+      cost: 4000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  MapFeaturesFull1000:
+    pricing:
+      cost: 10000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 1000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  MapFeatures2500:
+    pricing:
+      cost: 8000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  MapFeaturesFull2500:
+    pricing:
+      cost: 20000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 2500
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  MapFeatures5000:
+    pricing:
+      cost: 12800
+    quotas:
+      '/v2/oauth/token':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  MapFeaturesFull5000:
+    pricing:
+      cost: 32600
+    quotas:
+      '/v2/oauth/token':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 5000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  MapFeatures10000:
+    pricing:
+      cost: 20000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+  MapFeaturesFull10000:
+    pricing:
+      cost: 50000
+    quotas:
+      '/v2/oauth/token':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/sequences/{sequenceId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/images/{imageId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/changesets/{changesetId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/map_features/{mapId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/image_detections':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/avatar/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/users/{userId}/stats':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+      '/v3/leaderboard/images':
+        get:
+          mapFeaturesKilometers:
+            - max: 10000
+              period:
+                amount: 1
+                unit: forever
+    rates:
+      '/v2/oauth/token':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/sequences/{sequenceId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/images/{imageId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/changesets/{changesetId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/map_features/{mapId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/image_detections':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/object_detections/points/{pointId}/votes':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/avatar/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/users/{userId}/stats':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+      '/v3/leaderboard/images':
+        get:
+          requests:
+            - max: 10000
+              period:
+                amount: 1
+                unit: month
+

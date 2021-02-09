@@ -1,0 +1,50 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/aiception/aiception.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+availability: 'R/00:00:00Z/23:59:59Z'
+plans:
+  Free:
+    pricing:
+      cost: 0
+      currency: EUR
+      billing: monthly
+    rates: {}
+    quotas:
+      /face:
+        post:
+          requests:
+            - max: 2000
+              period: monthly
+      /face_age:
+        post:
+          requests:
+            - max: 2000
+              period: monthly
+      /detect_object:
+        post:
+          requests:
+            - max: 2000
+              period: monthly
+      /adult_content:
+        post:
+          requests:
+            - max: 4000
+              period: monthly
+      /artistic_image:
+        post:
+          requests:
+            - max: 100
+              period: monthly

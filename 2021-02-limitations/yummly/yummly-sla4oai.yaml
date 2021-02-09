@@ -1,0 +1,307 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/yummly/yummly.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+pricing:
+  cost: 0
+  currency: USD
+  period:
+    amount: 1
+    unit: month
+availability: '2009-10-09T21:30:00.00Z'
+configuration: {}
+plans:
+  BluePlateSpecial:
+    pricing:
+      cost:  500 # + 0.002 * ((requests - 2500000) <= 0 ? 0 : (requests - 2500000))
+    rates:
+      /v1/api/metadata/ingredient:
+        get:
+          requests:
+            - max: 5000
+              period: 
+                amount: 1
+                unit: day
+              cost:
+                overage: 
+                  excess: 2500000
+                  cost: 0.002
+      /v1/api/metadata/allergy:
+        get:
+          requests:
+            - max: 5000
+              period: 
+                amount: 1
+                unit: day
+              cost:
+                overage: 
+                  excess: 2500000
+                  cost: 0.002
+      /v1/api/metadata/diet:
+        get:
+          requests:
+            - max: 5000
+              period: 
+                amount: 1
+                unit: day
+              cost:
+                overage: 
+                  excess: 2500000
+                  cost: 0.002
+      /v1/api/metadata/cuisine:
+        get:
+          requests:
+            - max: 5000
+              period: 
+                amount: 1
+                unit: day
+              cost:
+                overage: 
+                  excess: 2500000
+                  cost: 0.002
+    
+  PrixFixe:
+    availability: '2009-10-09T21:30:00.00Z'
+    pricing:
+      cost: 5000 # + 0.001 * ((requests - 4000000) <= 0 ? 0 : (requests - 4000000))
+    configuration: {}
+    rates:
+      /v1/api/metadata/ingredient:
+        get:
+          requests:
+            - max: 50000
+              period: 
+                amount: 1
+                unit: day
+              cost:
+                overage: 
+                  excess: 4000000
+                  cost: 0.001
+      /v1/api/metadata/allergy:
+        get:
+          requests:
+            - max: 50000
+              period: 
+                amount: 1
+                unit: day
+              cost:
+                overage: 
+                  excess: 4000000
+                  cost: 0.001
+      /v1/api/metadata/diet:
+        get:
+          requests:
+            - max: 50000
+              period: 
+                amount: 1
+                unit: day
+              cost:
+                overage: 
+                  excess: 4000000
+                  cost: 0.001
+      /v1/api/metadata/cuisine:
+        get:
+          requests:
+            - max: 50000
+              period: 
+                amount: 1
+                unit: day
+              cost:
+                overage: 
+                  excess: 4000000
+                  cost: 0.001
+    
+  Academic:
+    availability: '2009-10-09T21:30:00.00Z'
+    pricing:
+      cost: 0
+    configuration: {}
+    rates:
+      /v1/api/metadata/ingredient:
+        get:
+          requests:
+            - max: 500
+              period: 
+                amount: 1
+                unit: day
+      /v1/api/metadata/allergy:
+        get:
+          requests:
+            - max: 500
+              period: 
+                amount: 1
+                unit: day
+      /v1/api/metadata/diet:
+        get:
+          requests:
+            - max: 500
+              period: 
+                amount: 1
+                unit: day
+      /v1/api/metadata/cuisine:
+        get:
+          requests:
+            - max: 500
+              period: 
+                amount: 1
+                unit: day
+    quotas:
+      /v1/api/metadata/ingredient:
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+      /v1/api/metadata/allergy:
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+      /v1/api/metadata/diet:
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+      /v1/api/metadata/cuisine:
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+      '/v1/api/recipe/{recipe-id}':
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+      /v1/api/metadata/holiday:
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+      /v1/api/metadata/course:
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+      /v1/api/recipes:
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+  Hackathon:
+    availability: '2009-10-09T21:30:00.00Z'
+    pricing:
+      cost: 0
+    configuration: {}
+    rates:
+      /v1/api/metadata/ingredient:
+        get:
+          requests:
+            - max: 500
+              period: 
+                amount: 1
+                unit: day
+      /v1/api/metadata/allergy:
+        get:
+          requests:
+            - max: 500
+              period: 
+                amount: 1
+                unit: day
+      /v1/api/metadata/diet:
+        get:
+          requests:
+            - max: 500
+              period: 
+                amount: 1
+                unit: day
+      /v1/api/metadata/cuisine:
+        get:
+          requests:
+            - max: 500
+              period: 
+                amount: 1
+                unit: day
+    quotas:
+      /v1/api/metadata/ingredient:
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+      /v1/api/metadata/allergy:
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+      /v1/api/metadata/diet:
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+      /v1/api/metadata/cuisine:
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+      '/v1/api/recipe/{recipe-id}':
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+      /v1/api/metadata/holiday:
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+      /v1/api/metadata/course:
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever
+      /v1/api/recipes:
+        get:
+          requests:
+            - max: 30000
+              period: 
+                amount: 1
+                unit: forever

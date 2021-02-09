@@ -1,0 +1,5923 @@
+openapi: 3.0.0
+info:
+  title: Mailgun API
+  description: >-
+    Introduction
+
+    =======
+
+
+    The Mailgun API is built on HTTP. Our API is RESTful and it:
+
+
+    * Uses predictable, resource-oriented URLs.
+
+    * Uses built-in HTTP capabilities for passing parameters and authentication.
+
+    * Responds with standard HTTP response codes to indicate errors.
+
+    * Returns JSON.
+
+
+    Mailgun has published
+    [Libraries](https://documentation.mailgun.com/en/latest/libraries.html#libraries)
+    for various languages. You may use our libraries, or your favorite HTTP/REST
+    library available for your programming language, to make HTTP calls to
+    Mailgun. Visit our Libraries page to see HTTP REST libraries we recommend.
+
+
+    To give you an idea of how to use the API, we have annotated our
+    documentation with code samples written in several popular programming
+    languages. Use the language selector at the top to switch between them.
+
+
+    Our samples from
+    [quickstart](https://documentation.mailgun.com/en/latest/quickstart.html),
+    [User
+    Manual](https://documentation.mailgun.com/en/latest/user_manual.html#user-manual),
+    and [API
+    Reference](https://documentation.mailgun.com/en/latest/api_reference.html#api-reference)
+    provide examples that will function. You’re welcome to copy/paste and run
+    the script to see the API in action.
+
+
+    ## Base URL
+
+
+    All API URLs referenced in this documentation start with the following base
+    part:
+
+    > https://api.mailgun.net/v3
+
+
+    Your Mailgun account may contain several email domains. To avoid passing the
+    domain name as a query parameter, most API URLs must include the name of the
+    domain you’re interested in:
+
+    > https://api.mailgun.net/v3/mydomain.com
+
+
+    ## Authentication
+
+
+    When you sign up for an account, you are given an API key. You authenticate
+    to the Mailgun API by providing your API key in the request. You can manage
+    your API key in the “Security” tab under the Account section of the Control
+    Panel.
+
+
+    Authentication to the API occurs via [HTTP Basic
+    Auth](http://en.wikipedia.org/wiki/Basic_access_authentication). Use `api`
+    as the user name and your API key is the password. Here is how you use basic
+    HTTP auth with curl:
+
+    > curl --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0'
+
+
+    Or you can try the following API call right from your browser:
+
+    >
+    https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0@api.mailgun.net/v3/samples.mailgun.org/log
+
+
+    **Warning:** Keep your API key secret!
+
+
+    ## Date Format
+
+
+    Mailgun returns JSON for all API calls. JSON does not have a built-in date
+    type, dates are passed as strings encoded according to [RFC
+    2822#page-14](https://tools.ietf.org/html/rfc2822.html#page-14). This format
+    is native to JavaScript and is also supported by most programming languages
+    out of the box:
+
+
+    > 'Thu, 13 Oct 2011 18:02:00 GMT'
+
+
+    ## Errors
+
+
+    | Code               |
+    Description                                               |
+
+    |--------------------|-----------------------------------------------------------|
+
+    | 200                | Everything worked as
+    expected                             |
+
+    | 400                | Bad Request - Often missing a required
+    parameter          |
+
+    | 401                | Unauthorized - No valid API key
+    provided                  |
+
+    | 402                | Request Failed - Parameters were valid but request
+    failed |
+
+    | 404                | Not Found - The requested item doesn’t
+    exist              |
+
+    | 500, 502, 503, 504 | Server Errors - something is wrong on Mailgun’s
+    end       |
+
+
+    ## Webhooks
+
+
+    Mailgun can also POST data to your application when events (opens, clicks,
+    bounces, etc.) occur or when you use Routes. You can read more about
+    webhooks and
+    [Routes](https://documentation.mailgun.com/en/latest/user_manual.html#um-routes)
+    in the [User
+    Manual](https://documentation.mailgun.com/en/latest/user_manual.html#user-manual).
+
+
+    ## Mailgun Regions
+
+
+    Using a single account and billing plan, you can choose to provision new
+    sending domains in the EU environment. Message data never leaves the region
+    in which it is processed. Only a limited amount of account data is
+    replicated globally, giving you a single account from which to manage
+    domains in both the US and the EU. Here are the specifics on the type of
+    data that is replicated globally versus what is region-bound.
+
+
+    |
+    Global                                                                                                 
+    | Region-Bound (US /
+    EU)                                                                                                            
+    |
+
+    |---------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+
+    | Account Information, User Accounts, Billing Details (invoices/plan
+    information), API Keys, Domain Names | Domain Metadata (e.g. SMTP
+    credentials), Messages, Event Logs, Suppressions, Mailing Lists, Tags,
+    Statistics, Routes, IP Addresses |
+
+
+    The endpoints you will use for sending/receiving/tracking messages in the EU
+    are below:
+
+
+    | Service                      | US Endpoint      | EU Endpoint         |
+
+    |------------------------------|------------------|---------------------|
+
+    | REST API                     | api.mailgun.net  | api.eu.mailgun.net  |
+
+    | Outgoing SMTP Server         | smtp.mailgun.org | smtp.eu.mailgun.org |
+
+    | Inbound SMTP Server (Routes) | mxa.mailgun.org  | mxa.eu.mailgun.org  |
+
+    | Inbound SMTP Server (Routes) | mxb.mailgun.org  | mxb.eu.mailgun.org  |
+
+    | Open/Click Tracking Endpoint | mailgun.org      | eu.mailgun.org      |
+  contact: {}
+  version: '1.0'
+  x-sla: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/mailgun/plans.oai-at?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+paths:
+  '/v3/{mydomain}/messages':
+    post:
+      tags:
+        - Messages
+      summary: Send message
+      description: >-
+        Sends a message by assembling it from the components. Note that you can
+        specify most parameters multiple times, HTTP supports this out of the
+        box. This makes sense for parameters like `cc`, `to` or `attachment`.
+
+
+        | Parameter           |
+        Description                                                                                                                                                                                                                                                                                                                                     
+        |
+
+        |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+        | from                | Email address for `From`
+        header                                                                                                                                                                                                                                                                                                                   
+        |
+
+        | to                  | Email address of the recipient(s). Example:
+        `"Bob <bob@host.com>"`. You can use commas to separate multiple
+        recipients.                                                                                                                                                                                                                           
+        |
+
+        | cc                  | Same as `To` but for
+        `Cc`                                                                                                                                                                                                                                                                                                                           
+        |
+
+        | bcc                 | Same as `To` but for
+        `Bcc`                                                                                                                                                                                                                                                                                                                          
+        |
+
+        | subject             | Message
+        subject                                                                                                                                                                                                                                                                                                                                 
+        |
+
+        | text                | Body of the message. (text
+        version)                                                                                                                                                                                                                                                                                                             
+        |
+
+        | html                | Body of the message. (HTML
+        version)                                                                                                                                                                                                                                                                                                             
+        |
+
+        | attachment          | File attachment. You can post multiple
+        `attachment` values. Important: You must use `multipart/form-data`
+        encoding when sending
+        attachments.                                                                                                                                                                                                        
+        |
+
+        | inline              | Attachment with `inline` disposition. Can be
+        used to send inline images (see example). You can post multiple `inline`
+        values.                                                                                                                                                                                                                       
+        |
+
+        | o:tag               | Tag string. See
+        [Tagging](https://documentation.mailgun.com/en/latest/user_manual.html#tagging)
+        for more
+        information.                                                                                                                                                                                                                                                                                                   
+        |
+
+        | o:dkim              | Enables/disables DKIM signatures on per-message
+        basis. Pass `yes` or
+        `no`                                                                                                                                                                                                                                                                           
+        |
+
+        | o:deliverytime      | Desired time of delivery. See [Date
+        Format](https://documentation.mailgun.com/en/latest/api-intro.html#date-format).
+        Note: Messages can be scheduled for a maximum of 3 days in the
+        future.                                                                                                                                                                                                                               
+        |
+
+        | o:testmode          | Enables sending in test mode. Pass `yes` if
+        needed. See [Sending in Test
+        Mode](https://documentation.mailgun.com/en/latest/user_manual.html#manual-testmode)                                                                                                                                                                                                                                                                      
+        |
+
+        | o:tracking          | Toggles tracking on a per-message basis, see
+        [Tracking
+        Messages](https://documentation.mailgun.com/en/latest/user_manual.html#tracking-messages)
+        for details. Pass `yes` or
+        `no`.                                                                                                                                                                                                                                                     
+        |
+
+        | o:tracking-clicks   | Toggles clicks tracking on a per-message basis.
+        Has higher priority than domain-level setting. Pass `yes`, `no` or
+        `htmlonly`.                                                                                                                                                                                                                        
+        |
+
+        | o:tracking-opens    | Toggles opens tracking on a per-message basis.
+        Has higher priority than domain-level setting. Pass `yes` or
+        `no`.                                                                                                                                                                                                                                   
+        |
+
+        | o:require-tls       | If set to True this requires the message only be
+        sent over a TLS connection. If a TLS connection can not be established,
+        Mailgun will not deliver the message. If set to False, Mailgun will
+        still try and upgrade the connection, but if Mailgun can not, the
+        message will be delivered over a plaintext SMTP connection. The default
+        is False. |
+
+        | o:skip-verification | If set to True, the certificate and hostname
+        will not be verified when trying to establish a TLS connection and
+        Mailgun will accept any certificate during delivery. If set to False,
+        Mailgun will verify the certificate and hostname. If either one can not
+        be verified, a TLS connection will not be established. The default is
+        False.       |
+
+        | h:X-My-Header       | `h:` prefix followed by an arbitrary value
+        allows to append a custom MIME header to the message (`X-My-Header` in
+        this case). For example, `h:Reply-To` to specify Reply-To
+        address.                                                                                                                                                                  
+        |
+
+        | v:my-var            | `v:` prefix followed by an arbitrary name allows
+        to attach a custom JSON data to the message. See [Attaching Data to
+        Messages](https://documentation.mailgun.com/en/latest/user_manual.html#manual-customdata)
+        for more
+        information.                                                                                                                                                                                                
+        |
+      operationId: SendMessage
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - from
+                - to
+                - subject
+                - text
+              type: object
+              properties:
+                from:
+                  type: string
+                  example: mbkane04@gmail.com
+                to:
+                  type: string
+                  example: mbkane04@gmail.com
+                subject:
+                  type: string
+                  example: attachment test
+                text:
+                  type: string
+                  example: the body
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers:
+            Access-Control-Allow-Headers:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 'Content-Type, x-requested-with'
+            Access-Control-Allow-Methods:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 'GET, POST, PUT, DELETE, OPTIONS'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Access-Control-Max-Age:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 600
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Content-Disposition:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: inline
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 136
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 'Tue, 21 Aug 2018 19:37:28 GMT'
+            Server:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nginx
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendmessageResponse'
+              example:
+                message: Queued. Thank you.
+                id: <20111114174239.25659.5817@samples.mailgun.org>
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/messages/{message_ID}':
+    get:
+      tags:
+        - Messages
+      summary: Retrieving Stored Messages
+      description: >-
+        To retrieve an inbound message that has been stored via the `store()`
+        action, use the URL found in the stored event (which you can find
+        through the Events API, or in the notify webhook set when creating the
+        store action (`store(notify="http://mydomain.com/callback")`).
+
+
+        * By default the message will be returned in JSON form with parsed
+        parts. Links to the attachments will be included.
+
+        * You can also retrieve the full raw mime message (attachments and all)
+        if you make the request to the URL with the `Accept` header set to
+        `message/rfc2822`.
+
+        * Stored messages are encoded with
+        [Quoted-printable](https://en.wikipedia.org/wiki/Quoted-printable)
+        encoding. Decoding samples are available in the examples section below.
+
+
+
+        These are the parameters of the JSON returned from a GET request to a
+        stored message url.
+
+
+        | Parameter          | Type   |
+        Description                                                                                                                                                                                                     
+        |
+
+        |--------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+        | recipients         | string | recipient of the message as reported by
+        `MAIL` `TO` during SMTP
+        chat.                                                                                                                                               
+        |
+
+        | sender             | string | sender of the message as reported by
+        `MAIL` `FROM` during SMTP chat. Note: this value may differ from `From`
+        MIME
+        header.                                                                                             
+        |
+
+        | from               | string | sender of the message as reported by
+        `From` message header, for example “Bob Lee
+        <blee@mailgun.net>”.                                                                                                             
+        |
+
+        | subject            | string | subject
+        string.                                                                                                                                                                                                 
+        |
+
+        | body-plain         | string | text version of the email. This field is
+        always present. If the incoming message only has HTML body, Mailgun will
+        create a text representation for
+        you.                                                          |
+
+        | stripped-text      | string | text version of the message without
+        quoted parts and signature block (if
+        found).                                                                                                                                
+        |
+
+        | stripped-signature | string | the signature block stripped from the
+        plain text message (if
+        found).                                                                                                                                            
+        |
+
+        | body-html          | string | HTML version of the message, if message
+        was multipart. Note that all parts of the message will be posted, not
+        just text/html. For instance if a message arrives with “foo” part it
+        will be posted as “body-foo”. |
+
+        | stripped-html      | string | HTML version of the message, without
+        quoted
+        parts.                                                                                                                                                              
+        |
+
+        | attachments        | string | contains a json list of metadata
+        objects, one for each attachment, see
+        below.                                                                                                                                   
+        |
+
+        | message-headers    | string | list of all MIME headers dumped to a
+        json string (order of headers
+        preserved).                                                                                                                                  
+        |
+
+        | content-id-map     | string | JSON-encoded dictionary which maps
+        Content-ID (CID) of each attachment to the corresponding `attachment-x`
+        parameter. This allows you to map posted attachments to tags like `<img
+        src='cid'>` in the message body.  |
+
+
+
+        > Note Do not rely on the `body-plain`, `stripped-text`, and
+        `stripped-signature` fields for HTML sanitization. These fields merely
+        provide content from the text/plain portion of an incoming message. This
+        content may contain unescaped HTML.
+
+
+        The attachments JSON contains the following items.
+
+
+        | Parameter    | Type    |
+        Description                                                                      
+        |
+
+        |--------------|---------|-----------------------------------------------------------------------------------|
+
+        | size         | integer | indicates the size of the attachment in
+        bytes.                                    |
+
+        | url          | string  | contains the url where the attachment can be
+        found. This does not support DELETE. |
+
+        | name         | string  | the name of the
+        attachment                                                        |
+
+        | content-type | string  | the content type of the
+        attachment                                                |
+
+
+
+        These are the parameters when the `Accept` header is set to
+        `message/rfc2822`
+
+
+        | Parameter | Type   |
+        Description                                                                                   
+        |
+
+        |-----------|--------|------------------------------------------------------------------------------------------------|
+
+        | recipient | string | recipient of the
+        message.                                                                     
+        |
+
+        | sender    | string | sender of the message as reported by SMTP MAIL
+        FROM.                                           |
+
+        | from      | string | sender of the message as reported by `From`
+        message header, for example “Bob <bob@example.com>”. |
+
+        | subject   | string | subject
+        string.                                                                               
+        |
+
+        | body-mime | string | full MIME envelope. You will need a MIME parsing
+        library to process this data.                 |
+      operationId: RetrievingStoredMessages
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: message_ID
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  //:
+    get:
+      tags:
+        - Messages
+      summary: Deleting Stored Messages
+      description: >-
+        Stored messages are retained in the system for 3 days and automatically
+        purged after this retention period, therefore there is no need to delete
+        messages explicitly.
+
+
+        > Note Mailgun reserves the right to impose a limit on the size and
+        number of stored messages. In the event this is necessary, you will be
+        notified in advance.
+      operationId: DeletingStoredMessages
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v3/domains:
+    get:
+      tags:
+        - Domains
+      summary: Get domains
+      description: |-
+        Returns a list of domains under your account in JSON. See examples.
+
+        | Parameter | Description                                           |
+        |-----------|-------------------------------------------------------|
+        | limit     | Maximum number of records to return. (100 by default) |
+        | skip      | Number of records to skip. (0 by default)             |
+      operationId: GetDomains
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    post:
+      tags:
+        - Domains
+      summary: Create new domain
+      description: >-
+        Create a new domain.
+
+
+        | Parameter            |
+        Description                                                                                                                                                                                                                                                                                      
+        |
+
+        |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+        | name                 | Name of the domain (ex.
+        domain.com)                                                                                                                                                                                                                                                              
+        |
+
+        | smtp_password        | Password for SMTP
+        authentication                                                                                                                                                                                                                                                                 
+        |
+
+        | spam_action          | `disabled`, `block`, or `tag`  If disabled, no
+        spam filtering will occur for inbound messages.  If block, inbound spam
+        messages will not be delivered.  If tag, inbound messages will be tagged
+        with a spam header. See [Spam
+        Filter](https://documentation.mailgun.com/en/latest/user_manual.html#um-spam-filter). 
+        The default is `disabled`.                                          |
+
+        | wildcard             | true or false Determines whether the domain
+        will accept email for sub-domains.  The default is
+        false.                                                                                                                                                                                            
+        |
+
+        | force_dkim_authority | true or false  If set to true, the domain will
+        be the DKIM authority for itself even if the root domain is registered
+        on the same mailgun account  If set to false, the domain will have the
+        same DKIM authority as the root domain registered on the same mailgun
+        account  The default is false. |
+      operationId: CreateNewDomain
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - name
+                - smtp_password
+                - spam_action
+                - wildcard
+                - force_dkim_authority
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the domain (ex. domain.com)
+                smtp_password:
+                  type: string
+                  description: Password for SMTP authentication
+                spam_action:
+                  type: string
+                  description: >-
+                    disabled, block, or tag
+
+
+                    If disabled, no spam filtering will occur for inbound
+                    messages.
+
+
+                    If block, inbound spam messages will not be delivered.
+
+
+                    If tag, inbound messages will be tagged with a spam header.
+                    See Spam Filter.
+
+
+                    The default is disabled.
+                wildcard:
+                  type: string
+                  description: >-
+                    true or false Determines whether the domain will accept
+                    email for sub-domains.
+
+
+                    The default is false.
+                force_dkim_authority:
+                  type: string
+                  description: >-
+                    true or false
+
+
+                    If set to true, the domain will be the DKIM authority for
+                    itself even if the root domain is registered on the same
+                    mailgun account
+
+
+                    If set to false, the domain will have the same DKIM
+                    authority as the root domain registered on the same mailgun
+                    account
+
+
+                    The default is false.
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/domains/{mydomain}':
+    get:
+      tags:
+        - Domains
+      summary: Get single domain
+      description: 'Returns a single domain, including credentials and DNS records.'
+      operationId: GetSingleDomain
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+        - Domains
+      summary: Delete domain
+      description: Deletes a domain from your account
+      operationId: DeleteDomain
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/domains/{mydomain}/verify':
+    put:
+      tags:
+        - Domains
+      summary: Verify domain
+      description: >-
+        Verifies and returns a single domain, including credentials and DNS
+        records. If the domain is successfully verified the message should be
+        the following: _Domain DNS records have been updated_. For more
+        information on verifying domains, visit the Mailgun [User
+        Manual](https://documentation.mailgun.com/en/latest/user_manual.html#verifying-your-domain).
+      operationId: VerifyDomain
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/domains/{mydomain}/credentials':
+    get:
+      tags:
+        - Domains
+      summary: Get SMTP credentials for a domain
+      description: |-
+        Returns a list of SMTP credentials for the defined domain.
+
+        | Parameter | Description                                           |
+        |-----------|-------------------------------------------------------|
+        | limit     | Maximum number of records to return. (100 by default) |
+        | skip      | Number of records to skip. (0 by default)             |
+      operationId: GetSmtpCredentialsForADomain
+      parameters:
+        - name: limit
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 100
+        - name: skip
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 0
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    post:
+      tags:
+        - Domains
+      summary: Create new SMTP credentials
+      description: >-
+        Creates a new set of SMTP credentials for the defined domain.
+
+
+        | Parameter |
+        Description                                                 |
+
+        |-----------|-------------------------------------------------------------|
+
+        | login     | The user name, for example
+        `bob.bar`                          |
+
+        | password  | A password for the SMTP credentials. (Length Min 5, Max
+        32) |
+      operationId: CreateNewSmtpCredentials
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - login
+                - password
+              type: object
+              properties:
+                login:
+                  type: string
+                  description: 'The user name, for example bob.bar'
+                password:
+                  type: string
+                  description: 'A password for the SMTP credentials. (Length Min 5, Max 32)'
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/domains/{mydomain}/credentials/{login}':
+    put:
+      tags:
+        - Domains
+      summary: Update SMTP credentials
+      description: >-
+        Updates the specified SMTP credentials. Currently only the password can
+        be changed.
+
+
+        | Parameter |
+        Description                                                 |
+
+        |-----------|-------------------------------------------------------------|
+
+        | password  | A password for the SMTP credentials. (Length Min 5, Max
+        32) |
+      operationId: UpdateSmtpCredentials
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: login
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - password
+              type: object
+              properties:
+                password:
+                  type: string
+                  description: 'A password for the SMTP credentials. (Length Min 5, Max 32)'
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+        - Domains
+      summary: Delete SMTP credentials
+      description: >-
+        Deletes the defined SMTP credentials.
+
+
+        > Note: Mailgun imposes a rate limit for the Domains API endpoint. Users
+        may issue no more than 300 requests per minute, per account. See the
+        resultant rate limit response below.
+      operationId: DeleteSmtpCredentials
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: login
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/domains/{mydomain}/connection':
+    get:
+      tags:
+        - Domains
+      summary: Get domain connection settings
+      description: Returns delivery connection settings for the defined domain.
+      operationId: GetDomainConnectionSettings
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    put:
+      tags:
+        - Domains
+      summary: Update domain delivery connection settings
+      description: >-
+        Updates the specified delivery connection settings for the defined
+        domain.
+
+
+        | Parameter         |
+        Description                                                                                                                                                                                                                                                                                                                                                      
+        |
+
+        |-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+        | require_tls       | true or false  If set to true, this requires the
+        message only be sent over a TLS connection. If a TLS connection can not
+        be established, Mailgun will not deliver the message.  If set to false,
+        Mailgun will still try and upgrade the connection, but if Mailgun
+        cannot, the message will be delivered over a plaintext SMTP connection. 
+        The default is false. |
+
+        | skip_verification | true or false  If set to true, the certificate and
+        hostname will not be verified when trying to establish a TLS connection
+        and Mailgun will accept any certificate during delivery.   If set to
+        false, Mailgun will verify the certificate and hostname. If either one
+        can not be verified, a TLS connection will not be established.   The
+        default is false.     |
+      operationId: UpdateDomainDeliveryConnectionSettings
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - require_tls
+                - skip_verification
+              type: object
+              properties:
+                require_tls:
+                  type: string
+                  description: >-
+                    true or false
+
+
+                    If set to true, this requires the message only be sent over
+                    a TLS connection. If a TLS connection can not be
+                    established, Mailgun will not deliver the message.
+
+
+                    If set to false, Mailgun will still try and upgrade the
+                    connection, but if Mailgun cannot, the message will be
+                    delivered over a plaintext SMTP connection.
+
+
+                    The default is false.
+                  example: false
+                skip_verification:
+                  type: string
+                  description: >-
+                    true or false
+
+
+                    If set to true, the certificate and hostname will not be
+                    verified when trying to establish a TLS connection and
+                    Mailgun will accept any certificate during delivery.
+
+
+                    If set to false, Mailgun will verify the certificate and
+                    hostname. If either one can not be verified, a TLS
+                    connection will not be established.
+
+
+                    The default is false.
+                  example: false
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/domains/{mydomain}/tracking':
+    get:
+      tags:
+        - Domains
+      summary: Get domain tracking settings
+      description: Returns tracking settings for a domain.
+      operationId: GetDomainTrackingSettings
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/domains/{mydomain}/tracking/open':
+    put:
+      tags:
+        - Domains
+      summary: Update domain tracking settings for OPENS
+      description: |-
+        Updates the open tracking settings for a domain.
+
+        | Parameter | Description |
+        |-----------|-------------|
+        | active    | `yes` or `no`   |
+      operationId: UpdateDomainTrackingSettingsForOpens
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - active
+              type: object
+              properties:
+                active:
+                  type: string
+                  description: '`yes` or `no`'
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/domains/{mydomain}/tracking/click':
+    put:
+      tags:
+        - Domains
+      summary: Update domain tracking settings for CLICKS
+      description: >-
+        | Parameter |
+        Description                                                                                                                                                                                       
+        |
+
+        |-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+        | active    | yes, no, or htmlonly  If set to yes, links will be
+        overwritten and pointed to our servers so we can track clicks.  If set
+        to htmlonly, links will only be rewritten in the HTML part of a message.
+        |
+      operationId: UpdateDomainTrackingSettingsForClicks
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - active
+              type: object
+              properties:
+                active:
+                  type: string
+                  description: >-
+                    yes, no, or htmlonly
+
+
+                    If set to yes, links will be overwritten and pointed to our
+                    servers so we can track clicks.
+
+
+                    If set to htmlonly, links will only be rewritten in the HTML
+                    part of a message.
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/domains/{mydomain}/tracking/unsubscribe':
+    put:
+      tags:
+        - Domains
+      summary: Update domain tracking settings for UNSUBSCRIBES
+      description: >-
+        | Parameter   |
+        Description                                                                                                                                                                                                                                                                                                           
+        |
+
+        |-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+        | active      | true or
+        false.                                                                                                                                                                                                                                                                                                        
+        |
+
+        | html_footer | Custom HTML version of unsubscribe
+        footer.                                                                                                                                                                                                                                                                            
+        |
+
+        | text_footer | Custom text version of unsubscribe footer.Mailgun can
+        automatically provide an unsubscribe footer in each email you send and
+        also provides you with several unsubscribe variables. You can customize
+        your unsubscribe footer by editing the settings in the Control Panel.
+        See Tracking Unsubscribes for more details. |
+      operationId: UpdateDomainTrackingSettingsForUnsubscribes
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - active
+                - html_footer
+                - text_footer
+              type: object
+              properties:
+                active:
+                  type: string
+                  description: true or false.
+                html_footer:
+                  type: string
+                  description: Custom HTML version of unsubscribe footer.
+                text_footer:
+                  type: string
+                  description: Custom text version of unsubscribe footer.
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/domains/{mydomain}/dkim_authority':
+    put:
+      tags:
+        - Domains
+      summary: Change DKIM Authority
+      description: >-
+        | Parameter |
+        Description                                                                                                                                                                                                                                                                                                        
+        |
+
+        |-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+        | self      | true or false  Change the DKIM authority for a domain.  If
+        set to true, the domain will be the DKIM authority for itself even if
+        the root domain is registered on the same mailgun account  If set to
+        false, the domain will have the same DKIM authority as the root domain
+        registered on the same mailgun account |
+
+
+
+        > Note: Use with caution: Do not forget to change the corresponding DNS
+        record. It can take 24-48 hours for DNS changes to propagate. Changing
+        the DKIM autority of an active domain affects its current
+        deliveriability.
+      operationId: ChangeDkimAuthority
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - self
+              type: object
+              properties:
+                self:
+                  type: string
+                  description: >-
+                    _true_ or _false_
+
+
+                    Change the DKIM authority for a domain.
+
+
+                    If set to _true_, the domain will be the DKIM authority for
+                    itself even if the root domain is registered on the same
+                    mailgun account
+
+
+                    If set to _false_, the domain will have the same DKIM
+                    authority as the root domain registered on the same mailgun
+                    account
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v3/ips:
+    get:
+      tags:
+        - IPs
+      summary: Get all IPs for an account
+      description: >-
+        | Parameter |
+        Description                                                            
+        |
+
+        |-----------|-------------------------------------------------------------------------|
+
+        | dedicated | Return only dedicated IPs if set to true. (all are
+        returned by default) |
+      operationId: GetAllIpsForAnAccount
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetallIPsforanaccountResponse'
+              example:
+                items:
+                  - 192.161.0.1
+                  - 192.168.0.2
+                total_count: 2
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/ips/{ip}':
+    get:
+      tags:
+        - IPs
+      summary: Get specific IP
+      description: Returns information about the specified IP.
+      operationId: GetSpecificIp
+      parameters:
+        - name: ip
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetspecificIPResponse'
+              example:
+                ip: 192.161.0.1
+                dedicated: true
+                rdns: luna.mailgun.net
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/domains/{mydomain}/ips':
+    get:
+      tags:
+        - IPs
+      summary: Get list of IPs for a domain
+      description: Returns a list of IPs currently assigned to the specified domain.
+      operationId: GetListOfIpsForADomain
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetlistofIPsforadomainResponse'
+              example:
+                items:
+                  - 192.161.0.1
+                  - 192.168.0.2
+                total_count: 2
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'https://api.mailgun.net/v3'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/domains/{mydomain}/ips':
+    post:
+      tags:
+        - IPs
+      summary: Assign IP to domain
+      description: |-
+        Assign a dedicated IP to the domain specified.
+
+        > **Note**: Only dedicated IPs can be assigned to a domain.
+      operationId: AssignIpToDomain
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - ip
+              type: object
+              properties:
+                ip:
+                  type: string
+                  description: IP address that should be assigned to the domain pool.
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssignIPtodomainResponse'
+              example:
+                message: success
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/domains/{mydomain}/ips/{ip}':
+    delete:
+      tags:
+        - IPs
+      summary: Unassign IP from a domain
+      description: Unassign an IP from the domain specified.
+      operationId: UnassignIpFromADomain
+      parameters:
+        - name: ip
+          in: path
+          description: IP address that should be assigned to the domain pool.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnassignIPfromadomainResponse'
+              example:
+                message: success
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/{mydomain}/events':
+    get:
+      tags:
+        - Events
+      summary: Get events
+      description: Get events for a domain.
+      operationId: GetEvents
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: |-
+                  {
+                    "items": [
+                      {
+                        "tags": [],
+                        "id": "czsjqFATSlC3QtAK-C80nw",
+                        "timestamp": 1376325780.160809,
+                        "envelope": {
+                          "sender": "me@samples.mailgun.org",
+                          "transport": ""
+                        },
+                        "event": "accepted",
+                        "campaigns": [],
+                        "user-variables": {},
+                        "flags": {
+                          "is-authenticated": true,
+                          "is-test-mode": false
+                        },
+                        "message": {
+                          "headers": {
+                            "to": "foo@example.com",
+                            "message-id": "20130812164300.28108.52546@samples.mailgun.org",
+                            "from": "Excited User <me@samples.mailgun.org>",
+                            "subject": "Hello"
+                          },
+                          "attachments": [],
+                          "recipients": [
+                            "foo@example.com",
+                            "baz@example.com",
+                            "bar@example.com"
+                          ],
+                          "size": 69
+                        },
+                        "recipient": "baz@example.com",
+                        "method": "http"
+                      ,
+                      }
+              example: |-
+                {
+                  "items": [
+                    {
+                      "tags": [],
+                      "id": "czsjqFATSlC3QtAK-C80nw",
+                      "timestamp": 1376325780.160809,
+                      "envelope": {
+                        "sender": "me@samples.mailgun.org",
+                        "transport": ""
+                      },
+                      "event": "accepted",
+                      "campaigns": [],
+                      "user-variables": {},
+                      "flags": {
+                        "is-authenticated": true,
+                        "is-test-mode": false
+                      },
+                      "message": {
+                        "headers": {
+                          "to": "foo@example.com",
+                          "message-id": "20130812164300.28108.52546@samples.mailgun.org",
+                          "from": "Excited User <me@samples.mailgun.org>",
+                          "subject": "Hello"
+                        },
+                        "attachments": [],
+                        "recipients": [
+                          "foo@example.com",
+                          "baz@example.com",
+                          "bar@example.com"
+                        ],
+                        "size": 69
+                      },
+                      "recipient": "baz@example.com",
+                      "method": "http"
+                    ,
+                    }
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'https://api.mailgun.net/v3'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/stats/total':
+    get:
+      tags:
+        - Stats
+      summary: Get domain stats
+      description: >-
+        Returns total stats for a given domain.
+
+
+        | Parameter  |
+        Description                                                                                                            
+        |
+
+        |------------|-------------------------------------------------------------------------------------------------------------------------|
+
+        | event      | The type of the event. For a complete list of all events
+        written to the log see the [Event
+        Types](https://documentation.mailgun.com/en/latest/api-stats.html#event-types)
+        table below. (Required) |
+
+        | start      | The starting time. Should be in [RFC
+        2822#page-14](https://tools.ietf.org/html/rfc2822.html#page-14) or unix
+        epoch format. Default: 7 days from the current time.           |
+
+        | end        | The ending date. Should be in [RFC
+        2822#page-14](https://tools.ietf.org/html/rfc2822.html#page-14) or unix
+        epoch format. Default: current time.                             |
+
+        | resolution | Can be either `hour`, `day` or `month`. Default:
+        `day`                                                                         
+        |
+
+        | duration   | Period of time with resoluton encoded. See
+        [Duration](https://documentation.mailgun.com/en/latest/api-stats.html#duration)
+        for more info. If provided, overwrites the start date.              |
+      operationId: GetDomainStats
+      parameters:
+        - name: event
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: accepted
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetdomainstatsResponse'
+              example:
+                end: 'Fri, 01 Apr 2012 00:00:00 UTC'
+                resolution: month
+                start: 'Tue, 14 Feb 2012 00:00:00 UTC'
+                stats:
+                  - time: 'Tue, 14 Feb 2012 00:00:00 UTC'
+                    accepted:
+                      outgoing: 10
+                      incoming: 5
+                      total: 15
+                    delivered:
+                      smtp: 15
+                      http: 5
+                      total: 20
+                    failed:
+                      permanent:
+                        bounce: 4
+                        delayed-bounce: 1
+                        suppress-bounce: 1
+                        suppress-unsubscribe: 2
+                        suppress-complaint: 3
+                        total: 10
+                      temporary:
+                        espblock: 1
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/stats':
+    get:
+      tags:
+        - Stats
+      summary: Get stat items
+      description: >-
+        Returns a list of event stats items. Each record represents counts for
+        one event per one day.
+
+
+        > **Warning**: This is the legacy API that should not be used.
+      operationId: GetStatItems
+      parameters:
+        - name: limit
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 100
+        - name: skip
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 0
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/tags':
+    get:
+      tags:
+        - Tags
+      summary: Get domain tags
+      description: >-
+        Returns a list of tags for a domain. Provides pagination urls if the
+        result set is too long to be returned in a single response.
+      operationId: GetDomainTags
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/tags/{tag}':
+    get:
+      tags:
+        - Tags
+      summary: Get single tag
+      description: Returns a given tag.
+      operationId: GetSingleTag
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: tag
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    put:
+      tags:
+        - Tags
+      summary: Update tag
+      description: Updates a given tag with the information provided.
+      operationId: UpdateTag
+      parameters:
+        - name: tag
+          in: path
+          description: Name of the tag
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - domain
+                - description
+              type: object
+              properties:
+                domain:
+                  type: string
+                  description: Name of the domain
+                description:
+                  type: string
+                  description: Optional description of a tag
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+        - Tags
+      summary: Delete tag
+      description: 'Deletes the tag. Note: The statistics for the tag are not destroyed.'
+      operationId: DeleteTag
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: tag
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - domain
+              type: object
+              properties:
+                domain:
+                  type: string
+                  description: Name of the domain
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/tags/{tag}/stats/aggregates/providers':
+    get:
+      tags:
+        - Tags
+      summary: Get domain providers
+      description: >-
+        Returns a list of email providers for a given domain for different event
+        types.
+      operationId: GetDomainProviders
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: tag
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/tags/{tag}/stats':
+    get:
+      tags:
+        - Tags
+      summary: Get tag stats
+      description: Returns statistics for a given tag.
+      operationId: GetTagStats
+      parameters:
+        - name: event
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: accepted
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: tag
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/tags/{tag}/stats/aggregates/countries':
+    get:
+      tags:
+        - Tags
+      summary: Get domain countries
+      description: >-
+        Returns a list of countries of origin for a given domain for different
+        event types.
+      operationId: GetDomainCountries
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: tag
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/tags/{tag}/stats/aggregates/devices':
+    get:
+      tags:
+        - Tags
+      summary: Get domain devices
+      description: >-
+        Returns a list of devices for a given domain that have triggered event
+        types.
+      operationId: GetDomainDevices
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: tag
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/bounces':
+    get:
+      tags:
+        - Bounces
+      summary: Get bounces
+      description: Paginate over a list of bounces for a domain.
+      operationId: GetBounces
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: |-
+                  {
+                    "items":
+                      [
+                        {
+                          "address": "alice@example.com",
+                          "code": "550",
+                          "error": "No such mailbox",
+                          "created_at": "Fri, 21 Oct 2011 11:02:55 GMT"
+                        },
+                        
+                      ],
+                    "paging":
+                      {
+                        "first": <first page URL>,
+                        "next": <next page URL>,
+                        "previous": <previous page URL>,
+                        "last": <last page URL>
+                      }
+                  }
+              example: |-
+                {
+                  "items":
+                    [
+                      {
+                        "address": "alice@example.com",
+                        "code": "550",
+                        "error": "No such mailbox",
+                        "created_at": "Fri, 21 Oct 2011 11:02:55 GMT"
+                      },
+                      
+                    ],
+                  "paging":
+                    {
+                      "first": <first page URL>,
+                      "next": <next page URL>,
+                      "previous": <previous page URL>,
+                      "last": <last page URL>
+                    }
+                }
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    post:
+      tags:
+        - Bounces
+      summary: Add single bounce
+      description: >-
+        Add a bounce record to the bounce list. Updates the existing record if
+        the address is already there.
+      operationId: AddSingleBounce
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+        - Bounces
+      summary: Delete bounce list
+      description: >-
+        Add a bounce record to the bounce list. Updates the existing record if
+        the address is already there.
+      operationId: DeleteBounceList
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletebouncelistResponse'
+              example:
+                message: 4 addresses have been added to the bounces table
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/bounces/{address}':
+    get:
+      tags:
+        - Bounces
+      summary: Get single bounce
+      description: >-
+        Fetch a single bounce event by a given email address. Useful to check if
+        a given email address has bounced before.
+      operationId: GetSingleBounce
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: address
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetsinglebounceResponse'
+              example:
+                address: foo@bar.com
+                code: 550
+                error: No such mailbox
+                created_at: 'Fri, 21 Oct 2011 11:02:55 GMT'
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+        - Bounces
+      summary: Delete bounce
+      description: >-
+        Add a bounce record to the bounce list. Updates the existing record if
+        the address is already there.
+      operationId: DeleteBounce
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: address
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema:
+                type: object
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/{mydomain}/bounces':
+    post:
+      tags:
+        - Bounces
+      summary: Add multiple bounces
+      description: >-
+        Add a bounce record to the bounce list. Updates the existing record if
+        the address is already there.
+      operationId: AddMultipleBounces
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/AddmultiplebouncesRequest'
+              description: ''
+            example: >-
+              [{"address":"alice@example.com","code":"550","error":"Bounced","created_at":"Thu,
+              13 Oct 2011 18:02:00
+              UTC"},{"address":"bob@example.com","code":"550","error":"Bounced"},{"address":"carol@example.com","code":"550"},{"address":"dan@example.com"}]
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddmultiplebouncesResponse'
+              example:
+                message: 4 addresses have been added to the bounces table
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'https://api.mailgun.net/v3'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/complaints':
+    get:
+      tags:
+        - Complaints
+      summary: Get all complaints
+      description: >-
+        Add multiple unsubscribe records to the unsubscribe list in a single API
+        call.
+      operationId: GetAllComplaints
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema:
+                type: object
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    post:
+      tags:
+        - Complaints
+      summary: Add multiple complaints
+      description: >-
+        Add multiple unsubscribe records to the unsubscribe list in a single API
+        call.
+      operationId: AddMultipleComplaints
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/AddmultiplecomplaintsRequest'
+              description: ''
+            example: >-
+              [{"address":"alice@example.com","created_at":"Thu, 13 Oct 2011
+              18:02:00 UTC"},{"address":"bob@example.com"}]
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddmultiplecomplaintsResponse'
+              example:
+                message: 4 addresses have been added to the bounces table
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/complaints/{address}':
+    get:
+      tags:
+        - Complaints
+      summary: Get single complaint
+      description: >-
+        Add multiple unsubscribe records to the unsubscribe list in a single API
+        call.
+      operationId: GetSingleComplaint
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: address
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetsinglecomplaintResponse'
+              example:
+                message: 4 addresses have been added to the bounces table
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+        - Complaints
+      summary: Delete single complaint
+      description: Remove a given spam complaint.
+      operationId: DeleteSingleComplaint
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: address
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/DeletesinglecomplaintRequest'
+              description: ''
+            example: >-
+              [{"address":"alice@example.com","created_at":"Thu, 13 Oct 2011
+              18:02:00 UTC"},{"address":"bob@example.com"}]
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletesinglecomplaintResponse'
+              example:
+                message: 4 addresses have been added to the bounces table
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/{mydomain}/complaints':
+    post:
+      tags:
+        - Complaints
+      summary: Add single complaint
+      description: >-
+        Add multiple unsubscribe records to the unsubscribe list in a single API
+        call.
+      operationId: AddSingleComplaint
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            example: application/json
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddsinglecomplaintResponse'
+              example:
+                message: 4 addresses have been added to the bounces table
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'https://api.mailgun.net/v3'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/unsubscribes':
+    get:
+      tags:
+        - Unsubscribes
+      summary: Get domain unsubscribes
+      description: Paginate over a list of unsubscribes for a domain.
+      operationId: GetDomainUnsubscribes
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetdomainunsubscribesResponse'
+              example:
+                message: 4 addresses have been added to the bounces table
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    post:
+      tags:
+        - Unsubscribes
+      summary: Add single unsubscribe
+      description: Paginate over a list of unsubscribes for a domain.
+      operationId: AddSingleUnsubscribe
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema:
+                type: object
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/unsubscribes/{address}':
+    get:
+      tags:
+        - Unsubscribes
+      summary: Get single unsubscribe
+      description: Paginate over a list of unsubscribes for a domain.
+      operationId: GetSingleUnsubscribe
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: address
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            text/plain:
+              schema:
+                type: object
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+        - Unsubscribes
+      summary: Delete single unsubscribe
+      description: >-
+        Add multiple unsubscribe records to the unsubscribe list in a single API
+        call.
+      operationId: DeleteSingleUnsubscribe
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: address
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletesingleunsubscribeResponse'
+              example:
+                message: 4 addresses have been added to the bounces table
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v3/routes:
+    get:
+      tags:
+        - Routes
+      summary: Get routes
+      description: >-
+        Fetches the list of routes. Note that routes are defined globally, per
+        account, not per domain as most of other API calls.
+      operationId: GetRoutes
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers:
+            Access-Control-Allow-Headers:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 'Content-Type, x-requested-with'
+            Access-Control-Allow-Methods:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 'GET, POST, PUT, DELETE, OPTIONS'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Access-Control-Max-Age:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 600
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Content-Disposition:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: inline
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 37
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 'Mon, 27 Aug 2018 15:34:23 GMT'
+            Server:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nginx
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetroutesResponse'
+              example:
+                total_count: 266
+                items:
+                  - description: Sample route
+                    created_at: 'Wed, 15 Feb 2012 12:58:12 GMT'
+                    actions:
+                      - 'forward("http://myhost.com/messages/")'
+                      - stop()
+                    priority: 0
+                    expression: match_recipient(".*@samples.mailgun.org")
+                    id: 4f3babe4ba8a481c6400476a
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    post:
+      tags:
+        - Routes
+      summary: Create route
+      description: Creates a new route.
+      operationId: CreateRoute
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreaterouteErrorResponse'
+              example:
+                message: Route has been created
+                route:
+                  description: Sample route
+                  created_at: 'Wed, 15 Feb 2012 13:03:31 GMT'
+                  actions:
+                    - 'forward("http://myhost.com/messages/")'
+                    - stop()
+                  priority: 0
+                  expression: match_recipient(".*@samples.mailgun.org")
+                  id: 4f3bad2335335426750048c6
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/routes/{route}':
+    post:
+      tags:
+        - Routes
+      summary: Get single route
+      description: Returns a single route object based on its ID.
+      operationId: GetSingleRoute
+      parameters:
+        - name: route
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetsinglerouteResponse'
+              example:
+                route:
+                  description: Sample route
+                  created_at: 'Wed, 15 Feb 2012 13:03:31 GMT'
+                  actions:
+                    - 'forward("http://myhost.com/messages/")'
+                    - stop()
+                  priority: 0
+                  expression: match_recipient(".*@samples.mailgun.org")
+                  id: 4f3bad2335335426750048c6
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    put:
+      tags:
+        - Routes
+      summary: Update route
+      description: >-
+        Updates a given route by ID. All parameters are optional: this API call
+        only updates the specified fields leaving others unchanged.
+      operationId: UpdateRoute
+      parameters:
+        - name: route
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/{mydomain}/routes/{id}':
+    delete:
+      tags:
+        - Routes
+      summary: Delete route
+      description: Deletes a route based on the id.
+      operationId: DeleteRoute
+      parameters:
+        - name: id
+          in: path
+          description: ID of the route
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/domains/{mydomain}/webhooks':
+    get:
+      tags:
+        - Webhooks
+      summary: Get webhooks
+      description: Returns a list of webhooks set for the specified domain.
+      operationId: GetWebhooks
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers:
+            Access-Control-Allow-Headers:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 'Content-Type, x-requested-with'
+            Access-Control-Allow-Methods:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 'GET, POST, PUT, DELETE, OPTIONS'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Access-Control-Max-Age:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 600
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Content-Disposition:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: inline
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 20
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 'Wed, 22 Aug 2018 19:16:05 GMT'
+            Server:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nginx
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetwebhooksResponse'
+              example:
+                webhooks:
+                  opened:
+                    urls:
+                      - 'https://your_domain.com/v1/opened'
+                      - 'https://your_domain.com/v2/opened'
+                  clicked:
+                    urls:
+                      - 'https://your_domain.com/v1/clicked'
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    post:
+      tags:
+        - Webhooks
+      summary: Create webhook
+      description: >-
+        Creates a new webhook. Note When adding a Clicked or Opened webhook,
+        ensure that you also have tracking enabled.
+      operationId: CreateWebhook
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - domain
+                - id
+                - url
+              type: object
+              properties:
+                domain:
+                  type: string
+                  description: Name of the domain
+                id:
+                  type: string
+                  description: Name of the webhook
+                url:
+                  type: string
+                  description: URL for the webhook event. May be repeated up to 3 times.
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatewebhookResponse'
+              example:
+                message: Webhook has been created
+                webhook:
+                  urls:
+                    - 'https://your_domain.com/v1/clicked'
+                    - 'https://your_domain.com/v2/clicked'
+                    - 'https://your_partner_domain.com/v1/clicked'
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/domains/{mydomain}/webhooks/{webhookname}':
+    get:
+      tags:
+        - Webhooks
+      summary: Get webhook details
+      description: Returns details about a the webhook specified in the URL.
+      operationId: GetWebhookDetails
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: webhookname
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetwebhookdetailsResponse'
+              example:
+                webhook:
+                  urls:
+                    - 'https://your_domain.com/v1/clicked'
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    put:
+      tags:
+        - Webhooks
+      summary: Update webhook
+      description: Updates an existing webhook.
+      operationId: UpdateWebhook
+      parameters:
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: webhookname
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatewebhookResponse'
+              example:
+                message: Webhook has been updated
+                webhook:
+                  urls:
+                    - 'https://your_domain.com/v1/clicked'
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+        - Webhooks
+      summary: Delete webhook
+      description: ''
+      operationId: DeleteWebhook
+      parameters:
+        - name: webhookname
+          in: path
+          description: Name of the webhook
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: mydomain
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - domain
+              type: object
+              properties:
+                domain:
+                  type: string
+                  description: Name of the domain
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletewebhookResponse'
+              example:
+                message: Webhook has been deleted
+                webhook:
+                  urls:
+                    - 'https://your_domain.com/v1/clicked'
+                    - 'https://your_domain.com/v2/clicked'
+                    - 'https://your_partner_domain.com/v1/clicked'
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v3/lists/pages:
+    get:
+      tags:
+        - Mailing Lists
+      summary: Get mailing lists
+      description: ''
+      operationId: GetMailingLists
+      parameters:
+        - name: limit
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 100
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetmailinglistsResponse'
+              example:
+                items:
+                  - access_level: everyone
+                    address: dev@samples.mailgun.org
+                    created_at: 'Tue, 06 Mar 2012 05:44:45 GMT'
+                    description: Mailgun developers list
+                    members_count: 1
+                    name: ''
+                  - access_level: readonly
+                    address: bar@example.com
+                    created_at: 'Wed, 06 Mar 2013 11:39:51 GMT'
+                    description: ''
+                    members_count: 2
+                    name: ''
+                paging:
+                  first: 'https://url_to_next_page'
+                  last: 'https://url_to_last_page'
+                  next: 'https://url_to_next_page'
+                  previous: 'https://url_to_previous_page'
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/lists/{address}':
+    get:
+      tags:
+        - Mailing Lists
+      summary: Get single mailing list by address
+      description: ''
+      operationId: GetSingleMailingListByAddress
+      parameters:
+        - name: address
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    put:
+      tags:
+        - Mailing Lists
+      summary: Update mailing list
+      description: ''
+      operationId: UpdateMailingList
+      parameters:
+        - name: address
+          in: path
+          description: 'New mailing list address, e.g. devs@mg.net (optional)'
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - name
+                - description
+                - access_level
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'New name, e.g. My newsletter (optional)'
+                description:
+                  type: string
+                  description: Description string (optional)
+                access_level:
+                  type: string
+                  description: >-
+                    List access level, one of: readonly (default), members,
+                    everyone
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+        - Mailing Lists
+      summary: Delete mailing list
+      description: Deletes a mailing list.
+      operationId: DeleteMailingList
+      parameters:
+        - name: address
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v3/lists:
+    post:
+      tags:
+        - Mailing Lists
+      summary: Create mailing list
+      description: ''
+      operationId: CreateMailingList
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - address
+                - name
+                - description
+                - access_level
+              type: object
+              properties:
+                address:
+                  type: string
+                  description: >-
+                    A valid email address for the mailing list, e.g.
+                    developers@mailgun.net, or Developers <devs@mg.net>
+                name:
+                  type: string
+                  description: 'Mailing list name, e.g. Developers (optional)'
+                description:
+                  type: string
+                  description: A description (optional)
+                access_level:
+                  type: string
+                  description: >-
+                    List access level, one of: readonly (default), members,
+                    everyone
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatemailinglistResponse'
+              example:
+                message: Mailing list has been created
+                list:
+                  created_at: 'Tue, 06 Mar 2012 05:44:45 GMT'
+                  address: dev@samples.mailgun.org
+                  members_count: 0
+                  description: Mailgun developers list
+                  name: ''
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/lists/{address}/members/pages':
+    get:
+      tags:
+        - Mailing Lists
+      summary: Get mailing list members
+      description: Paginate over list members in the given mailing list
+      operationId: GetMailingListMembers
+      parameters:
+        - name: subscribed
+          in: query
+          description: 'yes to lists subscribed, no for unsubscribed. list all if not set'
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 100
+        - name: address
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/lists/{address}/members/{memberaddress}':
+    get:
+      tags:
+        - Mailing Lists
+      summary: Get mailing list member
+      description: Retrieves a mailing list member.
+      operationId: GetMailingListMember
+      parameters:
+        - name: address
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: memberaddress
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    put:
+      tags:
+        - Mailing Lists
+      summary: Update mailing list member
+      description: >-
+        Updates a mailing list member with given properties. Won’t touch the
+        property if it’s not passed in.
+      operationId: UpdateMailingListMember
+      parameters:
+        - name: address
+          in: path
+          description: >-
+            Valid email address specification, e.g. Alice <alice@example.com> or
+            just alice@example.com
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: memberaddress
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - name
+                - vars
+                - subscribed
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Recipient name, e.g. Alice'
+                vars:
+                  type: string
+                  description: >-
+                    JSON-encoded dictionary string with arbitrary parameters,
+                    e.g. {"gender":"female","age":27}
+                subscribed:
+                  type: string
+                  description: 'no to set unsubscribed, yes as subscribed'
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+    delete:
+      tags:
+        - Mailing Lists
+      summary: Delete member from mailing list
+      description: Delete a mailing list member.
+      operationId: DeleteMemberFromMailingList
+      parameters:
+        - name: address
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: memberaddress
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/lists/{address}/members':
+    post:
+      tags:
+        - Mailing Lists
+      summary: Add member to mailing list
+      description: Adds a member to the mailing list.
+      operationId: AddMemberToMailingList
+      parameters:
+        - name: address
+          in: path
+          description: >-
+            Valid email address specification, e.g. Alice <alice@example.com> or
+            just alice@example.com
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - name
+                - vars
+                - subscribed
+                - upsert
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Optional member name
+                vars:
+                  type: string
+                  description: >-
+                    JSON-encoded dictionary string with arbitrary parameters,
+                    e.g. {"gender":"female","age":27}
+                subscribed:
+                  type: string
+                  description: 'yes to add as subscribed (default), no as unsubscribed'
+                upsert:
+                  type: string
+                  description: |-
+                    yes to update member if present, no to
+                    raise error in case of a duplicate member (default)
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddmembertomailinglistErrorResponse'
+              example:
+                member:
+                  vars:
+                    age: 26
+                  name: Bob Bar
+                  subscribed: true
+                  address: bar@example.com
+                message: Mailing list member has been created
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  '/v3/lists/{address}/members.json':
+    post:
+      tags:
+        - Mailing Lists
+      summary: Add multiple members to mailing list
+      description: 'Adds multiple members, up to 1,000 per call, to a Mailing List.'
+      operationId: AddMultipleMembersToMailingList
+      parameters:
+        - name: address
+          in: path
+          description: ''
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              required:
+                - members
+                - upsert
+              type: object
+              properties:
+                members:
+                  type: string
+                  description: >-
+                    JSON-encoded array. Elements can be either addresses, e.g.
+                    ["bob@example.com", "alice@example.com"], or JSON objects,
+                    e.g. [{"address": "bob@example.com", "name": "Bob",
+                    "subscribed": false}, {"address": "alice@example.com",
+                    "name": "Alice"}] . Custom variables can be provided, see
+                    examples.
+                upsert:
+                  type: string
+                  description: >-
+                    yes to update existing members, no (default) to ignore
+                    duplicates
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v3/address/validate:
+    get:
+      tags:
+        - Email Validation
+      summary: Validate address
+      description: >-
+        | Field Explanation:    |        
+        |                                                                                                                        
+        |
+
+        |-----------------------|---------|-------------------------------------------------------------------------------------------------------------------------|
+
+        |                       |        
+        |                                                                                                                        
+        |
+
+        | Parameter             | Type    |
+        Description                                                                                                            
+        |
+
+        | address               | string  | Email address being
+        validated                                                                                          
+        |
+
+        | did_you_mean          | string  | Null if nothing, however if a
+        potential typo is made, the closest suggestion is
+        provided                                |
+
+        | is_disposable_address | boolean | If the domain is in a list of
+        disposable email addresses, this will be appropriately
+        categorized                        |
+
+        | is_role_address       | boolean | Checks the mailbox portion of the
+        email if it matches a specific role type (‘admin’, ‘sales’,
+        ‘webmaster’)              |
+
+        | is_valid              | boolean | Runs the email segments across a
+        valid known provider rule list. If a violation occurs this value is
+        false              |
+
+        | mailbox_verification  | string  | If the mail_verification flag is
+        enabled, a call is made to the ESP to return existence. (true, false,
+        unknown or null) |
+
+        | parts                 | string  | (display_name, domain, local_part):
+        Parsed segments of the provided email
+        address                                       |
+      operationId: ValidateAddress
+      parameters:
+        - name: address
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: foo@bar.com
+        - name: api_key
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: pub-key
+        - name: mailbox_verification
+          in: query
+          description: ''
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: boolean
+            example: true
+      responses:
+        '200':
+          description: ''
+          headers:
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 0
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 'Mon, 27 Aug 2018 19:59:18 GMT'
+            Server:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nginx
+            Www-Authenticate:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Basic realm="MG API"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidateaddressResponse'
+              example:
+                address: foo@mailgun.net
+                did_you_mean: null
+                is_disposable_address: false
+                is_role_address: false
+                is_valid: true
+                mailbox_verification: null
+                parts:
+                  display_name: null
+                  domain: mailgun.net
+                  local_part: foo
+                reason: null
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v3/address/parse:
+    get:
+      tags:
+        - Email Validation
+      summary: Parse email address list
+      description: ''
+      operationId: ParseEmailAddressList
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseemailaddresslistResponse'
+              example:
+                parsed:
+                  - Alice <alice@example.com>
+                  - bob@example.com
+                unparseable: []
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v3/address/private/validate:
+    get:
+      tags:
+        - Email Validation
+      summary: Validate address (private)
+      description: ''
+      operationId: ValidateAddress(private)
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+  /v3/address/private/varse:
+    get:
+      tags:
+        - Email Validation
+      summary: Parse email address list (private)
+      description: ''
+      operationId: ParseEmailAddressList(private)
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security:
+        - httpBasic: []
+      servers:
+        - url: 'http:'
+          variables: {}
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+components:
+  schemas:
+    SendmessageResponse:
+      title: SendmessageResponse
+      required:
+        - message
+        - id
+      type: object
+      properties:
+        message:
+          type: string
+        id:
+          type: string
+      example:
+        message: Queued. Thank you.
+        id: <20111114174239.25659.5817@samples.mailgun.org>
+    SendmessagewithMIMEResponse:
+      title: SendmessagewithMIMEResponse
+      required:
+        - id
+        - message
+      type: object
+      properties:
+        id:
+          type: string
+        message:
+          type: string
+      example:
+        id: >-
+          <20180821193728.1.6AD4EE2093B45F30@sandbox974aad6390954e39b88f4bfa8cf184c3.mailgun.org>
+        message: Queued. Thank you.
+    GetallIPsforanaccountResponse:
+      title: GetallIPsforanaccountResponse
+      required:
+        - items
+        - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: string
+          description: ''
+        total_count:
+          type: integer
+          format: int32
+      example:
+        items:
+          - 192.161.0.1
+          - 192.168.0.2
+        total_count: 2
+    GetspecificIPResponse:
+      title: GetspecificIPResponse
+      required:
+        - ip
+        - dedicated
+        - rdns
+      type: object
+      properties:
+        ip:
+          type: string
+        dedicated:
+          type: boolean
+        rdns:
+          type: string
+      example:
+        ip: 192.161.0.1
+        dedicated: true
+        rdns: luna.mailgun.net
+    GetlistofIPsforadomainResponse:
+      title: GetlistofIPsforadomainResponse
+      required:
+        - items
+        - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: string
+          description: ''
+        total_count:
+          type: integer
+          format: int32
+      example:
+        items:
+          - 192.161.0.1
+          - 192.168.0.2
+        total_count: 2
+    AssignIPtodomainResponse:
+      title: AssignIPtodomainResponse
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: success
+    UnassignIPfromadomainResponse:
+      title: UnassignIPfromadomainResponse
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: success
+    GetdomainstatsResponse:
+      title: GetdomainstatsResponse
+      required:
+        - end
+        - resolution
+        - start
+        - stats
+      type: object
+      properties:
+        end:
+          type: string
+        resolution:
+          type: string
+        start:
+          type: string
+        stats:
+          type: array
+          items:
+            $ref: '#/components/schemas/Stat'
+          description: ''
+      example:
+        end: 'Fri, 01 Apr 2012 00:00:00 UTC'
+        resolution: month
+        start: 'Tue, 14 Feb 2012 00:00:00 UTC'
+        stats:
+          - time: 'Tue, 14 Feb 2012 00:00:00 UTC'
+            accepted:
+              outgoing: 10
+              incoming: 5
+              total: 15
+            delivered:
+              smtp: 15
+              http: 5
+              total: 20
+            failed:
+              permanent:
+                bounce: 4
+                delayed-bounce: 1
+                suppress-bounce: 1
+                suppress-unsubscribe: 2
+                suppress-complaint: 3
+                total: 10
+              temporary:
+                espblock: 1
+    Stat:
+      title: Stat
+      required:
+        - time
+        - accepted
+        - delivered
+        - failed
+      type: object
+      properties:
+        time:
+          type: string
+          example: 'Tue, 14 Feb 2012 00:00:00 UTC'
+        accepted:
+          $ref: '#/components/schemas/Accepted'
+        delivered:
+          $ref: '#/components/schemas/Delivered'
+        failed:
+          $ref: '#/components/schemas/Failed'
+    Accepted:
+      title: Accepted
+      required:
+        - outgoing
+        - incoming
+        - total
+      type: object
+      properties:
+        outgoing:
+          type: integer
+          format: int32
+          example: 10
+        incoming:
+          type: integer
+          format: int32
+          example: 5
+        total:
+          type: integer
+          format: int32
+          example: 15
+      example:
+        outgoing: 10
+        incoming: 5
+        total: 15
+    Delivered:
+      title: Delivered
+      required:
+        - smtp
+        - http
+        - total
+      type: object
+      properties:
+        smtp:
+          type: integer
+          format: int32
+          example: 15
+        http:
+          type: integer
+          format: int32
+          example: 5
+        total:
+          type: integer
+          format: int32
+          example: 20
+      example:
+        smtp: 15
+        http: 5
+        total: 20
+    Failed:
+      title: Failed
+      required:
+        - permanent
+        - temporary
+      type: object
+      properties:
+        permanent:
+          $ref: '#/components/schemas/Permanent'
+        temporary:
+          $ref: '#/components/schemas/Temporary'
+      example:
+        permanent:
+          bounce: 4
+          delayed-bounce: 1
+          suppress-bounce: 1
+          suppress-unsubscribe: 2
+          suppress-complaint: 3
+          total: 10
+        temporary:
+          espblock: 1
+    Permanent:
+      title: Permanent
+      required:
+        - bounce
+        - delayed-bounce
+        - suppress-bounce
+        - suppress-unsubscribe
+        - suppress-complaint
+        - total
+      type: object
+      properties:
+        bounce:
+          type: integer
+          format: int32
+          example: 4
+        delayed-bounce:
+          type: integer
+          format: int32
+          example: 1
+        suppress-bounce:
+          type: integer
+          format: int32
+          example: 1
+        suppress-unsubscribe:
+          type: integer
+          format: int32
+          example: 2
+        suppress-complaint:
+          type: integer
+          format: int32
+          example: 3
+        total:
+          type: integer
+          format: int32
+          example: 10
+      example:
+        bounce: 4
+        delayed-bounce: 1
+        suppress-bounce: 1
+        suppress-unsubscribe: 2
+        suppress-complaint: 3
+        total: 10
+    Temporary:
+      title: Temporary
+      required:
+        - espblock
+      type: object
+      properties:
+        espblock:
+          type: integer
+          format: int32
+          example: 1
+      example:
+        espblock: 1
+    GetsinglebounceResponse:
+      title: GetsinglebounceResponse
+      required:
+        - address
+        - code
+        - error
+        - created_at
+      type: object
+      properties:
+        address:
+          type: string
+        code:
+          type: string
+        error:
+          type: string
+        created_at:
+          type: string
+      example:
+        address: foo@bar.com
+        code: 550
+        error: No such mailbox
+        created_at: 'Fri, 21 Oct 2011 11:02:55 GMT'
+    AddmultiplebouncesRequest:
+      title: AddmultiplebouncesRequest
+      required:
+        - address
+      type: object
+      properties:
+        address:
+          type: string
+          example: alice@example.com
+        code:
+          type: string
+          example: 550
+        error:
+          type: string
+          example: Bounced
+        created_at:
+          type: string
+          example: 'Thu, 13 Oct 2011 18:02:00 UTC'
+      example:
+        address: alice@example.com
+        code: 550
+        error: Bounced
+        created_at: 'Thu, 13 Oct 2011 18:02:00 UTC'
+    AddmultiplebouncesResponse:
+      title: AddmultiplebouncesResponse
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 4 addresses have been added to the bounces table
+    DeletebouncelistResponse:
+      title: DeletebouncelistResponse
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 4 addresses have been added to the bounces table
+    GetsinglecomplaintResponse:
+      title: GetsinglecomplaintResponse
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 4 addresses have been added to the bounces table
+    AddsinglecomplaintResponse:
+      title: AddsinglecomplaintResponse
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 4 addresses have been added to the bounces table
+    AddmultiplecomplaintsRequest:
+      title: AddmultiplecomplaintsRequest
+      required:
+        - address
+      type: object
+      properties:
+        address:
+          type: string
+          example: alice@example.com
+        created_at:
+          type: string
+          example: 'Thu, 13 Oct 2011 18:02:00 UTC'
+      example:
+        address: alice@example.com
+        created_at: 'Thu, 13 Oct 2011 18:02:00 UTC'
+    AddmultiplecomplaintsResponse:
+      title: AddmultiplecomplaintsResponse
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 4 addresses have been added to the bounces table
+    DeletesinglecomplaintRequest:
+      title: DeletesinglecomplaintRequest
+      required:
+        - address
+      type: object
+      properties:
+        address:
+          type: string
+          example: alice@example.com
+        created_at:
+          type: string
+          example: 'Thu, 13 Oct 2011 18:02:00 UTC'
+      example:
+        address: alice@example.com
+        created_at: 'Thu, 13 Oct 2011 18:02:00 UTC'
+    DeletesinglecomplaintResponse:
+      title: DeletesinglecomplaintResponse
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 4 addresses have been added to the bounces table
+    GetdomainunsubscribesResponse:
+      title: GetdomainunsubscribesResponse
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 4 addresses have been added to the bounces table
+    AddmultipleunsubscribesRequest:
+      title: AddmultipleunsubscribesRequest
+      required:
+        - address
+      type: object
+      properties:
+        address:
+          type: string
+          example: alice@example.com
+        tags:
+          type: array
+          items:
+            type: string
+          description: ''
+        created_at:
+          type: string
+          example: 'Thu, 13 Oct 2011 18:02:00 UTC'
+      example:
+        address: alice@example.com
+        tags:
+          - some tag
+        created_at: 'Thu, 13 Oct 2011 18:02:00 UTC'
+    AddmultipleunsubscribesResponse:
+      title: AddmultipleunsubscribesResponse
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 4 addresses have been added to the bounces table
+    DeletesingleunsubscribeResponse:
+      title: DeletesingleunsubscribeResponse
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 4 addresses have been added to the bounces table
+    GetroutesResponse:
+      title: GetroutesResponse
+      required:
+        - total_count
+        - items
+      type: object
+      properties:
+        total_count:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          description: ''
+      example:
+        total_count: 266
+        items:
+          - description: Sample route
+            created_at: 'Wed, 15 Feb 2012 12:58:12 GMT'
+            actions:
+              - 'forward("http://myhost.com/messages/")'
+              - stop()
+            priority: 0
+            expression: match_recipient(".*@samples.mailgun.org")
+            id: 4f3babe4ba8a481c6400476a
+    Item:
+      title: Item
+      required:
+        - description
+        - created_at
+        - actions
+        - priority
+        - expression
+        - id
+      type: object
+      properties:
+        description:
+          type: string
+          example: Sample route
+        created_at:
+          type: string
+          example: 'Wed, 15 Feb 2012 12:58:12 GMT'
+        actions:
+          type: array
+          items:
+            type: string
+          description: ''
+        priority:
+          type: integer
+          format: int32
+          example: 0
+        expression:
+          type: string
+          example: match_recipient(".*@samples.mailgun.org")
+        id:
+          type: string
+          example: 4f3babe4ba8a481c6400476a
+    GetsinglerouteResponse:
+      title: GetsinglerouteResponse
+      required:
+        - route
+      type: object
+      properties:
+        route:
+          $ref: '#/components/schemas/Route'
+      example:
+        route:
+          description: Sample route
+          created_at: 'Wed, 15 Feb 2012 13:03:31 GMT'
+          actions:
+            - 'forward("http://myhost.com/messages/")'
+            - stop()
+          priority: 0
+          expression: match_recipient(".*@samples.mailgun.org")
+          id: 4f3bad2335335426750048c6
+    Route:
+      title: Route
+      required:
+        - description
+        - created_at
+        - actions
+        - priority
+        - expression
+        - id
+      type: object
+      properties:
+        description:
+          type: string
+        created_at:
+          type: string
+        actions:
+          type: array
+          items:
+            type: string
+          description: ''
+        priority:
+          type: integer
+          format: int32
+        expression:
+          type: string
+        id:
+          type: string
+    CreaterouteErrorResponse:
+      title: CreaterouteErrorResponse
+      required:
+        - message
+        - route
+      type: object
+      properties:
+        message:
+          type: string
+        route:
+          $ref: '#/components/schemas/Route'
+      example:
+        message: Route has been created
+        route:
+          description: Sample route
+          created_at: 'Wed, 15 Feb 2012 13:03:31 GMT'
+          actions:
+            - 'forward("http://myhost.com/messages/")'
+            - stop()
+          priority: 0
+          expression: match_recipient(".*@samples.mailgun.org")
+          id: 4f3bad2335335426750048c6
+    GetwebhooksResponse:
+      title: GetwebhooksResponse
+      required:
+        - webhooks
+      type: object
+      properties:
+        webhooks:
+          $ref: '#/components/schemas/Webhooks'
+      example:
+        webhooks:
+          opened:
+            urls:
+              - 'https://your_domain.com/v1/opened'
+              - 'https://your_domain.com/v2/opened'
+          clicked:
+            urls:
+              - 'https://your_domain.com/v1/clicked'
+    Webhooks:
+      title: Webhooks
+      required:
+        - opened
+        - clicked
+      type: object
+      properties:
+        opened:
+          $ref: '#/components/schemas/Opened'
+        clicked:
+          $ref: '#/components/schemas/Clicked'
+    Opened:
+      title: Opened
+      required:
+        - urls
+      type: object
+      properties:
+        urls:
+          type: array
+          items:
+            type: string
+          description: ''
+    Clicked:
+      title: Clicked
+      required:
+        - urls
+      type: object
+      properties:
+        urls:
+          type: array
+          items:
+            type: string
+          description: ''
+    GetwebhookdetailsResponse:
+      title: GetwebhookdetailsResponse
+      required:
+        - webhook
+      type: object
+      properties:
+        webhook:
+          $ref: '#/components/schemas/Webhook'
+      example:
+        webhook:
+          urls:
+            - 'https://your_domain.com/v1/clicked'
+    Webhook:
+      title: Webhook
+      required:
+        - urls
+      type: object
+      properties:
+        urls:
+          type: array
+          items:
+            type: string
+          description: ''
+    CreatewebhookResponse:
+      title: CreatewebhookResponse
+      required:
+        - message
+        - webhook
+      type: object
+      properties:
+        message:
+          type: string
+        webhook:
+          $ref: '#/components/schemas/Webhook'
+      example:
+        message: Webhook has been created
+        webhook:
+          urls:
+            - 'https://your_domain.com/v1/clicked'
+            - 'https://your_domain.com/v2/clicked'
+            - 'https://your_partner_domain.com/v1/clicked'
+    UpdatewebhookResponse:
+      title: UpdatewebhookResponse
+      required:
+        - message
+        - webhook
+      type: object
+      properties:
+        message:
+          type: string
+        webhook:
+          $ref: '#/components/schemas/Webhook'
+      example:
+        message: Webhook has been updated
+        webhook:
+          urls:
+            - 'https://your_domain.com/v1/clicked'
+    DeletewebhookResponse:
+      title: DeletewebhookResponse
+      required:
+        - message
+        - webhook
+      type: object
+      properties:
+        message:
+          type: string
+        webhook:
+          $ref: '#/components/schemas/Webhook'
+      example:
+        message: Webhook has been deleted
+        webhook:
+          urls:
+            - 'https://your_domain.com/v1/clicked'
+            - 'https://your_domain.com/v2/clicked'
+            - 'https://your_partner_domain.com/v1/clicked'
+    GetmailinglistsResponse:
+      title: GetmailinglistsResponse
+      required:
+        - items
+        - paging
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item1'
+          description: ''
+        paging:
+          $ref: '#/components/schemas/Paging'
+      example:
+        items:
+          - access_level: everyone
+            address: dev@samples.mailgun.org
+            created_at: 'Tue, 06 Mar 2012 05:44:45 GMT'
+            description: Mailgun developers list
+            members_count: 1
+            name: ''
+          - access_level: readonly
+            address: bar@example.com
+            created_at: 'Wed, 06 Mar 2013 11:39:51 GMT'
+            description: ''
+            members_count: 2
+            name: ''
+        paging:
+          first: 'https://url_to_next_page'
+          last: 'https://url_to_last_page'
+          next: 'https://url_to_next_page'
+          previous: 'https://url_to_previous_page'
+    Item1:
+      title: Item1
+      required:
+        - access_level
+        - address
+        - created_at
+        - description
+        - members_count
+        - name
+      type: object
+      properties:
+        access_level:
+          type: string
+          example: everyone
+        address:
+          type: string
+          example: dev@samples.mailgun.org
+        created_at:
+          type: string
+          example: 'Tue, 06 Mar 2012 05:44:45 GMT'
+        description:
+          type: string
+          example: Mailgun developers list
+        members_count:
+          type: integer
+          format: int32
+          example: 1
+        name:
+          type: string
+    Paging:
+      title: Paging
+      required:
+        - first
+        - last
+        - next
+        - previous
+      type: object
+      properties:
+        first:
+          type: string
+        last:
+          type: string
+        next:
+          type: string
+        previous:
+          type: string
+    CreatemailinglistResponse:
+      title: CreatemailinglistResponse
+      required:
+        - message
+        - list
+      type: object
+      properties:
+        message:
+          type: string
+        list:
+          $ref: '#/components/schemas/List'
+      example:
+        message: Mailing list has been created
+        list:
+          created_at: 'Tue, 06 Mar 2012 05:44:45 GMT'
+          address: dev@samples.mailgun.org
+          members_count: 0
+          description: Mailgun developers list
+          name: ''
+    List:
+      title: List
+      required:
+        - created_at
+        - address
+        - members_count
+        - description
+        - name
+      type: object
+      properties:
+        created_at:
+          type: string
+        address:
+          type: string
+        members_count:
+          type: integer
+          format: int32
+        description:
+          type: string
+        name:
+          type: string
+    AddmembertomailinglistErrorResponse:
+      title: AddmembertomailinglistErrorResponse
+      required:
+        - member
+        - message
+      type: object
+      properties:
+        member:
+          $ref: '#/components/schemas/Member'
+        message:
+          type: string
+      example:
+        member:
+          vars:
+            age: 26
+          name: Bob Bar
+          subscribed: true
+          address: bar@example.com
+        message: Mailing list member has been created
+    Member:
+      title: Member
+      required:
+        - vars
+        - name
+        - subscribed
+        - address
+      type: object
+      properties:
+        vars:
+          $ref: '#/components/schemas/Vars'
+        name:
+          type: string
+        subscribed:
+          type: boolean
+        address:
+          type: string
+    Vars:
+      title: Vars
+      required:
+        - age
+      type: object
+      properties:
+        age:
+          type: integer
+          format: int32
+    ValidateaddressResponse:
+      title: ValidateaddressResponse
+      required:
+        - address
+        - did_you_mean
+        - is_disposable_address
+        - is_role_address
+        - is_valid
+        - mailbox_verification
+        - parts
+        - reason
+      type: object
+      properties:
+        address:
+          type: string
+        did_you_mean:
+          type: string
+          nullable: true
+        is_disposable_address:
+          type: boolean
+        is_role_address:
+          type: boolean
+        is_valid:
+          type: boolean
+        mailbox_verification:
+          type: string
+          nullable: true
+        parts:
+          $ref: '#/components/schemas/Parts'
+        reason:
+          type: string
+          nullable: true
+      example:
+        address: foo@mailgun.net
+        did_you_mean: null
+        is_disposable_address: false
+        is_role_address: false
+        is_valid: true
+        mailbox_verification: null
+        parts:
+          display_name: null
+          domain: mailgun.net
+          local_part: foo
+        reason: null
+    Parts:
+      title: Parts
+      required:
+        - display_name
+        - domain
+        - local_part
+      type: object
+      properties:
+        display_name:
+          type: string
+          nullable: true
+        domain:
+          type: string
+        local_part:
+          type: string
+    ParseemailaddresslistResponse:
+      title: ParseemailaddresslistResponse
+      required:
+        - parsed
+        - unparseable
+      type: object
+      properties:
+        parsed:
+          type: array
+          items:
+            type: string
+          description: ''
+        unparseable:
+          type: array
+          items:
+            type: string
+          description: ''
+      example:
+        parsed:
+          - Alice <alice@example.com>
+          - bob@example.com
+        unparseable: []
+  securitySchemes:
+    httpBasic:
+      type: http
+      scheme: basic
+security:
+  - httpBasic: []
+tags:
+  - name: Messages
+    description: >-
+      ## Sending
+
+
+      There are two ways to send emails using Mailgun API:
+
+
+      * You can pass the components of the messages such as `To`, `From`,
+      `Subject`, HTML and text parts, attachments, etc. Mailgun will build a
+      MIME representation of the message and send it. This is the preferred
+      method.
+
+      * You can also build a MIME string yourself using a MIME library for your
+      programming language and submit it to Mailgun.
+
+
+      > *Note:* You can also use good old SMTP to send messages. But you will
+      have to specify all advanced sending options via [MIME
+      headers](https://documentation.mailgun.com/en/latest/user_manual.html#passing-sending-options)
+  - name: Domains
+    description: >-
+      This API allows you to create, access, and validate domains
+      programmatically.
+  - name: IPs
+    description: >-
+      The IP API endpoint allows you to access information regarding the IPs
+      allocated to your Mailgun account that are used for outbound sending.
+
+
+      > Note: You can manage your IPs from the Control Panel. Click on [IP
+      Management](https://app.mailgun.com/app/ip_management) in the settings
+      dropdown menu.
+  - name: Events
+    description: >-
+      Mailgun tracks every event that happens to your emails and makes this data
+      available to you through the Events API. Mailgun retains this detailed
+      data for two days for free accounts and 30 days for paid accounts. You can
+      query the data and traverse through the result pages as explained below.
+
+
+      A request should define a time range and can specify a set of filters to
+      apply. In response, a page of events is returned along with URLs that can
+      be used to retrieve the next and previous result pages. To traverse the
+      entire range, you should keep requesting the next page URLs returned along
+      with result pages until an empty result page is reached.
+
+
+      Both next and previous page URLs are always returned, even when retrieving
+      one of them makes no sense. There are two such cases: previous page URL
+      for the first result page, and next page URL for the last result page;
+      requesting these URLs always returns an empty result page.
+
+
+      ## Viewing Stored Messages
+
+
+      To access the contents of the stored messages, copy the API URL of the
+      message into a browser. The API URL can be found in the expanded log entry
+      under the “storage” section. For the username, enter “api” and provide an
+      API key for the password in order to view the parsed message.
+
+
+      To view the raw MIME, the message’s Mailgun storage key will be needed.
+      Run the following python script with the storage key as a parameter. The
+      script will retrieve the message from Mailgun. In the script the message
+      is saved to “message.eml”, which can then be opened in Mozilla Thunderbird
+      for analysis.
+
+
+      ## Time Range
+
+
+      The request time range should be given by a beginning timestamp and either
+      an end timestamp or a search direction. If an end timestamp is not given,
+      a search direction must be provided.
+
+
+      If the range end timestamp is provided then the relation between the
+      beginning and the end timestamps determines the direction - ascending or
+      descending - in which events are going to be traversed. E.g. if the end
+      timestamp is less (older) than the beginning timestamp, then result pages
+      are returned from newer to older and events on the pages are sorted in the
+      descending order of their timestamps.
+
+
+      If the end timestamp is not provided, the direction must be specified.
+      Depending on the range direction, the result page traversal behaves
+      differently:
+
+
+      * If the range is descending then the end timestamp is determined by the
+      user tariff plan retention period.
+
+      * If the range is ascending then events will continue to be recorded but
+      will not show in the current request time range pages that are provided.
+      So after the most recent events have been retrieved and an empty result
+      page has been reached, then requesting next page URL returned with the
+      last page some time later will return events that occurred since then. And
+      this can go on indefinitely.
+
+
+      > **Warning**:  Even though it seems that real-time event polling can be
+      implemented by traversing next URLs of an ascending time range that has no
+      explicit end timestamp, it is not that simple! Please refer to [Event
+      Polling](https://documentation.mailgun.com/en/latest/api-events.html#event-polling)
+      for the proper way to do it.
+
+
+      If both the end range date and the direction of the search are specified
+      then they should agree with each other, otherwise the request will return
+      an error.
+
+
+      ## Event Polling
+
+
+      In our system, events are generated by physical hosts and follow different
+      routes to the event storage. Therefore, the order in which they appear in
+      the storage and become retrievable - via the events API - does not always
+      correspond to the order in which they occur. Consequently, this system
+      behavior makes straight forward implementation of event polling miss some
+      events. The page of most recent events returned by the events API may not
+      contain all the events that occurred at that time because some of them
+      could still be on their way to the storage engine. When the events arrive
+      and are eventually indexed, they are inserted into the already retrieved
+      pages which could result in the event being missed if the pages are
+      accessed too early (i.e. before all events for the page are available).
+
+
+      To ensure that all your events are retrieved and accounted for please
+      implement polling the following way:
+
+      1. Make a request to the events API specifying an ascending time range
+      that begins some time in the past (e.g. half an hour ago);
+
+      2. Retrieve a result page;
+
+      3. Check the timestamp of the last event on the result page. If it is
+      older than some threshold age (e.g. half an hour) then go to step (4),
+      otherwise proceed with step (6);
+
+      4. The result page is trustworthy, use events from the page as you please;
+
+      5. Make a request using the next page URL retrieved with the result page,
+      proceed with step (2);
+
+      6. Discard the result page for it is not trustworthy;
+
+      7. Pause for some time (at least 15 seconds);
+
+      8. Repeat the previous request, and proceed with step (2).
+
+
+      ## Query Options
+
+
+      | Parameter |
+      Description                                                                                                                                                                                                                                                                    
+      |
+
+      |-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+      | begin     | The beginning of the search time range. It can be specified
+      as a string (see [Date
+      Format](https://documentation.mailgun.com/en/latest/api-intro.html#date-format)
+      or linux epoch seconds. Refer to [Time
+      Range](https://documentation.mailgun.com/en/latest/api-events.html#time-range)
+      for
+      details.                                                                                                                             
+      |
+
+      | end       | The end of the search time range. It can be specified as a
+      string (see [Date
+      Format](https://documentation.mailgun.com/en/latest/api-intro.html#date-format)
+      or linux epoch seconds. Refer to [Time
+      Range](https://documentation.mailgun.com/en/latest/api-events.html#time-range)
+      for
+      details.                                                                                                                                   
+      |
+
+      | ascending | Defines the direction of the search time range and must be
+      provided if the range end time is not specified. Can be either `yes` or
+      `no`. Refer to [Time
+      Range](https://documentation.mailgun.com/en/latest/api-events.html#time-range)
+      for
+      details.                                                                                                          
+      |
+
+      | limit     | Number of entries to return. (300
+      max)                                                                                                                                                                                                                                         
+      |
+
+      | <field>   | <field> is the name of the [Filter
+      Field](https://documentation.mailgun.com/en/latest/api-events.html#filter-field).
+      The value of the parameter should be a valid [Filter
+      Expression](https://documentation.mailgun.com/en/latest/api-events.html#filter-expression).
+      Several field filters can be specified in one request. If the same field
+      is mentioned, more then once, then all its filter expressions are combined
+      with AND operator. |
+
+
+
+      ## Filter Field
+
+
+      Log records can be filtered by the following fields:
+
+
+      | Fields     |
+      Description                                                                                                                                                                                         
+      |
+
+      |------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+      | event      | An event type. For a complete list of all events written to
+      the log see the [Event
+      Types](https://documentation.mailgun.com/en/latest/api-events.html#event-types)
+      table
+      below.                                                                                                
+      |
+
+      | list       | The email address of a mailing list the message was
+      originally sent
+      to.                                                                                                                             
+      |
+
+      | attachment | A name of an attached
+      file.                                                                                                                                                                         
+      |
+
+      | from       | An email address mentioned in the from MIME
+      header.                                                                                                                                                 
+      |
+
+      | message-id | A Mailgun message id returned by the messages
+      API.                                                                                                                                                  
+      |
+
+      | subject    | A subject
+      line.                                                                                                                                                                                     
+      |
+
+      | to         | An email address mentioned in the to MIME
+      header.                                                                                                                                                   
+      |
+
+      | size       | Message size. Mostly intended to be used with range
+      filtering expressions (see
+      below).                                                                                                              
+      |
+
+      | recipient  | An email address of a particular recipient. Even though a
+      message may be addressed to several recipients, delivery is tracked on per
+      recipient basis and every event pertains to only one recipient. |
+
+      | tags       | User defined
+      tags.                                                                                                                                                                                  
+      |
+
+      | severity   | Temporary or Permanent. Used to filter events based on
+      severity, if exists. (Currently failed events
+      only)                                                                                          
+      |
+
+
+      ## Filter Expression
+
+      Possible filtering expressions are listed below:
+
+
+      | Expression    |
+      Description                                                                                                       
+      |
+
+      |---------------|--------------------------------------------------------------------------------------------------------------------|
+
+      | foo bar       | Matches field values that contain both term `foo` and
+      term `bar`.                                                      |
+
+      | foo AND bar   | Same as
+      above.                                                                                                    
+      |
+
+      | foo OR bar    | Matches field values that contain either term `foo` or
+      term `bar`.                                                     |
+
+      | “foo bar”     | Matches field values that literally contain `foo
+      bar`.                                                               |
+
+      | NOT foo       | Matches field values that do not contain term
+      `foo`.                                                                 |
+
+      | >10000        | Matches values that greater then `10000`. This filter
+      can be applied to numeric fields only.                         |
+
+      | >10000 < 20000 | Matches values that are greater then `10000` and less
+      then `20000`. This filter can be applied to numeric fields only. |
+
+
+      Note that more then one expression can be used as a filter value and
+      parentheses can be used to specify grouping. E.g.: `(Hello AND NOT Rachel)
+      OR (Farewell AND Monica)`.
+
+
+      ## Event Types
+
+
+      Mailgun tracks all of the events that occur throughout the system. Below
+      are listed the events that you can retrieve using this API.
+
+
+      | Event Type   |
+      Description                                                                                                                                                                                                                                                                                                                                                                                                                                   
+      |
+
+      |--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+      | accepted     | Mailgun accepted the request to send/forward the email
+      and the message has been placed in
+      queue.                                                                                                                                                                                                                                                                                                                                              
+      |
+
+      | rejected     | Mailgun rejected the request to send/forward the
+      email.                                                                                                                                                                                                                                                                                                                                                                                       
+      |
+
+      | delivered    | Mailgun sent the email and it was accepted by the
+      recipient email
+      server.                                                                                                                                                                                                                                                                                                                                                                     
+      |
+
+      | failed       | Mailgun could not deliver the email to the recipient
+      email server.  severity=permanent when a message is not delivered. There
+      are several reasons why Mailgun stops attempting to deliver messages and
+      drops them including: hard bounces, messages that reached their retry
+      limit, previously unsubscribed/bounced/complained addresses, or addresses
+      rejected by an ESP.  severity=temporary when a message is temporary
+      rejected by an ESP. |
+
+      | opened       | The email recipient opened the email and enabled image
+      viewing. Open tracking must be enabled in the Mailgun control panel, and
+      the CNAME record must be pointing to
+      mailgun.org.                                                                                                                                                                                                                                                             
+      |
+
+      | clicked      | The email recipient clicked on a link in the email. Click
+      tracking must be enabled in the Mailgun control panel, and the CNAME
+      record must be pointing to
+      mailgun.org.                                                                                                                                                                                                                                                                        
+      |
+
+      | unsubscribed | The email recipient clicked on the unsubscribe link.
+      Unsubscribe tracking must be enabled in the Mailgun control
+      panel.                                                                                                                                                                                                                                                                                                                       
+      |
+
+      | complained   | The email recipient clicked on the spam complaint button
+      within their email client. Feedback loops enable the notification to be
+      received by
+      Mailgun.                                                                                                                                                                                                                                                                                         
+      |
+
+      | stored       | Mailgun has stored an incoming
+      message                                                                                                                                                                                                                                                                                                                                                                                                        
+      |
+
+
+      ## Event Structure
+
+
+      See
+      [link](https://documentation.mailgun.com/en/latest/api-events.html#event-structure)
+      on Documentation page.
+  - name: Stats
+    description: >-
+      Mailgun collects many different events and generates event statistics
+      which are available in your Control Panel. This data is also available via
+      an API.
+
+
+      The statistics are calculated in hourly, daily and monthly resolution in
+      UTC timezone.
+
+
+      The following retention policy is applied to the statistics:
+
+      * Hourly stats are preserved for a month.
+
+      * Daily stats are preserved for a year.
+
+      * Monthly stats are stored throughout the lifespan of the domain.
+
+
+      ## Duration
+
+
+      Duration is a string that represents a period of time with some
+      resolution. It has a format [0-9]+[m,d,h] where
+
+
+      * h - an hour
+
+      * d - a day
+
+      * m - a month
+
+      Examples:
+
+
+      * 24h - a period of 24 hours (a day) with hourly resolution
+
+      * 1d - a period of 1 day with daily resolution
+
+      * 2m - a period of 2 months with monthly resolution
+
+
+      ## Event Types
+
+
+      | Event Type   |
+      Description                                                                                                                                                                      
+      |
+
+      |--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+      | accepted     | Mailgun accepted the request to send/forward the email
+      and the message has been placed in
+      queue.                                                                                 
+      |
+
+      | delivered    | Mailgun sent the email and it was accepted by the
+      recipient email
+      server.                                                                                                        
+      |
+
+      | failed       | Mailgun could not deliver the email to the recipient
+      email
+      server.                                                                                                               
+      |
+
+      | opened       | The email recipient opened the email and enabled image
+      viewing. Open tracking must be enabled in the Mailgun control panel, and
+      the CNAME record must be pointing to mailgun.org. |
+
+      | clicked      | The email recipient clicked on a link in the email. Click
+      tracking must be enabled in the Mailgun control panel, and the CNAME
+      record must be pointing to mailgun.org.            |
+
+      | unsubscribed | The email recipient clicked on the unsubscribe link.
+      Unsubscribe tracking must be enabled in the Mailgun control
+      panel.                                                           |
+
+      | complained   | The email recipient clicked on the spam complaint button
+      within their email client. Feedback loops enable the notification to be
+      received by Mailgun.                             |
+
+      | stored       | Mailgun has stored an incoming
+      message                                                                                                                                           
+      |
+  - name: Tags
+    description: >-
+      Mailgun lets you tag each outgoing message with a custom value and
+      provides statistics on the tag level. To tag a message you need to provide
+      one or more `o:tag` parameter in the API. Tags are created on the fly but
+      they are subject to a limit.
+  - name: Bounces
+    description: ''
+  - name: Complaints
+    description: ''
+  - name: Unsubscribes
+    description: ''
+  - name: Suppressions
+    description: >-
+      Mailgun keeps three lists of addresses it blocks the delivery to: bounces,
+      unsubscribes and complaints. These lists are populated automatically as
+      Mailgun detects undeliverable addresses you try to send to and as
+      recipients unsubscribe from your mailings or mark your emails as a spam
+      (for ESPs that provide FBL). You can also add/remove addresses from any of
+      these lists using the API.
+
+
+      > Note This is the documentation for the new Suppressions API. The
+      documentation for the previous version (/v2) will temporarily be available
+      here:
+      [bounces](https://documentation.mailgun.com/en/latest/api-bounces.html#api-bounces-old),
+      [unsubscribes](https://documentation.mailgun.com/en/latest/api-unsubscribes.html#api-unsubscribes-old),
+      [complaints](https://documentation.mailgun.com/en/latest/api-complaints.html#api-complaints-old).
+  - name: Routes
+    description: >-
+      Mailgun Routes are a powerful way to handle the incoming traffic. See
+      [Routes](https://documentation.mailgun.com/en/latest/user_manual.html#um-routes)
+      section in the User Manual to learn more about how they work. This API
+      allows you to work with routes programmatically.
+
+
+      Routes are comprised of the following arguments:
+
+
+      * A filter (when to do something).
+
+      * A priority (in what order).
+
+      * An action (what to do).
+
+
+      ## Filters
+
+
+      Route filters are expressions that determine when an action is triggered.
+      You can create a filter based on the recipient of the incoming email, the
+      headers in the incoming email or use a catch-all filter. Filters support
+      regular expressions in the pattern to give you a lot of flexibility when
+      creating them.
+
+
+      **match_recipient(pattern)**
+
+
+      Matches smtp recipient of the incoming message against the regular
+      expression pattern. For example this will match all messages coming to any
+      recipient at @bar.com:
+
+
+      > match_recipient(".*@bar.com")
+
+
+      **match_header(header, pattern)**
+
+
+      Similar to `match_recipient` but instead of looking at a message
+      recipient, it applies the pattern to an arbitrary MIME header of the
+      message. For this will match any message with a word “support” in its
+      subject:
+
+
+      > ("subject", ".*support")
+
+
+      **catch_all()**
+
+
+      Matches if no preceeding routes matched. Usually you need to use it in a
+      route with a lowest priority, to make sure it evaluates last.
+
+
+      ## Actions
+
+
+      If a route expression evaluates to true, Mailgun executes the
+      corresponding action. Currently you can use the following three actions in
+      your routes: `forward()`, `store()` and `stop()`.
+
+
+      **forward(destination)**
+
+
+      Forwards the message to a specified destination, which can be another
+      email address or a URL. A few examples:
+
+
+      > forward("mailbox@myapp.com")
+
+      forward("http://myapp.com/messages")
+
+
+      **store(notification endpoint)**
+
+
+      Stores the message temporarily (for up to 3 days) on Mailgun’s servers so
+      that you can retrieve them later. This is helpful for large messages that
+      may cause time outs or if you just want to retrieve them later.
+
+
+      You can specify a URL and we will notify you when the email arrives along
+      with a URL where you can use to retrieve the message:
+
+
+      > store(notify="http://mydomain.com/callback")
+
+
+      You can see a full list of parameters we will post to your URL in the
+      [Routes](https://documentation.mailgun.com/en/latest/user_manual.html#um-routes)
+      section of the User Manual. You can also get the locations of messages
+      through the [Events
+      API](https://documentation.mailgun.com/en/latest/api-events.html#api-events)
+      and then retrieve the message through the [Messages
+      API](https://documentation.mailgun.com/en/latest/api-sending.html#api-sending-messages).
+
+
+      **stop()**
+
+
+      Simply stops the priority waterfall so the subsequent routes will not be
+      evaluated. Without a stop() action executed, all lower priority Routes
+      will also be evaluated.
+  - name: Webhooks
+  - name: Mailing Lists
+  - name: Email Validation

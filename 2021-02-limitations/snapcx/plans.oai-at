@@ -1,0 +1,97 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/snapcx/snapcx.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+  globalRequests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regardless the resource'
+    resolution: consumption
+pricing:
+  cost: 0
+  currency: USD
+  billing: monthly
+availability: 'R/00:00:00Z/23:59:59Z'
+configuration: {}
+plans:
+  ShippingTracking-Startup:
+    pricing:
+      cost: '5'
+    quotas:
+      /tracking/v1/getTrackingDetails:
+        get:
+          requests:
+            - max: 1500
+              period: monthly
+            - max: 150
+              period: daily
+    rates:
+      /tracking/v1/getTrackingDetails:
+        get:
+          requests:
+            - max: 15
+              period: minutely
+  ShippingTracking-Serious:
+    pricing:
+      cost: 5+overage 0.002 after 10K
+    quotas:
+      /tracking/v1/getTrackingDetails:
+        get:
+          requests:
+            - max: 1000
+              period: daily
+    rates:
+      /tracking/v1/getTrackingDetails:
+        get:
+          requests:
+            - max: 60
+              period: minutely
+  StreetValidation-Startup:
+    pricing:
+      cost: '9'
+    quotas:
+      /avs/v1/validateAddress:
+        get:
+          requests:
+            - max: 1200
+              period: monthly
+            - max: 120
+              period: daily
+      /avs/v1/validateGlobalAddress:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+    rates:
+      /avs/v1/validateAddress:
+        get:
+          requests:
+            - max: 12
+              period: minutely
+  StreetValidation-Global:
+    pricing:
+      cost: 5+overage 0.01 after 5K
+    quotas:
+      /avs/v1/validateAddress:
+        get:
+          requests:
+            - max: 500
+              period: daily
+      /avs/v1/validateGlobalAddress:
+        get:
+          requests:
+            - max: 500
+              period: daily
+    rates: null

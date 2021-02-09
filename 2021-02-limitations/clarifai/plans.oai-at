@@ -1,0 +1,3923 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/clarifai/clarifai.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+  globalRequests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regardless the resource'
+    resolution: consumption
+  imagesPerCall:
+    type: integer
+    format: int64
+    description: imagesPerCall
+    resolution: consumption
+  videoSizePerCall:
+    type: integer
+    format: int64
+    description: videoSizePerCall
+    resolution: consumption
+  videoLenghtPerCall:
+    type: integer
+    format: int64
+    description: videoLenghtPerCall
+    resolution: consumption
+  maxConcepts:
+    type: integer
+    format: int64
+    description: maxConcepts
+    resolution: consumption
+  concepts:
+    type: integer
+    format: int64
+    description: maxConcepts
+    resolution: consumption
+  inputHosting:
+    type: integer
+    format: int64
+    description: inputHosting
+    resolution: consumption
+  imageBatchSize:
+    type: integer
+    format: int64
+    description: imageBatchSize
+    resolution: consumption
+  videoBatchSize:
+    type: integer
+    format: int64
+    description: videoBatchSize
+  searchBatchSize:
+    type: integer
+    format: int64
+    description: searchBatchSize
+  otherBatchSize:
+    type: integer
+    format: int64
+    description: otherBatchSize
+    resolution: consumption
+pricing:
+  cost: 0
+  currency: USD
+  billing: monthly
+availability: 'R/00:00:00Z/23:59:59Z'
+configuration: {}
+plans:
+  BeforeEmailActivation:
+    pricing:
+      cost: '0'
+    quotas:
+      '/v2/models/{model_id}/outputs':
+        post:
+          globalRequests:
+            - max: 100
+              period: monthly
+          maxConcepts:
+            - max: 200
+              period: forever
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      '/v2/models/{model_id}/versions/{version_id}/outputs':
+        post:
+          globalRequests:
+            - max: 100
+              period: monthly
+          imagesPerCall:
+            - max: 128
+              period: thisCall
+          videoSizePerCall:
+            - max: 80
+              period: thisCall
+          videoLenghtPerCall:
+            - max: 10
+              period: thisCall
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      /v2/inputs:
+        post:
+          globalRequests:
+            - max: 100
+              period: monthly
+          imagesPerCall:
+            - max: 128
+              period: thisCall
+          inputHosting:
+            - max: 10000
+              period: forever
+          inputs:
+            - max: 10000
+              period: forever
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+        patch:
+          globalRequests:
+            - max: 100
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+        delete:
+          globalRequests:
+            - max: 100
+              period: monthly
+        get:
+          globalRequests:
+            - max: 100
+              period: monthly
+      /v2/inputs/status:
+        get:
+          globalRequests:
+            - max: 100
+              period: monthly
+      '/v2/inputs/{id}':
+        get:
+          globalRequests:
+            - max: 100
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 100
+              period: monthly
+      /v2/searches:
+        post:
+          globalRequests:
+            - max: 100
+              period: monthly
+          imageBatchSize:
+            - max: 1
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      /v2/models:
+        post:
+          globalRequests:
+            - max: 100
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+        patch:
+          globalRequests:
+            - max: 100
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+        get:
+          globalRequests:
+            - max: 100
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 100
+              period: monthly
+      '/v2/models/{model_id}/versions':
+        get:
+          globalRequests:
+            - max: 100
+              period: monthly
+        post:
+          globalRequests:
+            - max: 100
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      '/v2/workflows/{workflow_id}/results':
+        post:
+          globalRequests:
+            - max: 100
+              period: monthly
+          inputsPerCall:
+            - max: 32
+              period: thisCall
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      '/v2/models/{model_id}/feedback':
+        post:
+          globalRequests:
+            - max: 100
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      /v2/searches/feedback:
+        post:
+          globalRequests:
+            - max: 100
+              period: monthly
+          imageBatchSize:
+            - max: 1
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      /v2/concepts:
+        post:
+          globalRequests:
+            - max: 100
+              period: monthly
+          concepts:
+            - max: 10
+              period: forever
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+        patch:
+          globalRequests:
+            - max: 100
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      /v2/concepts/searches:
+        post:
+          globalRequests:
+            - max: 100
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      /v2/models/searches:
+        post:
+          globalRequests:
+            - max: 100
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      '/v2/models/{model_id}':
+        get:
+          globalRequests:
+            - max: 100
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 100
+              period: monthly
+      '/v2/models/{model_id}/inputs':
+        get:
+          globalRequests:
+            - max: 100
+              period: monthly
+      '/v2/models/{model_id}/output_info':
+        get:
+          globalRequests:
+            - max: 100
+              period: monthly
+      '/v2/models/{model_id}/versions/{version_id}':
+        get:
+          globalRequests:
+            - max: 100
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 100
+              period: monthly
+      '/v2/models/{model_id}/versions/{version_id}/inputs':
+        get:
+          globalRequests:
+            - max: 100
+              period: monthly
+    rates:
+      '/v2/models/{model_id}/outputs':
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}/outputs':
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/inputs:
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/inputs/status:
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/inputs/{id}':
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/searches:
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/models:
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}/versions':
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/workflows/{workflow_id}/results':
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}/feedback':
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/searches/feedback:
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/concepts:
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/concepts/searches:
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/models/searches:
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}':
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}/inputs':
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}/output_info':
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}':
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}/inputs':
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+  Community:
+    pricing:
+      cost: '0'
+    quotas:
+      '/v2/models/{model_id}/outputs':
+        post:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          maxConcepts:
+            - max: 200
+              period: forever
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      '/v2/models/{model_id}/versions/{version_id}/outputs':
+        post:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          imagesPerCall:
+            - max: 128
+              period: thisCall
+          videoSizePerCall:
+            - max: 80
+              period: thisCall
+          videoLenghtPerCall:
+            - max: 10
+              period: thisCall
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      /v2/inputs:
+        post:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          imagesPerCall:
+            - max: 128
+              period: thisCall
+          inputHosting:
+            - max: 10000
+              period: forever
+          inputs:
+            - max: 10000
+              period: forever
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+        patch:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+        delete:
+          globalRequests:
+            - max: 5000
+              period: monthly
+        get:
+          globalRequests:
+            - max: 5000
+              period: monthly
+      /v2/inputs/status:
+        get:
+          globalRequests:
+            - max: 5000
+              period: monthly
+      '/v2/inputs/{id}':
+        get:
+          globalRequests:
+            - max: 5000
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 5000
+              period: monthly
+      /v2/searches:
+        post:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          imageBatchSize:
+            - max: 1
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      /v2/models:
+        post:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+        patch:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+        get:
+          globalRequests:
+            - max: 5000
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 5000
+              period: monthly
+      '/v2/models/{model_id}/versions':
+        get:
+          globalRequests:
+            - max: 5000
+              period: monthly
+        post:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      '/v2/workflows/{workflow_id}/results':
+        post:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          inputsPerCall:
+            - max: 32
+              period: thisCall
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      '/v2/models/{model_id}/feedback':
+        post:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      /v2/searches/feedback:
+        post:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          imageBatchSize:
+            - max: 1
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      /v2/concepts:
+        post:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          concepts:
+            - max: 10
+              period: forever
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+        patch:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      /v2/concepts/searches:
+        post:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      /v2/models/searches:
+        post:
+          globalRequests:
+            - max: 5000
+              period: monthly
+          imageBatchSize:
+            - max: 8
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 1
+              period: forever
+      '/v2/models/{model_id}':
+        get:
+          globalRequests:
+            - max: 5000
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 5000
+              period: monthly
+      '/v2/models/{model_id}/inputs':
+        get:
+          globalRequests:
+            - max: 5000
+              period: monthly
+      '/v2/models/{model_id}/output_info':
+        get:
+          globalRequests:
+            - max: 5000
+              period: monthly
+      '/v2/models/{model_id}/versions/{version_id}':
+        get:
+          globalRequests:
+            - max: 5000
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 5000
+              period: monthly
+      '/v2/models/{model_id}/versions/{version_id}/inputs':
+        get:
+          globalRequests:
+            - max: 5000
+              period: monthly
+    rates:
+      '/v2/models/{model_id}/outputs':
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}/outputs':
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/inputs:
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/inputs/status:
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/inputs/{id}':
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/searches:
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/models:
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}/versions':
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/workflows/{workflow_id}/results':
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}/feedback':
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/searches/feedback:
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/concepts:
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/concepts/searches:
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      /v2/models/searches:
+        post:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}':
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}/inputs':
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}/output_info':
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}':
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}/inputs':
+        get:
+          imagePredictRequests:
+            - max: 5
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 1
+              period: secondly
+          otherRequests:
+            - max: 1
+              period: secondly
+  Essential:
+    pricing:
+      cost: Pay per use
+    quotas:
+      '/v2/models/{model_id}/outputs':
+        post:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          maxConcepts:
+            - max: 200
+              period: forever
+          imageBatchSize:
+            - max: 32
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+      '/v2/models/{model_id}/versions/{version_id}/outputs':
+        post:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          imagesPerCall:
+            - max: 128
+              period: thisCall
+          videoSizePerCall:
+            - max: 80
+              period: thisCall
+          videoLenghtPerCall:
+            - max: 10
+              period: thisCall
+          imageBatchSize:
+            - max: 32
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+      /v2/inputs:
+        post:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          imagesPerCall:
+            - max: 128
+              period: thisCall
+          inputs:
+            - max: 100000
+              period: forever
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+        patch:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+        delete:
+          globalRequests:
+            - max: 100000
+              period: monthly
+        get:
+          globalRequests:
+            - max: 100000
+              period: monthly
+      /v2/inputs/status:
+        get:
+          globalRequests:
+            - max: 100000
+              period: monthly
+      '/v2/inputs/{id}':
+        get:
+          globalRequests:
+            - max: 100000
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 100000
+              period: monthly
+      /v2/searches:
+        post:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          imageBatchSize:
+            - max: 1
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+      /v2/models:
+        post:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+        patch:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+        get:
+          globalRequests:
+            - max: 100000
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 100000
+              period: monthly
+      '/v2/models/{model_id}/versions':
+        get:
+          globalRequests:
+            - max: 100000
+              period: monthly
+        post:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+      '/v2/workflows/{workflow_id}/results':
+        post:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          inputsPerCall:
+            - max: 32
+              period: thisCall
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+      '/v2/models/{model_id}/feedback':
+        post:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+      /v2/searches/feedback:
+        post:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          imageBatchSize:
+            - max: 1
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+      /v2/concepts:
+        post:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          concepts:
+            - max: 10
+              period: forever
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+        patch:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+      /v2/concepts/searches:
+        post:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+      /v2/models/searches:
+        post:
+          globalRequests:
+            - max: 100000
+              period: monthly
+          imageBatchSize:
+            - max: 16
+              period: forever
+          videoBatchSize:
+            - max: 1
+              period: forever
+          searchBatchSize:
+            - max: 1
+              period: forever
+          otherBatchSize:
+            - max: 4
+              period: forever
+      '/v2/models/{model_id}':
+        get:
+          globalRequests:
+            - max: 100000
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 100000
+              period: monthly
+      '/v2/models/{model_id}/inputs':
+        get:
+          globalRequests:
+            - max: 100000
+              period: monthly
+      '/v2/models/{model_id}/output_info':
+        get:
+          globalRequests:
+            - max: 100000
+              period: monthly
+      '/v2/models/{model_id}/versions/{version_id}':
+        get:
+          globalRequests:
+            - max: 100000
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 100000
+              period: monthly
+      '/v2/models/{model_id}/versions/{version_id}/inputs':
+        get:
+          globalRequests:
+            - max: 100000
+              period: monthly
+    rates:
+      '/v2/models/{model_id}/outputs':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}/outputs':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/inputs:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/inputs/status:
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/inputs/{id}':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/searches:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/models:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/workflows/{workflow_id}/results':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/feedback':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/searches/feedback:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/concepts:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/concepts/searches:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/models/searches:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/inputs':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/output_info':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}/inputs':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+  Business:
+    pricing:
+      cost: '2000'
+    quotas:
+      '/v2/models/{model_id}/outputs':
+        post:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+          maxConcepts:
+            - max: 200
+              period: forever
+      '/v2/models/{model_id}/versions/{version_id}/outputs':
+        post:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+          imagesPerCall:
+            - max: 128
+              period: thisCall
+          videoSizePerCall:
+            - max: 80
+              period: thisCall
+          videoLenghtPerCall:
+            - max: 10
+              period: thisCall
+      /v2/inputs:
+        post:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+          imagesPerCall:
+            - max: 128
+              period: thisCall
+          inputs:
+            - max: 1000000
+              period: forever
+        patch:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+        get:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+      /v2/inputs/status:
+        get:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+      '/v2/inputs/{id}':
+        get:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+      /v2/searches:
+        post:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+          imageBatchSize:
+            - max: 1
+              period: forever
+      /v2/models:
+        post:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+        patch:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+        get:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+      '/v2/models/{model_id}/versions':
+        get:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+        post:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+      '/v2/workflows/{workflow_id}/results':
+        post:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+          inputsPerCall:
+            - max: 32
+              period: thisCall
+      '/v2/models/{model_id}/feedback':
+        post:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+      /v2/searches/feedback:
+        post:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+          imageBatchSize:
+            - max: 1
+              period: forever
+      /v2/concepts:
+        post:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+          concepts:
+            - max: 10
+              period: forever
+        patch:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+      /v2/concepts/searches:
+        post:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+      /v2/models/searches:
+        post:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+      '/v2/models/{model_id}':
+        get:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+      '/v2/models/{model_id}/inputs':
+        get:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+      '/v2/models/{model_id}/output_info':
+        get:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+      '/v2/models/{model_id}/versions/{version_id}':
+        get:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+        delete:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+      '/v2/models/{model_id}/versions/{version_id}/inputs':
+        get:
+          globalRequests:
+            - max: 1000000
+              period: monthly
+    rates:
+      '/v2/models/{model_id}/outputs':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}/outputs':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/inputs:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/inputs/status:
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/inputs/{id}':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/searches:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/models:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/workflows/{workflow_id}/results':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/feedback':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/searches/feedback:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/concepts:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/concepts/searches:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/models/searches:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/inputs':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/output_info':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}/inputs':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+  Enterprise:
+    pricing:
+      cost: Contact
+    quotas:
+      '/v2/models/{model_id}/outputs':
+        post:
+          maxConcepts:
+            - max: 200
+              period: forever
+      '/v2/models/{model_id}/versions/{version_id}/outputs':
+        post:
+          imagesPerCall:
+            - max: 128
+              period: thisCall
+          videoSizePerCall:
+            - max: 80
+              period: thisCall
+          videoLenghtPerCall:
+            - max: 10
+              period: thisCall
+      /v2/inputs:
+        post:
+          imagesPerCall:
+            - max: 128
+              period: thisCall
+          inputs:
+            - max: 1000000
+              period: forever
+        patch: null
+        delete: null
+        get: null
+      /v2/inputs/status:
+        get: null
+      '/v2/inputs/{id}':
+        get: null
+        delete: null
+      /v2/searches:
+        post:
+          imageBatchSize:
+            - max: 1
+              period: forever
+      /v2/models:
+        post: null
+        patch: null
+        get: null
+        delete: null
+      '/v2/models/{model_id}/versions':
+        get: null
+        post: null
+      '/v2/workflows/{workflow_id}/results':
+        post:
+          inputsPerCall:
+            - max: 32
+              period: thisCall
+      '/v2/models/{model_id}/feedback':
+        post: null
+      /v2/searches/feedback:
+        post:
+          imageBatchSize:
+            - max: 1
+              period: forever
+      /v2/concepts:
+        post:
+          concepts:
+            - max: 10
+              period: forever
+        patch: null
+      /v2/concepts/searches:
+        post: null
+      /v2/models/searches:
+        post: null
+      '/v2/models/{model_id}':
+        get: null
+        delete: null
+      '/v2/models/{model_id}/inputs':
+        get: null
+      '/v2/models/{model_id}/output_info':
+        get: null
+      '/v2/models/{model_id}/versions/{version_id}':
+        get: null
+        delete: null
+      '/v2/models/{model_id}/versions/{version_id}/inputs':
+        get: null
+    rates:
+      '/v2/models/{model_id}/outputs':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}/outputs':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/inputs:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/inputs/status:
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/inputs/{id}':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/searches:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/models:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/workflows/{workflow_id}/results':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/feedback':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/searches/feedback:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/concepts:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/concepts/searches:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/models/searches:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/inputs':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/output_info':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}/inputs':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+  PublicSector:
+    pricing:
+      cost: Contact
+    quotas:
+      '/v2/models/{model_id}/outputs':
+        post:
+          maxConcepts:
+            - max: 200
+              period: forever
+      '/v2/models/{model_id}/versions/{version_id}/outputs':
+        post:
+          imagesPerCall:
+            - max: 128
+              period: thisCall
+          videoSizePerCall:
+            - max: 80
+              period: thisCall
+          videoLenghtPerCall:
+            - max: 10
+              period: thisCall
+      /v2/inputs:
+        post:
+          imagesPerCall:
+            - max: 128
+              period: thisCall
+          inputs:
+            - max: 1000000
+              period: forever
+        patch: null
+        delete: null
+        get: null
+      /v2/inputs/status:
+        get: null
+      '/v2/inputs/{id}':
+        get: null
+        delete: null
+      /v2/searches:
+        post:
+          imageBatchSize:
+            - max: 1
+              period: forever
+      /v2/models:
+        post: null
+        patch: null
+        get: null
+        delete: null
+      '/v2/models/{model_id}/versions':
+        get: null
+        post: null
+      '/v2/workflows/{workflow_id}/results':
+        post:
+          inputsPerCall:
+            - max: 32
+              period: thisCall
+      '/v2/models/{model_id}/feedback':
+        post: null
+      /v2/searches/feedback:
+        post:
+          imageBatchSize:
+            - max: 1
+              period: forever
+      /v2/concepts:
+        post:
+          concepts:
+            - max: 10
+              period: forever
+        patch: null
+      /v2/concepts/searches:
+        post: null
+      /v2/models/searches:
+        post: null
+      '/v2/models/{model_id}':
+        get: null
+        delete: null
+      '/v2/models/{model_id}/inputs':
+        get: null
+      '/v2/models/{model_id}/output_info':
+        get: null
+      '/v2/models/{model_id}/versions/{version_id}':
+        get: null
+        delete: null
+      '/v2/models/{model_id}/versions/{version_id}/inputs':
+        get: null
+    rates:
+      '/v2/models/{model_id}/outputs':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}/outputs':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/inputs:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/inputs/status:
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/inputs/{id}':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/searches:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/models:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/workflows/{workflow_id}/results':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/feedback':
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/searches/feedback:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/concepts:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        patch:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/concepts/searches:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      /v2/models/searches:
+        post:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/inputs':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/output_info':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+        delete:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+      '/v2/models/{model_id}/versions/{version_id}/inputs':
+        get:
+          imagePredictRequests:
+            - max: 10
+              period: secondly
+          videoPredictRequests:
+            - max: 1
+              period: secondly
+          searchRequests:
+            - max: 4
+              period: secondly
+          otherRequests:
+            - max: 4
+              period: secondly
+    guarantees: {}

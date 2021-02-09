@@ -1,0 +1,1367 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/accuweather/accuweather.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  globalRequests:
+    type: integer
+    format: int64
+    description: 'Number the overall requests, regardeless the resource'
+    resolution: consumption
+availability: 'R/00:00:00Z/23:59:59Z'
+plans:
+  LimitedTrial:
+    pricing:
+      cost: 0
+      currency: USD
+      billing: monthly
+    rates: {}
+    quotas:
+      '/alarms/v1/1day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/alarms/v1/5day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/alarms/v1/10day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/alarms/v1/15day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/alerts/v1/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/currentconditions/v1/topcities/{group}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/currentconditions/v1/{locationKey}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/currentconditions/v1/{locationKey}/historical':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/currentconditions/v1/{locationKey}/historical/24':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/forecasts/v1/daily/1day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/forecasts/v1/daily/5day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/forecasts/v1/daily/10day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/forecasts/v1/daily/15day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/forecasts/v1/hourly/1hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/forecasts/v1/hourly/12hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/forecasts/v1/hourly/24hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/forecasts/v1/hourly/72hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/forecasts/v1/hourly/120hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/imagery/v1/maps/radsat/{resolution}/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      /indices/v1/daily:
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/indices/v1/daily/1day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/indices/v1/daily/1day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/indices/v1/daily/1day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/indices/v1/daily/5day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/indices/v1/daily/5day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/indices/v1/daily/5day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/indices/v1/daily/10day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/indices/v1/daily/10day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/indices/v1/daily/10day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/indices/v1/daily/15day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/indices/v1/daily/15day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/indices/v1/daily/15day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      /indices/v1/daily/groups:
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/indices/v1/daily/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/indices/v1/daily/{ID}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/locations/v1/adminareas/{countryCode}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      /locations/v1/cities/autocomplete:
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      /locations/v1/cities/geoposition/search:
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      /locations/v1/cities/ipaddress:
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/locations/v1/cities/neighbors/{locationKey}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      /locations/v1/cities/search:
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/locations/v1/cities/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/locations/v1/cities/{countryCode}/{adminCode}/search':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/locations/v1/countries/{regionCode}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      /locations/v1/poi/search:
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/locations/v1/poi/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/locations/v1/poi/{countryCode}/{adminCode}/search':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      /locations/v1/postalcodes/search:
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/locations/v1/postalcodes/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      /locations/v1/regions:
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      /locations/v1/search:
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/locations/v1/topcities/{group}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/locations/v1/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/locations/v1/{countryCode}/{adminCode}/search':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      '/locations/v1/{locationKey}':
+        get:
+          globalRequests:
+            - max: 50
+              period: daily
+      /translations/v1/groups:
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/translations/v1/groups/{groupID}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      /translations/v1/languages:
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      /tropical/v1/storms/active:
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/tropical/v1/storms/active/{basinId}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/tropical/v1/storms/active/{basinId}/{depressionId}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/forecasts':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions/current':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+  Standard:
+    pricing:
+      cost: 25.0 + globalRequests * 0.00012
+      currency: USD
+      billing: monthly
+    rates: {}
+    quotas:
+      '/alarms/v1/1day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/alarms/v1/5day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/alarms/v1/10day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/alarms/v1/15day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/alerts/v1/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/currentconditions/v1/topcities/{group}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/currentconditions/v1/{locationKey}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/currentconditions/v1/{locationKey}/historical':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/currentconditions/v1/{locationKey}/historical/24':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/forecasts/v1/daily/1day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/forecasts/v1/daily/5day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/forecasts/v1/daily/10day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/forecasts/v1/daily/15day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/forecasts/v1/hourly/1hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/forecasts/v1/hourly/12hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/forecasts/v1/hourly/24hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/forecasts/v1/hourly/72hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/forecasts/v1/hourly/120hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/imagery/v1/maps/radsat/{resolution}/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      /indices/v1/daily:
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/indices/v1/daily/1day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/indices/v1/daily/1day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/indices/v1/daily/1day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/indices/v1/daily/5day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/indices/v1/daily/5day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/indices/v1/daily/5day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/indices/v1/daily/10day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/indices/v1/daily/10day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/indices/v1/daily/10day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/indices/v1/daily/15day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/indices/v1/daily/15day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/indices/v1/daily/15day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      /indices/v1/daily/groups:
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/indices/v1/daily/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/indices/v1/daily/{ID}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/locations/v1/adminareas/{countryCode}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      /locations/v1/cities/autocomplete:
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      /locations/v1/cities/geoposition/search:
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      /locations/v1/cities/ipaddress:
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/locations/v1/cities/neighbors/{locationKey}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      /locations/v1/cities/search:
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/locations/v1/cities/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/locations/v1/cities/{countryCode}/{adminCode}/search':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/locations/v1/countries/{regionCode}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      /locations/v1/poi/search:
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/locations/v1/poi/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/locations/v1/poi/{countryCode}/{adminCode}/search':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      /locations/v1/postalcodes/search:
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/locations/v1/postalcodes/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      /locations/v1/regions:
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      /locations/v1/search:
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/locations/v1/topcities/{group}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/locations/v1/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/locations/v1/{countryCode}/{adminCode}/search':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/locations/v1/{locationKey}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      /translations/v1/groups:
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      '/translations/v1/groups/{groupID}':
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      /translations/v1/languages:
+        get:
+          globalRequests:
+            - max: 225000
+              period: daily
+      /tropical/v1/storms/active:
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/tropical/v1/storms/active/{basinId}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/tropical/v1/storms/active/{basinId}/{depressionId}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/forecasts':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions/current':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+    guarantees: {}
+  Prime:
+    pricing:
+      cost: 250.0 + globalRequests * 0.00015
+      currency: USD
+      billing: monthly
+    rates: {}
+    quotas:
+      '/alarms/v1/1day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/alarms/v1/5day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/alarms/v1/10day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/alarms/v1/15day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/alerts/v1/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/currentconditions/v1/topcities/{group}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/currentconditions/v1/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/currentconditions/v1/{locationKey}/historical':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/currentconditions/v1/{locationKey}/historical/24':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/forecasts/v1/daily/1day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/forecasts/v1/daily/5day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/forecasts/v1/daily/10day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/forecasts/v1/daily/15day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/forecasts/v1/hourly/1hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/forecasts/v1/hourly/12hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/forecasts/v1/hourly/24hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/forecasts/v1/hourly/72hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/forecasts/v1/hourly/120hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/imagery/v1/maps/radsat/{resolution}/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      /indices/v1/daily:
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/indices/v1/daily/1day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/indices/v1/daily/1day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/indices/v1/daily/1day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/indices/v1/daily/5day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/indices/v1/daily/5day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/indices/v1/daily/5day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/indices/v1/daily/10day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/indices/v1/daily/10day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/indices/v1/daily/10day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/indices/v1/daily/15day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/indices/v1/daily/15day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      '/indices/v1/daily/15day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 0
+              period: daily
+      /indices/v1/daily/groups:
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/indices/v1/daily/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/indices/v1/daily/{ID}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/locations/v1/adminareas/{countryCode}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      /locations/v1/cities/autocomplete:
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      /locations/v1/cities/geoposition/search:
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      /locations/v1/cities/ipaddress:
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/locations/v1/cities/neighbors/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      /locations/v1/cities/search:
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/locations/v1/cities/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/locations/v1/cities/{countryCode}/{adminCode}/search':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/locations/v1/countries/{regionCode}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      /locations/v1/poi/search:
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/locations/v1/poi/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/locations/v1/poi/{countryCode}/{adminCode}/search':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      /locations/v1/postalcodes/search:
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/locations/v1/postalcodes/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      /locations/v1/regions:
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      /locations/v1/search:
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/locations/v1/topcities/{group}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/locations/v1/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/locations/v1/{countryCode}/{adminCode}/search':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/locations/v1/{locationKey}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      /translations/v1/groups:
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/translations/v1/groups/{groupID}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      /translations/v1/languages:
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      /tropical/v1/storms/active:
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/tropical/v1/storms/active/{basinId}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/tropical/v1/storms/active/{basinId}/{depressionId}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/forecasts':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions/current':
+        get:
+          globalRequests:
+            - max: 1800000
+              period: daily
+  Elite:
+    pricing:
+      cost: 500.0 + globalRequests * 0.00022
+      currency: USD
+      billing: monthly
+    rates: {}
+    quotas:
+      '/alarms/v1/1day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/alarms/v1/5day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/alarms/v1/10day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/alarms/v1/15day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/alerts/v1/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/currentconditions/v1/topcities/{group}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/currentconditions/v1/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/currentconditions/v1/{locationKey}/historical':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/currentconditions/v1/{locationKey}/historical/24':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/forecasts/v1/daily/1day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/forecasts/v1/daily/5day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/forecasts/v1/daily/10day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/forecasts/v1/daily/15day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/forecasts/v1/hourly/1hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/forecasts/v1/hourly/12hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/forecasts/v1/hourly/24hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/forecasts/v1/hourly/72hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/forecasts/v1/hourly/120hour/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/imagery/v1/maps/radsat/{resolution}/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      /indices/v1/daily:
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/indices/v1/daily/1day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/indices/v1/daily/1day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/indices/v1/daily/1day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/indices/v1/daily/5day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/indices/v1/daily/5day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/indices/v1/daily/5day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/indices/v1/daily/10day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/indices/v1/daily/10day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/indices/v1/daily/10day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/indices/v1/daily/15day/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/indices/v1/daily/15day/{locationKey}/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/indices/v1/daily/15day/{locationKey}/{ID}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      /indices/v1/daily/groups:
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/indices/v1/daily/groups/{ID}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/indices/v1/daily/{ID}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/locations/v1/adminareas/{countryCode}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      /locations/v1/cities/autocomplete:
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      /locations/v1/cities/geoposition/search:
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      /locations/v1/cities/ipaddress:
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/locations/v1/cities/neighbors/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      /locations/v1/cities/search:
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/locations/v1/cities/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/locations/v1/cities/{countryCode}/{adminCode}/search':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/locations/v1/countries/{regionCode}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      /locations/v1/poi/search:
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/locations/v1/poi/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/locations/v1/poi/{countryCode}/{adminCode}/search':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      /locations/v1/postalcodes/search:
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/locations/v1/postalcodes/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      /locations/v1/regions:
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      /locations/v1/search:
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/locations/v1/topcities/{group}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/locations/v1/{countryCode}/search':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/locations/v1/{countryCode}/{adminCode}/search':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/locations/v1/{locationKey}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      /translations/v1/groups:
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/translations/v1/groups/{groupID}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      /translations/v1/languages:
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      /tropical/v1/storms/active:
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/tropical/v1/storms/active/{basinId}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/tropical/v1/storms/active/{basinId}/{depressionId}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/forecasts':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily
+      '/tropical/v1/storms/{yyyy}/{basinId}/{depressionId}/positions/current':
+        get:
+          globalRequests:
+            - max: 2400000
+              period: daily

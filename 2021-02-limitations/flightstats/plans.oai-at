@@ -1,0 +1,726 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/flightstats/flightstats.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regarding the resource'
+    resolution: consumption
+  globalRequests:
+    type: integer
+    format: int64
+    description: 'Number of requests, regardless the resource'
+    resolution: consumption
+  globalFlightsReturned:
+    type: integer
+    format: int64
+    description: 'Number of flights returned, regardless the historical query'
+    resolution: consumption
+pricing:
+  cost: 0
+  currency: EUR
+  billing: monthly
+availability: 'R/00:00:00Z/15:00:00Z'
+configuration: {}
+plans:
+  EvaluationPlan:
+    pricing:
+      cost: 0
+    rates: null
+    quotas:
+      /flex/airlines/rest/v1/json/active:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/airlines/rest/v1/json/all:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/airlines/rest/v1/json/fs:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/airlines/rest/v1/json/iata:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/airlines/rest/v1/json/icao:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/airports/rest/v1/json/active:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/airports/rest/v1/json/all:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/airports/rest/v1/json/:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/airports/rest/v1/json/fs:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/airports/rest/v1/json/citiCode:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/airports/rest/v1/json/countryCode:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/airports/rest/v1/json/iata:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/airports/rest/v1/json/icao:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/airports/rest/v1/json/withinRadius:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/alerts/rest/v1/json/create:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          requests:
+            - max: 500
+              period: forever
+      /flex/alerts/rest/v1/json/delete:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          requests:
+            - max: 500
+              period: forever
+      /flex/alerts/rest/v1/json/get:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          requests:
+            - max: 500
+              period: forever
+      /flex/connections/rest/v1/json/firstflightin:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          requests:
+            - max: 500
+              period: forever
+      /flex/connections/rest/v1/json/firstflightout:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          requests:
+            - max: 500
+              period: forever
+      /flex/connections/rest/v1/json/lastflightin:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          requests:
+            - max: 500
+              period: forever
+      /flex/connections/rest/v1/json/lastflightout:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          requests:
+            - max: 500
+              period: forever
+      /flex/delayindex/rest/v1/json/airports:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/delayindex/rest/v1/json/country:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/delayindex/rest/v1/json/region:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/delayindex/rest/v1/json/state:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/equipment/rest/v1/json/all:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/equipment/rest/v1/json/iata:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/flightstatus/rest/v1/json/flight/status:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/flightstatus/rest/v1/json/flight/tracks:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/flightstatus/rest/v1/json/airport/status:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          requests:
+            - max: 1000
+              period: forever
+      /flex/flightstatus/rest/v1/json/airport/tracks:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          requests:
+            - max: 1000
+              period: forever
+      /flex/flightstatus/rest/v1/json/route/status:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/flightstatus/rest/v1/json/flightNear:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          requests:
+            - max: 1000
+              period: forever
+      /flex/fids/rest/v1/json/fids:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          requests:
+            - max: 1000
+              period: forever
+      /flex/flightstatus/historical/rest/v1/json/flight:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          globalFlightsReturned:
+            - max: 100
+              period: forever
+      /flex/flightstatus/historical/rest/v1/json/airport:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          globalFlightsReturned:
+            - max: 100
+              period: forever
+      /flex/flightstatus/historical/rest/v1/json/route:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          globalFlightsReturned:
+            - max: 100
+              period: forever
+      /flex/ratings/rest/v1/json/flight:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/ratings/rest/v1/json/route:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/schedules/rest/v1/json/flight:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/schedules/rest/v1/json/route:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/schedules/rest/v1/json/airport:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+          requests:
+            - max: 1000
+              period: forever
+      /flex/schedules/rest/v1/json/direct:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/schedules/rest/v1/json/connecting:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/weather/rest/v1/json/all:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/weather/rest/v1/json/metar:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/weather/rest/v1/json/taf:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+      /flex/weather/rest/v1/json/zf:
+        get:
+          globalRequests:
+            - max: 20000
+              period: forever
+  CommercialStandard:
+    pricing:
+      cost: payasyougo
+    rates: null
+    quotas:
+      /flex/airlines/rest/v1/json/active: null
+      /flex/airlines/rest/v1/json/all: null
+      /flex/airlines/rest/v1/json/fs: null
+      /flex/airlines/rest/v1/json/iata: null
+      /flex/airlines/rest/v1/json/icao: null
+      /flex/airports/rest/v1/json/active: null
+      /flex/airports/rest/v1/json/all: null
+      /flex/airports/rest/v1/json/: null
+      /flex/airports/rest/v1/json/fs: null
+      /flex/airports/rest/v1/json/citiCode: null
+      /flex/airports/rest/v1/json/countryCode: null
+      /flex/airports/rest/v1/json/iata: null
+      /flex/airports/rest/v1/json/icao: null
+      /flex/airports/rest/v1/json/withinRadius: null
+      /flex/alerts/rest/v1/json/create:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/alerts/rest/v1/json/delete:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/alerts/rest/v1/json/get:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/connections/rest/v1/json/firstflightin:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/connections/rest/v1/json/firstflightout:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/connections/rest/v1/json/lastflightin:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/connections/rest/v1/json/lastflightout:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/delayindex/rest/v1/json/airports: null
+      /flex/delayindex/rest/v1/json/country: null
+      /flex/delayindex/rest/v1/json/region: null
+      /flex/delayindex/rest/v1/json/state: null
+      /flex/equipment/rest/v1/json/all: null
+      /flex/equipment/rest/v1/json/iata: null
+      /flex/flightstatus/rest/v1/json/flight/status: null
+      /flex/flightstatus/rest/v1/json/flight/tracks: null
+      /flex/flightstatus/rest/v1/json/airport/status:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/flightstatus/rest/v1/json/airport/tracks:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/flightstatus/rest/v1/json/route/status:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/flightstatus/rest/v1/json/flightNear: null
+      /flex/fids/rest/v1/json/fids:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/flightstatus/historical/rest/v1/json/flight:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/flightstatus/historical/rest/v1/json/airport:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/flightstatus/historical/rest/v1/json/route:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/ratings/rest/v1/json/flight: null
+      /flex/ratings/rest/v1/json/route: null
+      /flex/schedules/rest/v1/json/flight: null
+      /flex/schedules/rest/v1/json/route:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/schedules/rest/v1/json/airport:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/schedules/rest/v1/json/direct: null
+      /flex/schedules/rest/v1/json/connecting: null
+      /flex/weather/rest/v1/json/all: null
+      /flex/weather/rest/v1/json/metar: null
+      /flex/weather/rest/v1/json/taf: null
+      /flex/weather/rest/v1/json/zf: null
+  CommercialPremiumAPIs:
+    pricing:
+      cost: payasyougo
+    rates: null
+    quotas:
+      /flex/airlines/rest/v1/json/active: null
+      /flex/airlines/rest/v1/json/all: null
+      /flex/airlines/rest/v1/json/fs: null
+      /flex/airlines/rest/v1/json/iata: null
+      /flex/airlines/rest/v1/json/icao: null
+      /flex/airports/rest/v1/json/active: null
+      /flex/airports/rest/v1/json/all: null
+      /flex/airports/rest/v1/json/: null
+      /flex/airports/rest/v1/json/fs: null
+      /flex/airports/rest/v1/json/citiCode: null
+      /flex/airports/rest/v1/json/countryCode: null
+      /flex/airports/rest/v1/json/iata: null
+      /flex/airports/rest/v1/json/icao: null
+      /flex/airports/rest/v1/json/withinRadius: null
+      /flex/alerts/rest/v1/json/create: null
+      /flex/alerts/rest/v1/json/delete: null
+      /flex/alerts/rest/v1/json/get: null
+      /flex/connections/rest/v1/json/firstflightin: null
+      /flex/connections/rest/v1/json/firstflightout: null
+      /flex/connections/rest/v1/json/lastflightin: null
+      /flex/connections/rest/v1/json/lastflightout: null
+      /flex/delayindex/rest/v1/json/airports: null
+      /flex/delayindex/rest/v1/json/country: null
+      /flex/delayindex/rest/v1/json/region: null
+      /flex/delayindex/rest/v1/json/state: null
+      /flex/equipment/rest/v1/json/all: null
+      /flex/equipment/rest/v1/json/iata: null
+      /flex/flightstatus/rest/v1/json/flight/status: null
+      /flex/flightstatus/rest/v1/json/flight/tracks: null
+      /flex/flightstatus/rest/v1/json/airport/status: null
+      /flex/flightstatus/rest/v1/json/airport/tracks: null
+      /flex/flightstatus/rest/v1/json/route/status: null
+      /flex/flightstatus/rest/v1/json/flightNear: null
+      /flex/fids/rest/v1/json/fids: null
+      /flex/flightstatus/historical/rest/v1/json/flight: null
+      /flex/flightstatus/historical/rest/v1/json/airport: null
+      /flex/flightstatus/historical/rest/v1/json/route: null
+      /flex/ratings/rest/v1/json/flight: null
+      /flex/ratings/rest/v1/json/route: null
+      /flex/schedules/rest/v1/json/flight: null
+      /flex/schedules/rest/v1/json/route: null
+      /flex/schedules/rest/v1/json/airport: null
+      /flex/schedules/rest/v1/json/direct: null
+      /flex/schedules/rest/v1/json/connecting: null
+      /flex/weather/rest/v1/json/all: null
+      /flex/weather/rest/v1/json/metar: null
+      /flex/weather/rest/v1/json/taf: null
+      /flex/weather/rest/v1/json/zf: null
+  HistoricalStatus:
+    pricing:
+      cost: payasyougo
+    rates: null
+    quotas:
+      /flex/airlines/rest/v1/json/active:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/airlines/rest/v1/json/all:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/airlines/rest/v1/json/fs:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/airlines/rest/v1/json/iata:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/airlines/rest/v1/json/icao:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/airports/rest/v1/json/active:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/airports/rest/v1/json/all:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/airports/rest/v1/json/:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/airports/rest/v1/json/fs:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/airports/rest/v1/json/citiCode:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/airports/rest/v1/json/countryCode:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/airports/rest/v1/json/iata:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/airports/rest/v1/json/icao:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/airports/rest/v1/json/withinRadius:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/alerts/rest/v1/json/create:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/alerts/rest/v1/json/delete:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/alerts/rest/v1/json/get:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/connections/rest/v1/json/firstflightin:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/connections/rest/v1/json/firstflightout:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/connections/rest/v1/json/lastflightin:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/connections/rest/v1/json/lastflightout:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/delayindex/rest/v1/json/airports:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/delayindex/rest/v1/json/country:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/delayindex/rest/v1/json/region:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/delayindex/rest/v1/json/state:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/equipment/rest/v1/json/all:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/equipment/rest/v1/json/iata:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/flightstatus/rest/v1/json/flight/status:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/flightstatus/rest/v1/json/flight/tracks:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/flightstatus/rest/v1/json/airport/status:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/flightstatus/rest/v1/json/airport/tracks:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/flightstatus/rest/v1/json/route/status:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/flightstatus/rest/v1/json/flightNear:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/fids/rest/v1/json/fids:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/flightstatus/historical/rest/v1/json/flight: null
+      /flex/flightstatus/historical/rest/v1/json/airport: null
+      /flex/flightstatus/historical/rest/v1/json/route: null
+      /flex/ratings/rest/v1/json/flight:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/ratings/rest/v1/json/route:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/schedules/rest/v1/json/flight:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/schedules/rest/v1/json/route:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/schedules/rest/v1/json/airport:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/schedules/rest/v1/json/direct:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/schedules/rest/v1/json/connecting:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/weather/rest/v1/json/all:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/weather/rest/v1/json/metar:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/weather/rest/v1/json/taf:
+        get:
+          requests:
+            - max: 0
+              period: monthly
+      /flex/weather/rest/v1/json/zf:
+        get:
+          requests:
+            - max: 0
+              period: monthly
