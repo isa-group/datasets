@@ -1,0 +1,991 @@
+context:
+  id: plans
+  sla: '1.0'
+  type: plans
+  api: >-
+    http://repo.designer.governify.io:10880/antgamdia/api_modeling_paper/modeling/groupdocs/groupdocs.oai-spec?accessToken=165a1761634db1e9bd304ea6f3ffcf2b
+  provider: ISA Group
+infrastructure:
+  supervisor: 'http://supervisor.oai.governify.io/api/v2'
+  monitor: 'http://monitor.oai.governify.io/api/v1'
+metrics:
+  storage:
+    type: integer
+    format: int64
+    description: Number of storage in GB
+    resolution: consumption
+    unit: GB
+  operations:
+    type: integer
+    format: int64
+    description: Number of operations
+    resolution: consumption
+  fileSize:
+    type: integer
+    format: int64
+    description: Number of fileSize in MB
+    resolution: consumption
+    unit: MB
+  files:
+    type: integer
+    format: int64
+    description: Number of files
+    resolution: consumption
+pricing:
+  cost: 0
+  currency: USD
+  period:
+    amount: 1
+    unit: month
+availability: '2009-10-09T21:30:00.00Z'
+configuration: {}
+plans:
+  Free:
+    pricing:
+      cost: 0
+    quotas:
+      /Viewer:
+        get:
+          operations:
+            - max: 100
+              period: 
+                amount: 1
+                unit: month
+          fileSize:
+            - max: 5
+          storage:
+            - max: 0.25
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: 20
+              period: 
+                amount: 1
+                unit: month
+      /Annotation:
+        get:
+          operations:
+            - max: 850
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.15
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: 20
+              period: 
+                amount: 1
+                unit: month
+      /Assembly:
+        get:
+          operations:
+            - max: 850
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.15
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: 20
+              period: 
+                amount: 1
+                unit: month
+      /Signature:
+        get:
+          operations:
+            - max: 850
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.15
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: 20
+              period: 
+                amount: 1
+                unit: month
+      /Conversion:
+        get:
+          operations:
+            - max: 850
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.15
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: 20
+              period: 
+                amount: 1
+                unit: month
+      /Comparison:
+        get:
+          operations:
+            - max: 850
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.15
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: 20
+              period: 
+                amount: 1
+                unit: month
+  StartupBasic:
+    pricing:
+      cost: 60
+    quotas:
+      /Viewer:
+        get:
+          operations:
+            - max: 850
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.15
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Annotation:
+        get:
+          operations:
+            - max: 850
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.15
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Assembly:
+        get:
+          operations:
+            - max: 850
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.15
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Signature:
+        get:
+          operations:
+            - max: 850
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.15
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Conversion:
+        get:
+          operations:
+            - max: 850
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.15
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Comparison:
+        get:
+          operations:
+            - max: 850
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.15
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+  StartupPlus:
+    pricing:
+      cost: 89
+    quotas:
+      /Viewer:
+        get:
+          operations:
+            - max: 1200
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.09
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Annotation:
+        get:
+          operations:
+            - max: 1200
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.09
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Assembly:
+        get:
+          operations:
+            - max: 1200
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.09
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Signature:
+        get:
+          operations:
+            - max: 1200
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.09
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Conversion:
+        get:
+          operations:
+            - max: 1200
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.09
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Comparison:
+        get:
+          operations:
+            - max: 1200
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.09
+          fileSize:
+            - max: 10
+          storage:
+            - max: 2
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+  BusinessBasic:
+    pricing:
+      cost: 179
+    quotas:
+      /Viewer:
+        get:
+          operations:
+            - max: 5700
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.06
+          fileSize:
+            - max: 20
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Annotation:
+        get:
+          operations:
+            - max: 5700
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.06
+          fileSize:
+            - max: 20
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Assembly:
+        get:
+          operations:
+            - max: 5700
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.06
+          fileSize:
+            - max: 20
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Signature:
+        get:
+          operations:
+            - max: 5700
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.06
+          fileSize:
+            - max: 20
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Conversion:
+        get:
+          operations:
+            - max: 5700
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.06
+          fileSize:
+            - max: 20
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Comparison:
+        get:
+          operations:
+            - max: 5700
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.06
+          fileSize:
+            - max: 20
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+  BusinessPlus:
+    pricing:
+      cost: 449
+    quotas:
+      /Viewer:
+        get:
+          operations:
+            - max: 20100
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.03
+          fileSize:
+            - max: 20
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Annotation:
+        get:
+          operations:
+            - max: 20100
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.03
+          fileSize:
+            - max: 20
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Assembly:
+        get:
+          operations:
+            - max: 20100
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.03
+          fileSize:
+            - max: 20
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Signature:
+        get:
+          operations:
+            - max: 20100
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.03
+          fileSize:
+            - max: 20
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Conversion:
+        get:
+          operations:
+            - max: 20100
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.03
+          fileSize:
+            - max: 20
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Comparison:
+        get:
+          operations:
+            - max: 20100
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.03
+          fileSize:
+            - max: 20
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+  EnterpriseBasic:
+    pricing:
+      cost: 889
+    quotas:
+      /Viewer:
+        get:
+          operations:
+            - max: 57500
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.02
+          fileSize:
+            - max: 100
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Annotation:
+        get:
+          operations:
+            - max: 57500
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.02
+          fileSize:
+            - max: 100
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Assembly:
+        get:
+          operations:
+            - max: 57500
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.02
+          fileSize:
+            - max: 100
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Signature:
+        get:
+          operations:
+            - max: 57500
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.02
+          fileSize:
+            - max: 100
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Conversion:
+        get:
+          operations:
+            - max: 57500
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.02
+          fileSize:
+            - max: 100
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Comparison:
+        get:
+          operations:
+            - max: 57500
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.02
+          fileSize:
+            - max: 100
+          storage:
+            - max: 3
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+  EnterprisePlus:
+    pricing:
+      cost: 1349
+    quotas:
+      /Viewer:
+        get:
+          operations:
+            - max: 115000
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.02
+          fileSize:
+            - max: 100
+          storage:
+            - max: 10
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Annotation:
+        get:
+          operations:
+            - max: 115000
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.02
+          fileSize:
+            - max: 100
+          storage:
+            - max: 10
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Assembly:
+        get:
+          operations:
+            - max: 115000
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.02
+          fileSize:
+            - max: 100
+          storage:
+            - max: 10
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Signature:
+        get:
+          operations:
+            - max: 115000
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.02
+          fileSize:
+            - max: 100
+          storage:
+            - max: 10
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Conversion:
+        get:
+          operations:
+            - max: 115000
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.02
+          fileSize:
+            - max: 100
+          storage:
+            - max: 10
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
+      /Comparison:
+        get:
+          operations:
+            - max: 115000
+              period: 
+                amount: 1
+                unit: month
+              overage: 
+                excess: 1
+                cost: 0.02
+          fileSize:
+            - max: 100
+          storage:
+            - max: 10
+              period: 
+                amount: 1
+                unit: forever
+          files:
+            - max: unlimited
+              period: 
+                amount: 1
+                unit: month
