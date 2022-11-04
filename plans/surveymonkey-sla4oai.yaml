@@ -1,5 +1,5 @@
 context:
-  id: plans
+  id: surveymonkey
   sla: '1.0'
   type: plans
   api: >-
