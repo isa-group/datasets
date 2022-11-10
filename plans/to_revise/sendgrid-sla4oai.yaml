@@ -1,0 +1,469 @@
+context:
+  id: sendgrid
+  sla: '1.0'
+  type: plans
+  api: >-
+      https://rapidprod-sendgrid-v1.p.rapidapi.com/'
+  provider: Crunchbase Team
+infrastructure:
+  supervisor: 'https://crunchbase-sendgrid-v1.p.rapidapi.com'
+  monitor: 'https://crunchbase-sendgrid-v1.p.rapidapi.com'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Welcome to SendGrid’s Web API v3! This API is RESTful, fully featured, and easy to integrate with.'
+    resolution: consumption
+plans:
+  Basic:
+    pricing:
+      cost: 0
+      currency: USD
+      period:
+        amount: 1
+        unit: month
+    rates:
+      'alerts/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'supression/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'user/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'mail/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'asm/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'tracking_settings/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'mail_settings/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'webhooks/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'browser/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'clients/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'devices/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'geo/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'stats/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'mailbox_providers/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'mail/send':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: day
+  Pro:
+    pricing:
+      cost: 9.95
+      currency: USD
+      period:
+        amount: 1
+        unit: month
+    rates:
+      'alerts/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'supression/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'user/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'mail/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'asm/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'tracking_settings/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'mail_settings/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'webhooks/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'browser/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'clients/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'devices/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'geo/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'stats/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'mailbox_providers/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'mail/send':
+        post:
+          requests:
+            - max: 40000
+              period:
+                amount: 1
+                unit: month
+  Ultra:
+    pricing:
+      cost: 79.95
+      currency: USD
+      period:
+        amount: 1
+        unit: month
+    rates:
+      'alerts/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'supression/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'user/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'mail/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'asm/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'tracking_settings/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'mail_settings/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'webhooks/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'browser/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'clients/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'devices/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'geo/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'stats/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'mailbox_providers/*':
+        post:
+          requests:
+            - max: 10
+              period:
+                amount: 1
+                unit: second
+      'mail/send':
+        post:
+          requests:
+            - max: 100000
+              period:
+                amount: 1
+                unit: day
+  Mega:
+    pricing:
+      cost: 199.95
+      currency: USD
+      period:
+        amount: 1
+        unit: month
+    rates:
+      'alerts/*':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: second
+      'supression/*':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: second
+      'user/*':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: second
+      'mail/*':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: second
+      'asm/*':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: second
+      'tracking_settings/*':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: second
+      'mail_settings/*':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: second
+      'webhooks/*':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: second
+      'browser/*':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: second
+      'clients/*':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: second
+      'devices/*':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: second
+      'geo/*':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: second
+      'stats/*':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: second
+      'mailbox_providers/*':
+        post:
+          requests:
+            - max: 50
+              period:
+                amount: 1
+                unit: second
+      'mail/send':
+        post:
+          requests:
+            - max: 300000
+              period:
+                amount: 1
+                unit: month

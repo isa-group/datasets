@@ -1,0 +1,42 @@
+context:
+  id: crunchbase
+  sla: '1.0'
+  type: plans
+  api: >-
+    https://crunchbase-crunchbase-v1.p.rapidapi.com
+  provider: Crunchbase Team
+infrastructure:
+  supervisor: 'https://crunchbase-crunchbase-v1.p.rapidapi.com'
+  monitor: 'https://crunchbase-crunchbase-v1.p.rapidapi.com'
+metrics:
+  requests:
+    type: integer
+    format: int64
+    description: 'Build powerful applications and integrate Crunchbase into your web and mobile applications with the REST API.'
+    resolution: consumption
+plans:
+  Basic:
+    pricing:
+      cost: 0
+    quotas:
+      '/autocompletes':
+        get:
+          requests:
+            - max: unlimited
+              period:
+                amount: 1
+                unit: forever
+      '/entities/organizations/{entity_id}':
+        get:
+          requests:
+            - max: unlimited
+              period:
+                amount: 1
+                unit: forever
+      '/searches/organizations':
+        get:
+          requests:
+            - max: unlimited
+              period:
+                amount: 1
+                unit: forever
