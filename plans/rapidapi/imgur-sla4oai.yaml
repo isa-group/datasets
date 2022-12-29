@@ -41,7 +41,7 @@ plans:
                 cost: 0.001
       /3/gallery/image/:id:
         post:
-          emails:
+          uploads:
             - max: 60000
               period: 
                 amount: 1
@@ -51,7 +51,7 @@ plans:
                 cost: 0.01
       /3/album:
         post:
-          emails:
+          uploads:
             - max: 60000
               period:
                 amount: 1
@@ -61,7 +61,7 @@ plans:
                 cost: 0.01
       /3/image:
         post:
-          emails:
+          uploads:
             - max: 60000
               period:
                 amount: 1
@@ -89,7 +89,7 @@ plans:
                 cost: 0.001
       /3/gallery/image/:id:
         post:
-          emails:
+          uploads:
             - max: 750000
               period: 
                 amount: 1
@@ -99,7 +99,7 @@ plans:
                 cost: 0.01
       /3/album:
         post:
-          emails:
+          uploads:
             - max: 750000
               period:
                 amount: 1
@@ -109,7 +109,7 @@ plans:
                 cost: 0.01
       /3/image:
         post:
-          emails:
+          uploads:
             - max: 750000
               period:
                 amount: 1
@@ -137,7 +137,7 @@ plans:
                 cost: 0.001
       /3/gallery/image/:id:
         post:
-          emails:
+          uploads:
             - max: 15000000
               period: 
                 amount: 1
@@ -147,7 +147,7 @@ plans:
                 cost: 0.01
       /3/album:
         post:
-          emails:
+          uploads:
             - max: 15000000
               period:
                 amount: 1
@@ -157,7 +157,7 @@ plans:
                 cost: 0.01
       /3/image:
         post:
-          emails:
+          uploads:
             - max: 15000000
               period:
                 amount: 1
