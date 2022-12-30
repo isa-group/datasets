@@ -14,10 +14,10 @@ metrics:
     format: int64
     description: 'Number of requests, regarding the resource'
     resolution: consumption
-  maxPaging:
+  paging:
     type: integer
     format: int64
-  maxRadius:
+  radius:
     type: integer
     format: int64
 availability: '2022-12-22T00:00:00.00Z'
